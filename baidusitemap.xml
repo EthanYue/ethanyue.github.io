@@ -1,11 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://example.com/posts/5cb4afad.html</loc>
+    <loc>https://ethanyue.github.io/posts/a336c288.html</loc>
     <lastmod>2023-04-07</lastmod>
   </url>
   <url>
-    <loc>http://example.com/posts/71625180.html</loc>
-    <lastmod>2023-04-06</lastmod>
+    <loc>https://ethanyue.github.io/posts/3a3f9332.html</loc>
+    <lastmod>2023-04-07</lastmod>
+  </url>
+  <url>
+    <loc>https://ethanyue.github.io/posts/4d38a3a4.html</loc>
+    <lastmod>2023-04-07</lastmod>
+  </url>
+  <url>
+    <loc>https://ethanyue.github.io/posts/d35c3607.html</loc>
+    <lastmod>2023-04-07</lastmod>
+  </url>
+  <url>
+    <loc>https://ethanyue.github.io/posts/a45b0691.html</loc>
+    <lastmod>2023-04-07</lastmod>
+  </url>
+  <url>
+    <loc>https://ethanyue.github.io/posts/71625180.html</loc>
+    <lastmod>2023-04-07</lastmod>
+  </url>
+  <url>
+    <loc>https://ethanyue.github.io/posts/5cb4afad.html</loc>
+    <lastmod>2023-04-07</lastmod>
   </url>
 </urlset> 

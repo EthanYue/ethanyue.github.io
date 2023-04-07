@@ -1,237 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>User Guide</title>
-    <url>/posts/5cb4afad.html</url>
-    <content><![CDATA[<p>Python玩转自动化运维-成长路径</p>
-<p><strong>专注于自动化运维领域，帮助任何想将编程与运维相结合的朋友，从零开始引领大家走进运维自动化。</strong></p>
-<h2 id="内容受众"><a href="#内容受众" class="headerlink" title="内容受众"></a>内容受众</h2><p>你是否已经决定走上了<strong>运维工程师</strong>的道路，或者是深耕运维多年的老手；</p>
-<p>升职加薪一直与自己绝缘，还总是锅从天上来；</p>
-<p>看着别人自动化运维搞得风生水起，自己巡检两台设备的时间别人已经巡检好了一百台设备，还顺带出了个报表，你迷茫了；</p>
-<p>人往往很难跳出自己的舒适圈，对于之前没有涉足过的领域也很难找到合适的切入点，再加上平时的工作已经足够焦头烂额，没有时间去从零开始学一门新技术。</p>
+    <title>自动化运维新手村-Python基础-1</title>
+    <url>/posts/71625180.html</url>
+    <content><![CDATA[<hr>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a><strong>摘要</strong></h2><p>首先说明，以下几类读者朋友们请自行对号入座：</p>
+<ul>
+<li><p>对CMDB很了解但对于Python还没有上手的读者，强烈建议阅读此篇；</p>
+</li>
+<li><p>了解过Python基本的数据结构，但又没有经常在实践中运用的读者，建议阅读此篇；</p>
+</li>
+<li><p>已经可以熟练写出Python脚本，但对CMDB不是很了解的读者，建议阅读此篇；</p>
+</li>
+</ul>
 <span id="more"></span>
 
-<h2 id="内容定位"><a href="#内容定位" class="headerlink" title="内容定位"></a>内容定位</h2><p>并不为了单纯的输出枯燥的知识点，区别于其他资料的随意搬运，东一榔头西一棒子；</p>
-<p>而是从场景出发，使输出的内容具有<strong>实操性</strong>，<strong>自顶向下</strong>将具体场景拆分，并落实到每个知识点，让同学清晰的意识到所学知识能够如何运用；</p>
-<p>让运维老手掌握平时经常听到的 <strong>Netmiko, SNMP, Netconf</strong>等知识，能够学有所得，学能所用；</p>
-<p>番外篇会将正篇中涉及到的细节逐一展开，让计算机专业同学能够深入理解，夯实基础，逐步掌握操作系统，数据结构等专业知识；</p>
-<p>并且也会涉及到<strong>编程思想，学习方法论</strong>等技巧，让大家有挑战大厂的底气。</p>
-<h2 id="路径的选择"><a href="#路径的选择" class="headerlink" title="路径的选择"></a>路径的选择</h2><p>对于正在从事运维工作，但工作中遇到了一些自动化的需求的朋友，那么这里作者并不提倡大家去构建整个的自动化运维体系，一个是没有必要，另一个是这也可能会消耗相当大的精力，所以我们就暂时只点与自己<strong>实际工作相关的技能</strong>即可，全部的技能树如下图所示：</p>
-<p><img src="https://s2.loli.net/2023/04/05/WqE3Gb1TmsiQrjY.png" alt="img"></p>
-<h2 id="路径的规划"><a href="#路径的规划" class="headerlink" title="路径的规划"></a>路径的规划</h2><h3 id="一、【自动化运维新手村】"><a href="#一、【自动化运维新手村】" class="headerlink" title="一、【自动化运维新手村】"></a>一、【<strong>自动化运维新手村</strong>】</h3><p>那么对于自动化运维来说肯定首推的编程语言就是Python。</p>
-<p>但网上对于Python语言的教程一抓一大把，我为什么还要在这里去讲解呢？这其实等同于另一个问题：<strong>刚接触编程的人是否能通过看类似的教程快速上手Python?</strong> 或者通俗易懂的讲：<strong>是不是能看得懂?</strong></p>
-<p>大部分从事运维工作的朋友可能都没有编程经验，也没有系统的学习过计算机底层原理，所以对于标准式的教程就会感觉，<strong>好像会了，但又没有全会；好像会了，但又不会用</strong>，所以我根据自己的学习方法再加上身边运维朋友们的学习经历，通过一些生动的例子和实际的场景来让大家快速的上手Python这门语言，并且能直接运用于实际工作中。</p>
-<blockquote>
-<p> 新手村的内容主要是为大家搭建一个简易的CMDB（资产管理），这也符合很多运维朋友的实际需求场景，比如想要做一个小功能，可以提供给其他人使用。除此之外也会对其中涉及到的部分知识点进行详细的深入挖掘，呈现在番外篇中，让对其感兴趣的读者朋友去更多的了解。</p>
-</blockquote>
-<ul>
-<li>Python基本数据结构和操作</li>
-</ul>
-<blockquote>
-<p>将CMDB的增删改查与Python数据结构相结合，将枯燥的基础知识进行深入浅出的讲解</p>
-</blockquote>
-<ul>
-<li><p>番外：数据结构的详解</p>
-</li>
-<li><p>番外：字符串的详解</p>
-</li>
-<li><p>番外：数组的详解</p>
-</li>
-<li><p>番外：字典的详解</p>
-</li>
-<li><p>面试番外：算法</p>
-</li>
-<li><p>Python函数与对象</p>
-</li>
-</ul>
-<blockquote>
-<p>将如何构建CMDB的函数与对象逐步拆解</p>
-</blockquote>
-<ul>
-<li><p>番外：深入了解面向对象</p>
-</li>
-<li><p>番外：设计模式简介</p>
-</li>
-<li><p>Flask Web框架</p>
-</li>
-</ul>
-<blockquote>
-<p>将对CMDB的操作与Web框架相结合，通过API的方式对CMDB进行操作</p>
-</blockquote>
-<ul>
-<li><p>面试番外：计算机网络</p>
-</li>
-<li><p>MySQL数据库</p>
-</li>
-</ul>
-<blockquote>
-<p>将CMDB存储到数据库中，对其进行的增删改查从对文件读写转移到对数据库进行操作</p>
-</blockquote>
-<ul>
-<li><p>番外：MongoDB数据库</p>
-</li>
-<li><p>面试番外：数据库</p>
-</li>
-<li><p>Linux部署应用</p>
-</li>
-</ul>
-<blockquote>
-<p>将应用部署在Linux系统上稳定的运行</p>
-</blockquote>
-<ul>
-<li>面试番外：操作系统</li>
-</ul>
-<h3 id="二、【自动化运维初级村】"><a href="#二、【自动化运维初级村】" class="headerlink" title="二、【自动化运维初级村】"></a>二、【<strong>自动化运维初级村</strong>】</h3><blockquote>
-<p> 其实初级村的内容顺序的设计和新手村是类似的，但这一部分所运用的Python知识就会稍微深入，所以建议已经对Python有一定了解的朋友，可以跳过新手村直接看初级村的内容，因为初级村会是更多运维朋友们经常遇到的需求场景，也是做自动化运必须要走的路。</p>
-</blockquote>
-<ul>
-<li>paramiko和netmiko</li>
-</ul>
-<blockquote>
-<p>两者的使用方式及优劣</p>
-</blockquote>
-<ul>
-<li>Python 正则解析</li>
-</ul>
-<blockquote>
-<p>将通过SSH收集回来的各种信息进行正则解析</p>
-</blockquote>
-<ul>
-<li><p>番外：text-fsm解析</p>
-</li>
-<li><p>Python snmp</p>
-</li>
-</ul>
-<blockquote>
-<p>如何使用Python调用SNMP采集指令，并讲解OID使用方式</p>
-</blockquote>
-<ul>
-<li>NetConf</li>
-</ul>
-<blockquote>
-<p>如何通过NetConf对网络设备进行操作</p>
-</blockquote>
-<ul>
-<li>Crontab并回调CMDB</li>
-</ul>
-<blockquote>
-<p>如何设置定时执行SSH任务进行定期巡检，并更新回写CMDB</p>
-</blockquote>
-<ul>
-<li><p>番外：Python scheduler</p>
-</li>
-<li><p>Flask Web框架</p>
-</li>
-</ul>
-<blockquote>
-<p>将SSH和NetConf与Web框架相结合，通过API方式或前端调用其执行</p>
-</blockquote>
-<h3 id="三、【自动化运维中级村】"><a href="#三、【自动化运维中级村】" class="headerlink" title="三、【自动化运维中级村】"></a>三、【<strong>自动化运维中级村</strong>】</h3><blockquote>
-<p>中级村与初级村最大的不同就是，会从简单需求应用的完成，转变为更为复杂架构的设计与实现，以及能够支撑更大型运维的场景。</p>
-</blockquote>
-<ul>
-<li>Celery任务队列</li>
-</ul>
-<blockquote>
-<p>如何使用任务队列异步处理大量的SSH或NetConf执行操作</p>
-</blockquote>
-<ul>
-<li><p>番外：Redis数据库</p>
-</li>
-<li><p>番外：RabbitMQ中间件</p>
-</li>
-<li><p>Rsyslog日志采集</p>
-</li>
-</ul>
-<blockquote>
-<p>通过Rsyslog收集设备日志并存储进行展示和查询。</p>
-</blockquote>
-<ul>
-<li>Mysql性能优化</li>
-</ul>
-<blockquote>
-<p>支持更大数据量的存储和查询，进行数据库的优化，分库和分表</p>
-</blockquote>
-<ul>
-<li>ELK， Rsyslog - Kafkf - LogStash - ElasticSearch - Kibana</li>
-</ul>
-<blockquote>
-<p>使用ELK套件对日志进行存储及展示</p>
-</blockquote>
-<ul>
-<li>前后端分离</li>
-</ul>
-<blockquote>
-<p>由于系统功能的丰富，需要实现前后端分离的应用。</p>
-</blockquote>
-<h3 id="四、【自动化运维高级村】"><a href="#四、【自动化运维高级村】" class="headerlink" title="四、【自动化运维高级村】"></a>四、【<strong>自动化运维高级村</strong>】</h3><blockquote>
-<p>如果想要做一个完整的自动化运维系统，就必然需要有相应完善的自动化运维的理念和方法论，所以高级村会设计到更多关于自动化运维的理念介绍，以及更为复杂和适应更大型企业的自动化运维系统。 </p>
-</blockquote>
-<ul>
-<li>Celery分时任务队列</li>
-</ul>
-<blockquote>
-<p>使用Celery任务队列，将SNMP大量采集任务或SSH变更任务根据频率发布在不同的队列中进行高效采集</p>
-</blockquote>
-<ul>
-<li>Flink处理</li>
-</ul>
-<blockquote>
-<p>使用Flink对SNMP采集的数据进行清洗并存储</p>
-</blockquote>
-<ul>
-<li>Rsyslog - Kafka - Consumer- MySQL</li>
-</ul>
-<blockquote>
-<p>如何将设备上报的日志进行收集解析，并通过Kafka中间件削峰，并进行存储</p>
-</blockquote>
-<ul>
-<li><p>番外： Kafka中间件</p>
-</li>
-<li><p>告警通知，屏蔽，抑制</p>
-</li>
-</ul>
-<blockquote>
-<p>如何设置告警的通知，屏蔽和抑制机制</p>
-</blockquote>
-<ul>
-<li>任务编排</li>
-</ul>
-<blockquote>
-<p>通过白屏方式将变更步骤注册为执行算子，并进行编排后下发</p>
-</blockquote>
-<ul>
-<li>基于意图的分组配置下发</li>
-</ul>
-<blockquote>
-<p>将设备根据角色分组，并设置基于意图的模板命令，使用SSH或NetConf方式与其结合对网络设备进行变更或查询操作</p>
-</blockquote>
-<h2 id="路径的总结"><a href="#路径的总结" class="headerlink" title="路径的总结"></a>路径的总结</h2><p>上述的路径梳理是一个目前我能给到大家的较为系统的自动化运维方面的实践，在更新的过程中，我可能会根据读者的需要或者平时的思考总结对内容进行更新迭代，所以说路径并不是固定的，它只是一个学习的方向，并且学习的过程必然是会有<strong>阻碍和困难</strong>的，希望大家都能有坚定的决心克服一个个的难点，当然也会提供给大家学习交流的群组，供大家互相探讨，互相进步，也欢迎大家有什么疑问都找我咨询。最后期待大家都能拿到属于自己的结果。</p>
-<p><strong>欢迎大家添加我的个人公众号【Python玩转自动化运维】加入读者交流群，获取更多干货内容</strong></p>
-<p><img src="https://s2.loli.net/2023/04/05/O71nPKbFcWwoRZS.jpg" alt="img"></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>freshman-python-basics-1</title>
-    <url>/posts/71625180.html</url>
-    <content><![CDATA[<p>自动化运维新手村-Python基础-1</p>
-<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a><strong>摘要</strong></h2><blockquote>
-<p>首先说明，以下几类读者朋友们请自行对号入座：</p>
-</blockquote>
-<ul>
-<li><blockquote>
-<p>对CMDB很了解但对于Python还没有上手的读者，强烈建议阅读此篇；</p>
-</blockquote>
-</li>
-<li><blockquote>
-<p>了解过Python基本的数据结构，但又没有经常在实践中运用的读者，建议阅读此篇；</p>
-</blockquote>
-</li>
-<li><blockquote>
-<p>已经可以熟练写出Python脚本，但对CMDB不是很了解的读者，建议阅读此篇；</p>
-</blockquote>
-</li>
-</ul>
 <h2 id="CMDB简介"><a href="#CMDB简介" class="headerlink" title="CMDB简介"></a><strong>CMDB简介</strong></h2><p>简单赘述以下，CMDB的英文全称是Configuration Management Database，中文名叫配置管理数据库，它几乎贯穿了运维的每个环节。在实际的项目中，<strong>CMDB常常被认为是构建其它ITIL(Information Technology Infrastructure Library，IT基础架构库)流程的基础，ITIL项目的成败与是否成功建立CMDB有非常大的关系。</strong></p>
 <p>对于一些中大型的互联网公司必然都有自研的CMDB系统，而一些初创公司可能采用开源的CMDB工具或者部分运维工程师日常使用Excel表格充当简易的CMDB功能，我们的<strong>目的并不是让大家去构建一个新的CMDB去推翻原有系统</strong>，也不是说用Excel表格就不如用Python来的高级，而是<strong>能让大家从CMDB自顶向下的拆解，来更生动的体会到Python基础数据结构的运用</strong></p>
 <h2 id="CMDBv1-0"><a href="#CMDBv1-0" class="headerlink" title="CMDBv1.0"></a><strong>CMDBv1.0</strong></h2><p>实现完整的CMDB十分复杂，但作为讲解Python基本数据结构的范例，我们先实现一个简易的1.0版本。</p>
@@ -471,11 +254,806 @@
 </blockquote>
 ]]></content>
       <categories>
-        <category>Freshman</category>
+        <category>新手村</category>
       </categories>
       <tags>
-        <tag>Python-Basics</tag>
         <tag>CMDB</tag>
+        <tag>Python基础</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Python玩转自动化运维</title>
+    <url>/posts/5cb4afad.html</url>
+    <content><![CDATA[<p><strong>专注于自动化运维领域，帮助任何想将编程与运维相结合的朋友，从零开始引领大家走进运维自动化。</strong></p>
+<span id="more"></span>
+
+<h2 id="内容受众"><a href="#内容受众" class="headerlink" title="内容受众"></a>内容受众</h2><p>你是否已经决定走上了<strong>运维工程师</strong>的道路，或者是深耕运维多年的老手；</p>
+<p>升职加薪一直与自己绝缘，还总是锅从天上来；</p>
+<p>看着别人自动化运维搞得风生水起，自己巡检两台设备的时间别人已经巡检好了一百台设备，还顺带出了个报表，你迷茫了；</p>
+<p>人往往很难跳出自己的舒适圈，对于之前没有涉足过的领域也很难找到合适的切入点，再加上平时的工作已经足够焦头烂额，没有时间去从零开始学一门新技术。</p>
+<h2 id="内容定位"><a href="#内容定位" class="headerlink" title="内容定位"></a>内容定位</h2><p>并不为了单纯的输出枯燥的知识点，区别于其他资料的随意搬运，东一榔头西一棒子；</p>
+<p>而是从场景出发，使输出的内容具有<strong>实操性</strong>，<strong>自顶向下</strong>将具体场景拆分，并落实到每个知识点，让同学清晰的意识到所学知识能够如何运用；</p>
+<p>让运维老手掌握平时经常听到的 <strong>Netmiko, SNMP, Netconf</strong>等知识，能够学有所得，学能所用；</p>
+<p>番外篇会将正篇中涉及到的细节逐一展开，让计算机专业同学能够深入理解，夯实基础，逐步掌握操作系统，数据结构等专业知识；</p>
+<p>并且也会涉及到<strong>编程思想，学习方法论</strong>等技巧，让大家有挑战大厂的底气。</p>
+<h2 id="路径的选择"><a href="#路径的选择" class="headerlink" title="路径的选择"></a>路径的选择</h2><p>对于正在从事运维工作，但工作中遇到了一些自动化的需求的朋友，那么这里作者并不提倡大家去构建整个的自动化运维体系，一个是没有必要，另一个是这也可能会消耗相当大的精力，所以我们就暂时只点与自己<strong>实际工作相关的技能</strong>即可，全部的技能树如下图所示：</p>
+<p><img src="https://s2.loli.net/2023/04/05/WqE3Gb1TmsiQrjY.png" alt="img"></p>
+<h2 id="路径的规划"><a href="#路径的规划" class="headerlink" title="路径的规划"></a>路径的规划</h2><h3 id="一、【自动化运维新手村】"><a href="#一、【自动化运维新手村】" class="headerlink" title="一、【自动化运维新手村】"></a>一、【<strong>自动化运维新手村</strong>】</h3><p>那么对于自动化运维来说肯定首推的编程语言就是Python。</p>
+<p>但网上对于Python语言的教程一抓一大把，我为什么还要在这里去讲解呢？这其实等同于另一个问题：<strong>刚接触编程的人是否能通过看类似的教程快速上手Python?</strong> 或者通俗易懂的讲：<strong>是不是能看得懂?</strong></p>
+<p>大部分从事运维工作的朋友可能都没有编程经验，也没有系统的学习过计算机底层原理，所以对于标准式的教程就会感觉，<strong>好像会了，但又没有全会；好像会了，但又不会用</strong>，所以我根据自己的学习方法再加上身边运维朋友们的学习经历，通过一些生动的例子和实际的场景来让大家快速的上手Python这门语言，并且能直接运用于实际工作中。</p>
+<blockquote>
+<p> 新手村的内容主要是为大家搭建一个简易的CMDB（资产管理），这也符合很多运维朋友的实际需求场景，比如想要做一个小功能，可以提供给其他人使用。除此之外也会对其中涉及到的部分知识点进行详细的深入挖掘，呈现在番外篇中，让对其感兴趣的读者朋友去更多的了解。</p>
+</blockquote>
+<ul>
+<li>Python基本数据结构和操作</li>
+</ul>
+<blockquote>
+<p>将CMDB的增删改查与Python数据结构相结合，将枯燥的基础知识进行深入浅出的讲解</p>
+</blockquote>
+<ul>
+<li><p>番外：数据结构的详解</p>
+</li>
+<li><p>番外：字符串的详解</p>
+</li>
+<li><p>番外：数组的详解</p>
+</li>
+<li><p>番外：字典的详解</p>
+</li>
+<li><p>面试番外：算法</p>
+</li>
+<li><p>Python函数与对象</p>
+</li>
+</ul>
+<blockquote>
+<p>将如何构建CMDB的函数与对象逐步拆解</p>
+</blockquote>
+<ul>
+<li><p>番外：深入了解面向对象</p>
+</li>
+<li><p>番外：设计模式简介</p>
+</li>
+<li><p>Flask Web框架</p>
+</li>
+</ul>
+<blockquote>
+<p>将对CMDB的操作与Web框架相结合，通过API的方式对CMDB进行操作</p>
+</blockquote>
+<ul>
+<li><p>面试番外：计算机网络</p>
+</li>
+<li><p>MySQL数据库</p>
+</li>
+</ul>
+<blockquote>
+<p>将CMDB存储到数据库中，对其进行的增删改查从对文件读写转移到对数据库进行操作</p>
+</blockquote>
+<ul>
+<li><p>番外：MongoDB数据库</p>
+</li>
+<li><p>面试番外：数据库</p>
+</li>
+<li><p>Linux部署应用</p>
+</li>
+</ul>
+<blockquote>
+<p>将应用部署在Linux系统上稳定的运行</p>
+</blockquote>
+<ul>
+<li>面试番外：操作系统</li>
+</ul>
+<h3 id="二、【自动化运维初级村】"><a href="#二、【自动化运维初级村】" class="headerlink" title="二、【自动化运维初级村】"></a>二、【<strong>自动化运维初级村</strong>】</h3><blockquote>
+<p> 其实初级村的内容顺序的设计和新手村是类似的，但这一部分所运用的Python知识就会稍微深入，所以建议已经对Python有一定了解的朋友，可以跳过新手村直接看初级村的内容，因为初级村会是更多运维朋友们经常遇到的需求场景，也是做自动化运必须要走的路。</p>
+</blockquote>
+<ul>
+<li>paramiko和netmiko</li>
+</ul>
+<blockquote>
+<p>两者的使用方式及优劣</p>
+</blockquote>
+<ul>
+<li>Python 正则解析</li>
+</ul>
+<blockquote>
+<p>将通过SSH收集回来的各种信息进行正则解析</p>
+</blockquote>
+<ul>
+<li><p>番外：text-fsm解析</p>
+</li>
+<li><p>Python snmp</p>
+</li>
+</ul>
+<blockquote>
+<p>如何使用Python调用SNMP采集指令，并讲解OID使用方式</p>
+</blockquote>
+<ul>
+<li>NetConf</li>
+</ul>
+<blockquote>
+<p>如何通过NetConf对网络设备进行操作</p>
+</blockquote>
+<ul>
+<li>Crontab并回调CMDB</li>
+</ul>
+<blockquote>
+<p>如何设置定时执行SSH任务进行定期巡检，并更新回写CMDB</p>
+</blockquote>
+<ul>
+<li><p>番外：Python scheduler</p>
+</li>
+<li><p>Flask Web框架</p>
+</li>
+</ul>
+<blockquote>
+<p>将SSH和NetConf与Web框架相结合，通过API方式或前端调用其执行</p>
+</blockquote>
+<h3 id="三、【自动化运维中级村】"><a href="#三、【自动化运维中级村】" class="headerlink" title="三、【自动化运维中级村】"></a>三、【<strong>自动化运维中级村</strong>】</h3><blockquote>
+<p>中级村与初级村最大的不同就是，会从简单需求应用的完成，转变为更为复杂架构的设计与实现，以及能够支撑更大型运维的场景。</p>
+</blockquote>
+<ul>
+<li>Celery任务队列</li>
+</ul>
+<blockquote>
+<p>如何使用任务队列异步处理大量的SSH或NetConf执行操作</p>
+</blockquote>
+<ul>
+<li><p>番外：Redis数据库</p>
+</li>
+<li><p>番外：RabbitMQ中间件</p>
+</li>
+<li><p>Rsyslog日志采集</p>
+</li>
+</ul>
+<blockquote>
+<p>通过Rsyslog收集设备日志并存储进行展示和查询。</p>
+</blockquote>
+<ul>
+<li>Mysql性能优化</li>
+</ul>
+<blockquote>
+<p>支持更大数据量的存储和查询，进行数据库的优化，分库和分表</p>
+</blockquote>
+<ul>
+<li>ELK， Rsyslog - Kafkf - LogStash - ElasticSearch - Kibana</li>
+</ul>
+<blockquote>
+<p>使用ELK套件对日志进行存储及展示</p>
+</blockquote>
+<ul>
+<li>前后端分离</li>
+</ul>
+<blockquote>
+<p>由于系统功能的丰富，需要实现前后端分离的应用。</p>
+</blockquote>
+<h3 id="四、【自动化运维高级村】"><a href="#四、【自动化运维高级村】" class="headerlink" title="四、【自动化运维高级村】"></a>四、【<strong>自动化运维高级村</strong>】</h3><blockquote>
+<p>如果想要做一个完整的自动化运维系统，就必然需要有相应完善的自动化运维的理念和方法论，所以高级村会设计到更多关于自动化运维的理念介绍，以及更为复杂和适应更大型企业的自动化运维系统。 </p>
+</blockquote>
+<ul>
+<li>Celery分时任务队列</li>
+</ul>
+<blockquote>
+<p>使用Celery任务队列，将SNMP大量采集任务或SSH变更任务根据频率发布在不同的队列中进行高效采集</p>
+</blockquote>
+<ul>
+<li>Flink处理</li>
+</ul>
+<blockquote>
+<p>使用Flink对SNMP采集的数据进行清洗并存储</p>
+</blockquote>
+<ul>
+<li>Rsyslog - Kafka - Consumer- MySQL</li>
+</ul>
+<blockquote>
+<p>如何将设备上报的日志进行收集解析，并通过Kafka中间件削峰，并进行存储</p>
+</blockquote>
+<ul>
+<li><p>番外： Kafka中间件</p>
+</li>
+<li><p>告警通知，屏蔽，抑制</p>
+</li>
+</ul>
+<blockquote>
+<p>如何设置告警的通知，屏蔽和抑制机制</p>
+</blockquote>
+<ul>
+<li>任务编排</li>
+</ul>
+<blockquote>
+<p>通过白屏方式将变更步骤注册为执行算子，并进行编排后下发</p>
+</blockquote>
+<ul>
+<li>基于意图的分组配置下发</li>
+</ul>
+<blockquote>
+<p>将设备根据角色分组，并设置基于意图的模板命令，使用SSH或NetConf方式与其结合对网络设备进行变更或查询操作</p>
+</blockquote>
+<h2 id="路径的总结"><a href="#路径的总结" class="headerlink" title="路径的总结"></a>路径的总结</h2><p>上述的路径梳理是一个目前我能给到大家的较为系统的自动化运维方面的实践，在更新的过程中，我可能会根据读者的需要或者平时的思考总结对内容进行更新迭代，所以说路径并不是固定的，它只是一个学习的方向，并且学习的过程必然是会有<strong>阻碍和困难</strong>的，希望大家都能有坚定的决心克服一个个的难点，当然也会提供给大家学习交流的群组，供大家互相探讨，互相进步，也欢迎大家有什么疑问都找我咨询。最后期待大家都能拿到属于自己的结果。</p>
+]]></content>
+      <categories>
+        <category>新手村</category>
+        <category>初级村</category>
+        <category>中级村</category>
+        <category>高级村</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>自动化运维新手村-Python基础-2</title>
+    <url>/posts/a45b0691.html</url>
+    <content><![CDATA[<hr>
+<h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1><p>首先说明，以下几类读者请自行对号入座：</p>
+<ul>
+<li><p>对CMDB很了解但对于Python还没有上手的读者，强烈建议阅读此篇；</p>
+</li>
+<li><p>了解过Python基本的数据结构，但又没有经常在实践中运用的读者，建议阅读此篇；</p>
+</li>
+<li><p>已经可以熟练写出Python脚本，但对CMDB不是很了解的读者，建议阅读此篇；</p>
+</li>
+</ul>
+<p>上一节我们通过对自动化运维的基石–CMDBv1.0的演示，为大家讲了Python的基本数据类型和相关的操作，那么这一节我们就深入cmdb-v1.0.py的源码，并了解一下Python的语句，函数以及面向对象相关的知识。</p>
+<p>一说到阅读源码很多读者就要慌了，觉得Python都没入门就阅读源码了？首先Python的一大好处就是，代码的逻辑像阅读英文一样简洁，并且我们的cmdb-v1.0.py的源码只有一百一十行左右，就实现了对资产数据增删改查的基本功能，话不多说，马上开始.</p>
+<span id="more"></span>
+
+<h2 id="Python脚本的启动"><a href="#Python脚本的启动" class="headerlink" title="Python脚本的启动"></a>Python脚本的启动</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">root&gt; <span class="comment"># python ./cmdb-v1.0.py [额外参数...]</span></span><br></pre></td></tr></table></figure>
+
+<p>在命令行中直接通过<code>python</code>加文件名就可以执行该脚本，那么当执行该脚本时，脚本内部做了什么操作呢</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line"></span><br><span class="line">    operations = [<span class="string">&quot;get&quot;</span>, <span class="string">&quot;update&quot;</span>, <span class="string">&quot;delete&quot;</span>]</span><br><span class="line"></span><br><span class="line">    args = sys.argv</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(args) &lt; <span class="number">3</span>:</span><br><span class="line"></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;please input operation and args&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> args[<span class="number">1</span>] == <span class="string">&quot;init&quot;</span>:</span><br><span class="line"></span><br><span class="line">            init(args[<span class="number">2</span>])</span><br><span class="line"></span><br><span class="line">        <span class="keyword">elif</span> args[<span class="number">1</span>] == <span class="string">&quot;add&quot;</span>:</span><br><span class="line"></span><br><span class="line">            add(*args[<span class="number">2</span>:])</span><br><span class="line"></span><br><span class="line">        <span class="keyword">elif</span> args[<span class="number">1</span>] == <span class="string">&quot;get&quot;</span>:</span><br><span class="line"></span><br><span class="line">            get(args[<span class="number">2</span>])</span><br><span class="line"></span><br><span class="line">        <span class="keyword">elif</span> args[<span class="number">1</span>] == <span class="string">&quot;update&quot;</span>:</span><br><span class="line"></span><br><span class="line">            update(args[<span class="number">2</span>], args[<span class="number">3</span>])</span><br><span class="line"></span><br><span class="line">        <span class="keyword">elif</span> args[<span class="number">1</span>] == <span class="string">&quot;delete&quot;</span>:</span><br><span class="line"></span><br><span class="line">            delete(*args[<span class="number">2</span>:])</span><br><span class="line"></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line"></span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;operation must be one of get,update,delete&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>上述代码就是我们整个脚本的启动入口，大家最先看到的就是一行判断语句，那我们就先从判断语句开始讲起</p>
+<h2 id="条件判断"><a href="#条件判断" class="headerlink" title="条件判断"></a>条件判断</h2><blockquote>
+<p>不管哪种编程语言，条件判断都是其最基本的逻辑，是让一行一行的代码能够被编排起来的最基本手段，条件判断可以实现在不同的情况下执行不同的代码块，如图所示</p>
+</blockquote>
+<p><img src="https://s2.loli.net/2023/04/07/P5sqX6AYlHV3719.png" alt="img"></p>
+<p>下面为Python判断语句的伪代码形式，当判断条件为真时执行语句1，为假时执行语句2，执行语句可以为多行，通过缩进来控制</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> 判断条件:</span><br><span class="line"></span><br><span class="line">    执行语句<span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line"></span><br><span class="line">    执行语句<span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<p>我们的源码中的第一行 <code>if __name__ == &quot;__main__&quot;</code>，这就是一个字符串判断的语句，<code>__name__</code>是一个Python的内置变量，它表示当前被执行脚本的名称，所以此处判断语句的含义为<code>是否当前被执行脚本的名称等于&quot;__main__&quot;</code>，这里有两个地方需要大家注意一下：</p>
+<ul>
+<li>当使用<code>python 文件名.py</code>的方式执行脚本时，该脚本的<code>__name__</code>值即为<code>__main__</code></li>
+<li>条件判断语句中<code>等于</code>通过<code>==</code>来表示，而非<code>=</code></li>
+</ul>
+<p>在掌握了判断语句的原理后，再加上我们上节内容所讲，我们就可以理解源码中启动入口的基本逻辑</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 当前被执行脚本的名称是否等于&quot;__main__&quot;，如果等于执行以下语句</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:  </span><br><span class="line"></span><br><span class="line">    args = sys.argv  <span class="comment"># 获取命令行输入的参数，此处sys.argv为python的内置方法</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(args) &lt; <span class="number">3</span>:  <span class="comment"># 如果参数数量小于3个，则执行以下语句</span></span><br><span class="line"></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;please input operation and args&quot;</span>)  <span class="comment"># 打印提示内容</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">else</span>:  <span class="comment"># 如果参数数量不小于3个，则执行以下语句</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> args[<span class="number">1</span>] == <span class="string">&quot;init&quot;</span>:  <span class="comment"># 是否参数的第二个元素等于&quot;init&quot;(数组下标从0开始)</span></span><br><span class="line"></span><br><span class="line">            init(args[<span class="number">2</span>])  <span class="comment"># 如果等于&quot;init&quot;则执行该函数</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">elif</span> args[<span class="number">1</span>] == <span class="string">&quot;add&quot;</span>:  <span class="comment"># 如果不等于&quot;init&quot;，则判断是否等于&quot;add&quot;</span></span><br><span class="line"></span><br><span class="line">            add(*args[<span class="number">2</span>:])  <span class="comment"># 如果等于&quot;add&quot;则执行该函数</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">elif</span> args[<span class="number">1</span>] == <span class="string">&quot;get&quot;</span>:  <span class="comment"># 如果也不等于&quot;add&quot;，则判断是否等于&quot;get&quot;</span></span><br><span class="line"></span><br><span class="line">            get(args[<span class="number">2</span>])  <span class="comment"># 如果等于&quot;get&quot;则执行该函数</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">elif</span> args[<span class="number">1</span>] == <span class="string">&quot;update&quot;</span>:  <span class="comment"># 如果也不等于&quot;get&quot;，则判断是否等于&quot;update&quot;</span></span><br><span class="line"></span><br><span class="line">            update(args[<span class="number">2</span>], args[<span class="number">3</span>])  <span class="comment"># 如果等于&quot;update&quot;则执行该函数</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">elif</span> args[<span class="number">1</span>] == <span class="string">&quot;delete&quot;</span>:  <span class="comment"># 如果也不等于&quot;update&quot;，则判断是否等于&quot;delete&quot;</span></span><br><span class="line"></span><br><span class="line">            delete(*args[<span class="number">2</span>:])  <span class="comment"># 如果等于&quot;delete&quot;则执行该函数</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">else</span>:  <span class="comment"># 如果都不等于则执行以下打印语句，输出提示</span></span><br><span class="line"></span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;operation must be one of get,update,delete&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>大家可以发现只通过上述的条件判断语句就可以根据我们执行脚本时的命令行参数，去分别执行不同的增删改查的逻辑，读者可能对这里的<code>*arg</code>有一些疑问，我们会在番外篇中提到。</p>
+<h2 id="循环语句"><a href="#循环语句" class="headerlink" title="循环语句"></a>循环语句</h2><blockquote>
+<p>目前我们已经掌握了让脚本启动，并且根据不同的条件判断去依次执行语句的能力，不过这时程序还只是在顺序执行，如果我们想查询多个资产信息，那么就必须多次去执行查询的语句，这时候就需要使用循环语句，循环语句可以让我们执行某一个代码块多次，如图所示</p>
+</blockquote>
+<p><img src="https://s2.loli.net/2023/04/07/Zg8y1lLrSFiYQtW.png" alt="img"></p>
+<p>Python中的循环语句的伪代码形式如下所示</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> 判断条件:  <span class="comment"># 只要判断条件为真就会一直执行语句1</span></span><br><span class="line"></span><br><span class="line">    执行语句<span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p>由于循环语句相对比较好理解，我们就先简单介绍以下，后面的源码中遇到时，再深入讲解一些细节</p>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><blockquote>
+<p>通过上面的学习我们已经能够比较好的编排自己的代码去顺序执行或者循环执行，但对于一些可以重复使用的语句，我们可以把其组织起来，将它们定义为一个函数，这样我们后续就可以直接去使用这个函数，而不必每次都编写大量相同的语句。</p>
+</blockquote>
+<p>Python中的函数伪代码形式如下所示</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">函数名称</span>(<span class="params">参数...</span>)：</span><br><span class="line"></span><br><span class="line">    代码块</span><br></pre></td></tr></table></figure>
+
+<p>比如我们源码中定义的查询资产信息的函数的伪代码如下</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">get</span>(<span class="params">path</span>):  <span class="comment"># 函数名称为 get， 接受一个参数 path</span></span><br><span class="line"></span><br><span class="line">    打开资产信息的文件</span><br><span class="line"></span><br><span class="line">    根据参数path去查询资产信息中对应的信息</span><br><span class="line"></span><br><span class="line">    打印相关信息</span><br></pre></td></tr></table></figure>
+
+<p>当我们定义好这样一个函数之后，我们后续就可以十分方便的去调用它，调用的方法就是</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">info = get(<span class="string">&quot;/beijing/switch/10.0.0.1&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>其实函数的本意就是我们将一些可被复用的代码进行提取，将其中可变的变量作为参数传入，而将其相同的逻辑保留，这样我们每次只需要传入不同的参数就可以执行该逻辑，不用在需要使用该逻辑的地方再次编写冗余的代码</p>
+<p>比如在脚本的启动入口地方，如下</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">init</span>(<span class="params">path</span>):</span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get</span>(<span class="params">path</span>):</span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">delete</span>(<span class="params">path</span>):</span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> args[<span class="number">1</span>] == <span class="string">&quot;init&quot;</span>:</span><br><span class="line"></span><br><span class="line">    init(args[<span class="number">2</span>])</span><br><span class="line"></span><br><span class="line"><span class="keyword">elif</span> args[<span class="number">1</span>] == <span class="string">&quot;get&quot;</span>:</span><br><span class="line"></span><br><span class="line">    get(args[<span class="number">2</span>])</span><br><span class="line"></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;operation must be one of get,update,delete&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>我们只需要在执行脚本时，通过判断命令行的指令，就可以去执行不同的函数，十分方便，但这里有两个地方需要大家注意以下</p>
+<ul>
+<li>定义的函数只是语句的抽象逻辑，如果不调用它，那么它就永远不会执行，比如如果我们定义了一个删除的函数，但始终都没有任何地方去调用它，那么它就永远不会被执行</li>
+<li><code>print()</code>其实也是一个函数，只不过它是Python的内置函数，它的功能相当于接收一个字符串，并将其输出到屏幕上，所以我们其实在尝试编写第一个python程序<code>print(&quot;hello world&quot;)</code>时，就已经无形中使用到了函数</li>
+</ul>
+<blockquote>
+<p>Tips</p>
+</blockquote>
+<blockquote>
+<p>大家可以设想以下，如果每次我们想将内容输出到屏幕，都需要自己去编写print的内部逻辑细节，那简直就是一场灾难；所以在什么时候将某个代码块抽象为函数，将多少逻辑的代码块抽象为一个函数，这其实是编程的艺术，取决于每个人对于实际场景的把握。但也有一些变成规范可依。</p>
+</blockquote>
+<blockquote>
+<p>我们通常只将一个功能抽象为一个函数，也就是说每个函数只实现一个单一的功能。</p>
+</blockquote>
+<h2 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h2><blockquote>
+<p> 很多对于编程稍微有了解的读者都知道，面向对象是很多编程语言都有的一个特性，所谓面向对象其实是一种编程的思路，与之不同的思路还有面向过程；</p>
+</blockquote>
+<blockquote>
+<p>比如同样要实现相同的功能，可以使用不同的思路，思路没有孰优孰劣之分，只要在当前场景适用即可</p>
+</blockquote>
+<p>虽然Python实现一些简单的功能，只需要面向过程即可，比如将目标场景，拆分为不同的步骤，将每个步骤定义为函数，然后通过编排函数去实现最终的目标，但Python本身从设计之处就是一门面向对象的语言，并且<strong>Python中一切皆对象</strong>。</p>
+<p>那么对象究竟是什么：世界上的任何事物都可以把它看成一个对象，其具有自己的属性和行为，不同的对象之间通过方法来交互。</p>
+<p>比如Python中的某个字符串，它就是一个对象，它具有自己属性和方法，如下</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">root&gt; <span class="comment"># a = &quot;string&quot;</span></span><br><span class="line"></span><br><span class="line">root&gt; <span class="comment"># dir(a)</span></span><br><span class="line"></span><br><span class="line">[<span class="string">&#x27;__add__&#x27;</span>, <span class="string">&#x27;__class__&#x27;</span>, <span class="string">&#x27;__contains__&#x27;</span>, <span class="string">&#x27;__delattr__&#x27;</span>, <span class="string">&#x27;__dir__&#x27;</span>, <span class="string">&#x27;__doc__&#x27;</span>, <span class="string">&#x27;__eq__&#x27;</span>, <span class="string">&#x27;__format__&#x27;</span>, <span class="string">&#x27;__ge__&#x27;</span>, <span class="string">&#x27;__getattribute__&#x27;</span>, <span class="string">&#x27;__getitem__&#x27;</span>, <span class="string">&#x27;__getnewargs__&#x27;</span>, <span class="string">&#x27;__gt__&#x27;</span>, <span class="string">&#x27;__hash__&#x27;</span>, <span class="string">&#x27;__init__&#x27;</span>, <span class="string">&#x27;__init_subclass__&#x27;</span>, <span class="string">&#x27;__iter__&#x27;</span>, <span class="string">&#x27;__le__&#x27;</span>, <span class="string">&#x27;__len__&#x27;</span>, <span class="string">&#x27;__lt__&#x27;</span>, <span class="string">&#x27;__mod__&#x27;</span>, <span class="string">&#x27;__mul__&#x27;</span>, <span class="string">&#x27;__ne__&#x27;</span>, <span class="string">&#x27;__new__&#x27;</span>, <span class="string">&#x27;__reduce__&#x27;</span>, <span class="string">&#x27;__reduce_ex__&#x27;</span>, <span class="string">&#x27;__repr__&#x27;</span>, <span class="string">&#x27;__rmod__&#x27;</span>, <span class="string">&#x27;__rmul__&#x27;</span>, <span class="string">&#x27;__setattr__&#x27;</span>, <span class="string">&#x27;__sizeof__&#x27;</span>, <span class="string">&#x27;__str__&#x27;</span>, <span class="string">&#x27;__subclasshook__&#x27;</span>, <span class="string">&#x27;capitalize&#x27;</span>, <span class="string">&#x27;casefold&#x27;</span>, <span class="string">&#x27;center&#x27;</span>, <span class="string">&#x27;count&#x27;</span>, <span class="string">&#x27;encode&#x27;</span>, <span class="string">&#x27;endswith&#x27;</span>, <span class="string">&#x27;expandtabs&#x27;</span>, <span class="string">&#x27;find&#x27;</span>, <span class="string">&#x27;format&#x27;</span>, <span class="string">&#x27;format_map&#x27;</span>, <span class="string">&#x27;index&#x27;</span>, <span class="string">&#x27;isalnum&#x27;</span>, <span class="string">&#x27;isalpha&#x27;</span>, <span class="string">&#x27;isascii&#x27;</span>, <span class="string">&#x27;isdecimal&#x27;</span>, <span class="string">&#x27;isdigit&#x27;</span>, <span class="string">&#x27;isidentifier&#x27;</span>, <span class="string">&#x27;islower&#x27;</span>, <span class="string">&#x27;isnumeric&#x27;</span>, <span class="string">&#x27;isprintable&#x27;</span>, <span class="string">&#x27;isspace&#x27;</span>, <span class="string">&#x27;istitle&#x27;</span>, <span class="string">&#x27;isupper&#x27;</span>, <span class="string">&#x27;join&#x27;</span>, <span class="string">&#x27;ljust&#x27;</span>, <span class="string">&#x27;lower&#x27;</span>, <span class="string">&#x27;lstrip&#x27;</span>, <span class="string">&#x27;maketrans&#x27;</span>, <span class="string">&#x27;partition&#x27;</span>, <span class="string">&#x27;replace&#x27;</span>, <span class="string">&#x27;rfind&#x27;</span>, <span class="string">&#x27;rindex&#x27;</span>, <span class="string">&#x27;rjust&#x27;</span>, <span class="string">&#x27;rpartition&#x27;</span>, <span class="string">&#x27;rsplit&#x27;</span>, <span class="string">&#x27;rstrip&#x27;</span>, <span class="string">&#x27;split&#x27;</span>, <span class="string">&#x27;splitlines&#x27;</span>, <span class="string">&#x27;startswith&#x27;</span>, <span class="string">&#x27;strip&#x27;</span>, <span class="string">&#x27;swapcase&#x27;</span>, <span class="string">&#x27;title&#x27;</span>, <span class="string">&#x27;translate&#x27;</span>, <span class="string">&#x27;upper&#x27;</span>, <span class="string">&#x27;zfill&#x27;</span>]</span><br></pre></td></tr></table></figure>
+
+<p>我们定义了一个字符串变量a，通过<code>dir</code>方法来查看其所具有的所有属性和方法。</p>
+<p>面向对象只是解决问题的思路，我们并不是将问题拆解为不同的步骤，而是将问题分解为不同的对象，在我们的CMDBv1.0中，我们要解决的问题就是实现资产信息的增删改查，那么我们分析该问题发现需要两个对象来解决：</p>
+<ul>
+<li>资产对象<ul>
+<li>属性：可以执行的操作，当前的版本，创建时间，上次修改的时间等</li>
+<li>方法：增、删、改、查</li>
+</ul>
+</li>
+<li>信息存储对象<ul>
+<li>属性：存储的位置，数据的大小</li>
+<li>方法：存，取</li>
+</ul>
+</li>
+</ul>
+<p>所以经过我们面向对象的拆解，最终将我们的问题从面向过程，即根据命令行参数的传入去执行不同的函数，而修改为了我们与资产对象进行交互，而资产对象与存储对象进行交互。</p>
+<h1 id="知识总结"><a href="#知识总结" class="headerlink" title="知识总结"></a>知识总结</h1><ul>
+<li>开始初步阅读CMDBv1.0版本的源码</li>
+<li>讲解了Python基本的条件语句和循环语句</li>
+<li>讲解了Python的函数，以及面向对象的分析</li>
+</ul>
+<p>CMDB系列第二节我们就暂且讲到这里，对于判断语句和循环语句还有很多细节没有涉及到，但我们已经掌握了其基本的原理，并且我们了解了面向对象的思路。</p>
+<p>后面的章节我们会继续阅读CMDBv1.0的源码，了解更为细节的内容，并且用面向对象的思路将CMDBv1.0改造为CMDBv1.5，敬请期待。</p>
+<h1 id="篇后语"><a href="#篇后语" class="headerlink" title="篇后语"></a><strong>篇后语</strong></h1><p>很多读者在阅读的过程中可能发现，我们很多的知识都是浅尝辄止，看似都是一些皮毛，并没有什么真材实料，包括阅读源码也是，只看了个大概；</p>
+<p>其实不然，当我们新上手一门新的技术时，我们并不能揪住一个知识点不放，比如字符串是一个对象，通过<code>dir</code>可以发现它有二十多个属性和二十多种方法，但我们难道要在一开始就都掌握并把他们背会吗？</p>
+<p>答案当然是否定的，这些细节我们初期都不需要去深究，我们的场景是构建一个简易版CMDB，那么我们只需要一步一步将这过程中阻碍我们前进的知识掌握即可，具体的细节可以在后续的深入过程中去慢慢了解。</p>
+<p>这也是为什么很多学生不愿意听老师讲课的原因，因为他并不知道我这节课学的知识点有什么用，只是机械的接受老师的灌输，所以好的学习方法一定是自顶向下的，希望读者朋友们能体会到其真正的内涵。</p>
+]]></content>
+      <categories>
+        <category>新手村</category>
+      </categories>
+      <tags>
+        <tag>CMDB</tag>
+        <tag>Python基础</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>自动化运维新手村-Python基础-3</title>
+    <url>/posts/d35c3607.html</url>
+    <content><![CDATA[<hr>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a><strong>摘要</strong></h2><p>首先说明，以下几类读者请自行对号入座：</p>
+<ul>
+<li><p>对CMDB很了解但对于Python还没有上手的读者，强烈建议阅读前面几篇；</p>
+</li>
+<li><p>对Python了解较少只能写出简单脚本的读者，强烈建议阅读此篇；</p>
+</li>
+<li><p>已经可以熟练写出Python脚本，但对CMDB不是很了解的读者，建议阅读此篇；</p>
+</li>
+</ul>
+<p>上一节我们简单地阅读了CMDBv1.0.py的源码，了解到其基本的模块构成，并且结合实际的程序理解了Python的常用数据结构以及基本的条件语句与循环语句的运用。那么这一节我们将详细阅读每一个模块的代码，并将其所涉及的知识点拆解开来，帮助各位读者更快的进入到Python的世界。</p>
+<span id="more"></span>
+
+<h2 id="为什么要阅读源码"><a href="#为什么要阅读源码" class="headerlink" title="为什么要阅读源码"></a><strong>为什么要阅读源码</strong></h2><h5 id="填鸭式学习"><a href="#填鸭式学习" class="headerlink" title="填鸭式学习"></a>填鸭式学习</h5><p>在开始之前我想向大家说明的是，之所以才在第三节就带领大家深入到源码中去，是因为Python作为最易上手的解释型语言，其社区生态和包含的各种第三方库数不胜数，<strong>而且任何一门语言其内置的规范和方法对于初学者来说都无法穷尽，所以如果一点儿一点儿的去学习某个内置方法，某个包如何使用，在我看来其实是本末倒置的，任何在没有使用场景的情况下进行填鸭式的灌输内容，都是”耍流氓“</strong>。</p>
+<h5 id="场景-lt-gt-知识点"><a href="#场景-lt-gt-知识点" class="headerlink" title="场景&lt;-&gt;知识点"></a>场景&lt;-&gt;知识点</h5><p>比如大家其他新手教程里十分常见的读写文件功能，说实话读写文件也就是一两行代码可以完成的事情，但哪怕你看过无数次如何读写文件，到了真正需要用它的时候，都是一脸懵”x”的，你只能模糊的记得好像学到过，但就是无法下手，<strong>本质上是因为你没有真正的场景去用它，对于刚接触编程的读者来说，一些简单的示例，无法在脑海中构建起一个完整的程序，这也是我刚开始就带领大家由浅入深去接触源码的原因。</strong></p>
+<h5 id="编程思维"><a href="#编程思维" class="headerlink" title="编程思维"></a>编程思维</h5><p>首先这里的源码是对于我们运维人来说都熟知的CMDB的基本功能，大家在了解其功能的情况下，去思考如果这个代码是你写的，你会如何去实现这个CMDB基本的增删改查，然后在我们一起阅读源码的过程中，<strong>你会发现真正实现这些功能的过程是怎样的，慢慢去深入到具体的细节又该如何编写代码，这其实就是一个编程的思维，我们学任何一门语言，都不止是单纯的为了去学会它，然后用它，而是要了解面对一个大问题时候用编程去解决他的思维逻辑</strong>，这也就是为什么一些计算机专业毕业的同学，可以快速应对很多新技术的变迁。所以希望大家在阅读源码前能够有这样的认知，并且带着思考去一起学习。</p>
+<h2 id="CMDBv1-0-py伪代码"><a href="#CMDBv1-0-py伪代码" class="headerlink" title="CMDBv1.0.py伪代码"></a><strong>CMDBv1.0.py伪代码</strong></h2><p>首先我们先再熟悉一下CMDBv1.0.py的伪代码</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">get</span>(): </span><br><span class="line"></span><br><span class="line">    查询内容</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">update</span>(): </span><br><span class="line"></span><br><span class="line">    修改内容</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">delete</span>(): </span><br><span class="line"></span><br><span class="line">    删除内容</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">init</span>(): </span><br><span class="line"></span><br><span class="line">    初始化信息    </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">add</span>(): </span><br><span class="line"></span><br><span class="line">    添加内容</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>: </span><br><span class="line"></span><br><span class="line">    通过命令行参数执行对应的操作</span><br></pre></td></tr></table></figure>
+
+<h2 id="阅读源码前的思考"><a href="#阅读源码前的思考" class="headerlink" title="阅读源码前的思考"></a><strong>阅读源码前的思考</strong></h2><p>上面说到希望读者们在阅读源码前要带着思考，这里的思考准确的就说，<strong>如果是你，你会如何去设计并且实现所需要的功能，虽然你不知道具体的代码如何写出来，但起码要去思考每一步应该怎么做</strong>，对于一些刚接触编程的读者，一开始就由我先来带着大家思考。</p>
+<p>很多人一看到我们第一节中演示的功能时就已经懵了，内心os：”这么多复杂的步骤我从哪儿下手呢，根本毫无头绪“。那么其实我们的CMDBv1.0最主要的功能就是增删改查，具体的代码就应该是分别去实现增删改查四个不同的功能，然后在不同的情况下去使用这些功能就好了，这种思考貌似听起来是废话，但其实不然。如果你真的能够像我描述的这样思考，那恭喜你，其实你已经算是迈出了一大步，已经具备了将一个大问题去拆解成小问题的能力；如果你能再将其落地成我上述的伪代码形式，那么再次恭喜你，你已经具备了从一行行的脚本代码跨越到函数式编程的能力。</p>
+<p>一开始不具备这种思维方式很正常，现在我已经向你演示了如何去分析拆解一个场景，那么接下来我们就继续深入，看看每一个步骤都是如何实现的。</p>
+<h2 id="上源码"><a href="#上源码" class="headerlink" title="上源码"></a><strong>上源码</strong></h2><h3 id="初始化地域信息"><a href="#初始化地域信息" class="headerlink" title="初始化地域信息"></a><strong>初始化地域信息</strong></h3><p>一般对于运维资产的维护中，最顶层的是地域，也就是说我的设备是放在哪里的，那么我们CMDB如果需要录入设备信息之前，就必须要先初始化数据，那么初始化地域的代码如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">init</span>(<span class="params">region</span>):</span><br><span class="line"></span><br><span class="line">    data[region] = &#123;<span class="string">&quot;idc&quot;</span>: region, <span class="string">&quot;switch&quot;</span>: &#123;&#125;, <span class="string">&quot;router&quot;</span>: &#123;&#125;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(json.dumps(data, indent=<span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+
+<p>我们定义了一个函数叫做<code>init</code>，而这个函数需要传入一个<code>region</code>名称作为参数，这里的<code>region</code>其实就相当于我们的地域，我们此处假设一个<code>region</code>只有一个<code>idc</code>机房，那么我们需要初始化的数据格式如下：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">data = <span class="punctuation">&#123;</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">&quot;region名称&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line"></span><br><span class="line">        <span class="attr">&quot;idc&quot;</span><span class="punctuation">:</span> <span class="string">&quot;region名称&quot;</span><span class="punctuation">,</span></span><br><span class="line"></span><br><span class="line">        <span class="attr">&quot;switch&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line"></span><br><span class="line">        <span class="attr">&quot;router&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span><span class="punctuation">&#125;</span> </span><br><span class="line"></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>而根据我们第一节课对于Python基本数据类型的学习来看，我们的数据源<code>data</code>是一个字典，那么给字典赋值的操作如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">data[region] = &#123;<span class="string">&quot;idc&quot;</span>: region, <span class="string">&quot;switch&quot;</span>: &#123;&#125;, <span class="string">&quot;router&quot;</span>: &#123;&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们初始化好数据之后，肯定想将其打印出来看一看，那么可以使用<code>print(data)</code>将数据打印出来，但此处我们的data是一个字典，直接进行打印的结果可能像是如下这样：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;&quot;region&quot;: &#123;&quot;idc&quot;: &quot;region&quot;, &quot;switch&quot;: &#123;&#125;, &quot;router&quot;: &#123;&#125;&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这种格式当数据越来越多的话就会很难阅读，所以我们利用到了一个Python的内置库<code>json</code></p>
+<blockquote>
+<p><strong>Tips：json库解读</strong></p>
+</blockquote>
+<blockquote>
+<p>Json（JavaScript Object Notation 的缩写）是一种数据交换格式，最常用于客户端-服务器通信；当然你也可以将它保存到本地，所以也可以用来作为配置文件；Json 很像 Python 中的字典，但Json本质上是一种字符串，所以在Python中需要利用其内置库 json，来实现Json字符串和字典的转换。</p>
+</blockquote>
+<blockquote>
+<p>最常用的将Python中的字典与Json字符串进行转换的两个方法是</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">data = json.loads(data_str)  <span class="comment"># 将json字符串转为字典</span></span><br><span class="line"></span><br><span class="line">data_str = json.dumps(data)  <span class="comment"># 将字典转为json字符串</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>代码中是将字典转为字符串之后打印出来，但大家注意代码中的写法是<code>json.dumps(data, indent=2)</code>，这时因为<code>json.dumps</code>可以传入很多参数，如下：</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">json.dumps(obj, skipkeys=<span class="literal">False</span>, ensure_ascii=<span class="literal">True</span>, check_circular=<span class="literal">True</span>, allow_nan=<span class="literal">True</span>, cls=<span class="literal">None</span>, indent=<span class="literal">None</span>, separators=<span class="literal">None</span>, encoding=<span class="string">&quot;utf-8&quot;</span>, default=<span class="literal">None</span>, sort_keys=<span class="literal">False</span>, **kw)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>无论对于Python的内置方法时候第三方库，我们在调用其方法的时候，都可以通过跳转的方式，去进入到其源码中去看到他的实现逻辑，这里最常做的就是去看这些方法的注释以及参数说明。</p>
+</blockquote>
+<blockquote>
+<p>Tips: 常见的vscode或者Pycharm都可以通过快捷键的方式去进行跳转，windows可以按住Ctrl+单击即可跳转，mac的话按住command+单击即可跳转。</p>
+</blockquote>
+<blockquote>
+<p>这里我们跳转到<code>json.dumps</code>方法中去看看它的参数注释，但我们本着没用到就先忽略的原则，我们只了解其中的<code>indent</code>参数即可，注释如下：</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">If ``indent`` is a non-negative integer, then JSON array elements and object members will be pretty-printed with that indent level. An indentlevel of 0 will only insert new lines. ``None`` is the most compact representation.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">友情翻译如下：如果indent是一个非负整数，那么JSON数组或者对象成员将会被带着缩进层级优雅的打印出来，一个为0的缩进只会插入换行符，而当其为None时，JSON只会被最紧凑的表示出来。</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>所以通过注释可以理解为，<code>indent</code>其实就是帮助我们将json字符串好看的打印出来的参数，只要是正整数即可，大家可以自己去尝试不同的正整数打印出的结果。</p>
+</blockquote>
+<p>现在我们已经了解了如何初始化一个地域，并且将其信息打印出来，但有一点需要注意的是，当程序结束后，我们的数据源<code>data</code>就会消失，当我们下次再次运行程序时，我们的数据源<code>data</code>仍然时空的。这里就涉及到数据的持久化。</p>
+<blockquote>
+<p><strong>Tips：持久化</strong></p>
+</blockquote>
+<blockquote>
+<p>因为Python程序运行过程中定义的所有变量，都只会存在于程序运行时计算机为其分配的内存空间里，此处设计到计算机组成原理的相关知识，我们会在番外篇中提到。而持久化的含义就是将数据永久的保存在磁盘上，这样我们每次都可以从磁盘上去读取数据。</p>
+</blockquote>
+<blockquote>
+<p>Python中持久化数据的方式有很多种，而且在实际的企业应用中，肯定是将这些数据保存在数据库中，但因为我们目前还没有涉及到数据库的知识，且数据量较小，我们就暂且将其保存在文本文件中即可。这里我们仍然通过Python内置的json库来做数据的持久化和读取。</p>
+</blockquote>
+<blockquote>
+<p>json库中还有两个常见的方法是</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">data = json.load(f)  <span class="comment"># 从文件中读取内容并转为字典</span></span><br><span class="line"></span><br><span class="line">json.dump(data, d)  <span class="comment"># 将字典存到文件中</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><blockquote>
+<p>json数据的持久化如下</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">f = <span class="built_in">open</span>(<span class="string">&quot;data.json&quot;</span>, <span class="string">&quot;w+&quot;</span>)</span><br><span class="line"></span><br><span class="line">json.dump(data, f)</span><br><span class="line"></span><br><span class="line">f.close()</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><blockquote>
+<p>json数据的读取如下</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">f = <span class="built_in">open</span>(<span class="string">&quot;data.json&quot;</span>, <span class="string">&quot;r+&quot;</span>)</span><br><span class="line"></span><br><span class="line">data = json.load(f)</span><br><span class="line"></span><br><span class="line">f.close()</span><br></pre></td></tr></table></figure>
+
+<h4 id="划重点"><a href="#划重点" class="headerlink" title="划重点"></a><strong>划重点</strong></h4><p>这里需要考虑一个特殊情况，当我们传入的<code>region</code>已经存在的时候会发生什么，比如有一个不太熟悉资产的同学使用了这个脚本，或者地域信息太多你自己也忘记已经存在哪些地域，那么这时候如果使用初始化功能去初始化一个已存在的地域时，这个地域的信息是不是就被清楚掉了，所以这里还需要补充一个判断条件</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> region <span class="keyword">in</span> data:    </span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;region %s already exists&quot;</span> % region)    </span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span></span><br></pre></td></tr></table></figure>
+
+<p>这里用到了一个条件判断，可以直接用 <code>if key in dict</code>的方式去判断字典中是否已存在这个键，当存在时我们就打印提示信息，并直接通过<code>return</code>退出该函数。</p>
+<p>这里还用到了格式化字符串的操作，当我们的一个字符串中某个值为变量时，我们可以用上面的方式去表达，这里的<code>%s</code>表示字符，与之对应的还有<code>%d</code>表示整数，<code>%f</code>表示浮点数等，具体的其他格式化方法我们会在番外篇中提到。</p>
+<blockquote>
+<p><strong>Tips： 函数返回值</strong></p>
+</blockquote>
+<blockquote>
+<p>Python中的函数必然存在返回值，返回值可以是一个，也可以是多个，当函数中没有任何<code>return</code>语句时，函数的返回值即为<code>None</code>，当我们想要在指定地方显示的退出函数时可以直接用<code>return</code>，这时函数的返回值也为<code>None</code>。</p>
+</blockquote>
+<blockquote>
+<p>当存在多个返回值时，可以直接使用<code>return a, b</code>，比如：</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">foo</span>():    </span><br><span class="line"></span><br><span class="line">    a = <span class="number">1</span>    </span><br><span class="line"></span><br><span class="line">    b = <span class="number">2</span>    </span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> a, b</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">res = foo()  <span class="comment"># 这时的 res 值是一个元组类型， 输出结果为 (1, 2)a, b = foo()  </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 这里是用到了Python中的解包写法，解包的写法可以运用于Python的任何可迭代对象，比如 </span></span><br><span class="line"></span><br><span class="line">&gt; my_list1 = [<span class="number">1</span>, <span class="number">2</span>]</span><br><span class="line"></span><br><span class="line">&gt; a, b = my_list  <span class="comment"># 最终的结果 a 为 1， b 为 2</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 所以 a, b = foo() 等价于 </span></span><br><span class="line"></span><br><span class="line">res = foo()</span><br><span class="line"></span><br><span class="line">a, b = res</span><br></pre></td></tr></table></figure>
+
+<p>所以CMDB初始化地域的完整代码如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">init</span>(<span class="params">region</span>):</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;data.json&quot;</span>, <span class="string">&quot;r+&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line"></span><br><span class="line">        data = json.load(f)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> region <span class="keyword">in</span> data:</span><br><span class="line"></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;region %s already exists&quot;</span> % region)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    data[region] = &#123;<span class="string">&quot;idc&quot;</span>: region, <span class="string">&quot;switch&quot;</span>: &#123;&#125;, <span class="string">&quot;router&quot;</span>: &#123;&#125;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;data.json&quot;</span>, <span class="string">&quot;w+&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line"></span><br><span class="line">        json.dump(data, f, indent=<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(json.dumps(data, indent=<span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+
+<p>细心的读者可能会发现怎么持久化的操作不太一样，这里是用到了一个Python中的语法糖，<code>with... as</code>，这样可以在对文件进行操作时，可以避免最后手动执行<code>f.close()</code>，具体<code>with...as</code>的原理我们会在番外篇中提到，这里大家先记住即可。</p>
+<p>那么我们对于源码的解读这一节就先到这里，我们这一节最主要的是需要去学习培养正确的编程思维，学会在阅读源码前如何思考，如何带着思考去拆解源码。后面的章节我们会继续阅读其他功能模块，带领大家更进一步的探索Python的世界。</p>
+<h2 id="篇后语"><a href="#篇后语" class="headerlink" title="篇后语"></a><strong>篇后语</strong></h2><blockquote>
+<p>最近听到了一个词叫做”知识的诅咒“，含义大概是，当你对某一个知识了解较深时，就无法准确的向别人解释清楚这个知识，因为你总是假设别人也和你一样有相同的知识背景。所以我在向大家传递Python的相关知识的时候，我其实有在刻意的避开这种诅咒，我写这个系列的本意也是想让没有接触过编程的同学能够更为通俗易懂的了解编程，并且上手写出自己真正需要的代码。所以如果大家对于我的讲解顺序或者逻辑有什么疑问和建议，也欢迎提出。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>新手村</category>
+      </categories>
+      <tags>
+        <tag>CMDB</tag>
+        <tag>Python基础</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>自动化运维新手村-Python基础-4</title>
+    <url>/posts/4d38a3a4.html</url>
+    <content><![CDATA[<hr>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a><strong>摘要</strong></h2><p>首先说明，以下几类读者请自行对号入座：</p>
+<ul>
+<li><p>对CMDB很了解但对于Python还没有上手的读者，强烈建议阅读前面几篇；</p>
+</li>
+<li><p>对Python了解较少只能写出简单脚本的读者，强烈建议阅读此篇；</p>
+</li>
+<li><p>已经可以熟练写出Python脚本，但对CMDB不是很了解的读者，建议阅读此篇；</p>
+</li>
+<li><p>即了解Python，又了解CMDB的读者，可以出门左转，看下一篇。</p>
+</li>
+</ul>
+<p>上一节我带领读者们在阅读源码前进行了一系列思考，培养了一下大家的编程思想，并且紧接着阅读了CMDB v1.0.py的部分源码，那今天我们开篇就不再过多赘述，接上一节直接上干货。</p>
+<span id="more"></span>
+
+<h2 id="上干货"><a href="#上干货" class="headerlink" title="上干货"></a><strong>上干货</strong></h2><h3 id="添加资产信息"><a href="#添加资产信息" class="headerlink" title="添加资产信息"></a><strong>添加资产信息</strong></h3><p>在初始化好地域信息之后，我们首先要做的就是添加资产信息了</p>
+<ol>
+<li>按照我们上节课所讲，先要思考一下实现这个功能有哪些地方需要注意：</li>
+</ol>
+<ul>
+<li>添加什么样的信息？</li>
+<li>将信息添加到哪里，如何定位到要添加的路径？</li>
+<li>如何把更新的数据持久化？</li>
+</ul>
+<ol>
+<li>这里我先依次给大家解答一下：</li>
+</ol>
+<ul>
+<li>因为我们数据源是以<code>JSON</code>的格式存储在文本文件中，所以必须保证我们添加的信息也是<code>json</code>格式</li>
+<li><code>JSON</code>格式的数据源对应的是Python中的字典，所以字典是可以根据键进行索引的，那么我们可以通过多个键的排列去依次进行查找定位字典的位置，比如可以是<code>key1/key2/key3</code>的形式</li>
+<li>数据的持久化依然选择通过<code>JSON</code>的方式将数据持久化到文本文件中</li>
+</ul>
+<ol>
+<li>我们已经基本有了实现添加资产信息的思路，现在要做的就是将思路更进一步细化到可实现的伪代码：</li>
+</ol>
+<ul>
+<li>我们需要定义一个<code>add()</code>函数来实现这个功能，并且这个函数需要接收两个参数，分别是要添加的信息和信息要更新到的指定路径，那么我们的函数签名应该是<code>add(attrs, path)</code></li>
+</ul>
+<blockquote>
+<p>这里的<code>attrs</code>是属性attributes的缩写，在写代码的过程中希望大家培养为变量起一个合适规范的名字的好习惯，初学者尽量避免使用拼音来给变量或函数命名，应该使用能表明变量含义的命名方式。</p>
+</blockquote>
+<ul>
+<li>我们传入的<code>attrs</code>必须是一个json格式的字符串，传入的<code>path</code>必须是一个通过<code>/</code>分隔的字符串</li>
+<li>通过<code>path</code>去按层级定位数据源中的指定位置，通过字典的赋值将<code>attrs</code>添加到数据源中</li>
+<li>通过<code>json.load</code>和<code>json.dump</code>做数据持久化</li>
+</ul>
+<ol>
+<li>接下来就是需要写出一份能实现上述功能的伪代码，如下：</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">add</span>(<span class="params">path, attrs</span>):</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 判断attrs的合法性</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> attrs <span class="keyword">is</span> valid</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 将attrs解析成Python类型</span></span><br><span class="line"></span><br><span class="line">    attrs = parse_attrs()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 从文本文件中读取数据源</span></span><br><span class="line"></span><br><span class="line">    data = read_file()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 分割path路径</span></span><br><span class="line"></span><br><span class="line">    seg = path.split()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 根据路径定位数据源的指定位置</span></span><br><span class="line"></span><br><span class="line">    target_path = position_data()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 将attrs添加到指定路径</span></span><br><span class="line"></span><br><span class="line">    data[target_path] = attrs</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 将数据保存到文本文件</span></span><br><span class="line"></span><br><span class="line">    write_file(data)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 打印数据源</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(data)</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>那么最终添加资产信息的源代码如下：</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">add</span>(<span class="params">path, attrs=<span class="literal">None</span></span>):</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> attrs <span class="keyword">is</span> <span class="literal">None</span>: <span class="comment"># 判断attrs的合法性</span></span><br><span class="line"></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;add operation must have attrs arg&quot;</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span>: <span class="comment"># 将attrs解析成Python类型</span></span><br><span class="line"></span><br><span class="line">        attrs = json.loads(attrs)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">except</span> Exception:</span><br><span class="line"></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;input attribute is an invalid json string&quot;</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;data.json&quot;</span>, <span class="string">&quot;r+&quot;</span>) <span class="keyword">as</span> f: <span class="comment"># 从文本文件中读取数据源</span></span><br><span class="line"></span><br><span class="line">        data = json.load(f)</span><br><span class="line"></span><br><span class="line">    path_seg = path.split(<span class="string">&quot;/&quot;</span>) <span class="comment"># 分割path路径</span></span><br><span class="line"></span><br><span class="line">    target_path = data</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> idx, seg <span class="keyword">in</span> <span class="built_in">enumerate</span>(path_seg[<span class="number">1</span>:]): <span class="comment"># 根据路径定位数据源的指定位置</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> idx == <span class="built_in">len</span>(path_seg)-<span class="number">2</span>:</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> seg <span class="keyword">in</span> target_path:</span><br><span class="line"></span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&quot;%s already exists in %s, please use update operation&quot;</span> %</span><br><span class="line"></span><br><span class="line">                      (seg, path))</span><br><span class="line"></span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">            target_path[seg] = attrs <span class="comment"># 将attrs添加到指定路径</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">        target_path = target_path[seg]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;data.json&quot;</span>, <span class="string">&quot;w+&quot;</span>) <span class="keyword">as</span> f: <span class="comment"># 将数据保存到文本文件</span></span><br><span class="line"></span><br><span class="line">        json.dump(data, f, indent=<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(json.dumps(data, indent=<span class="number">2</span>)) <span class="comment"># 打印数据源</span></span><br></pre></td></tr></table></figure>
+
+<p>很多读者可能第五步有点儿懵，有种刚学会<code>1+1=2</code>就跳到高等代数微积分的感觉，但其实把上述代码的每一部分单独拿出来还都是比较好理解的。</p>
+<ul>
+<li>判断<code>attrs</code>的合法性并将<code>attrs</code>解析成Python类型</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> attrs <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;add operation must have attrs arg&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:  <span class="comment"># 将attrs解析成Python类型</span></span><br><span class="line"></span><br><span class="line">    attrs = json.loads(attrs)</span><br><span class="line"></span><br><span class="line"><span class="keyword">except</span> Exception:</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;input attribute is an invalid json string&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span></span><br></pre></td></tr></table></figure>
+
+<p>这一步在解析参数的同时也是在判断<code>attrs</code>的合法性，因为我们要求输入的<code>attrs</code>参数不能为<code>None</code>且必须是一个json类型的字符串，那么我们理论上就可以通过<code>json.loads</code>将其进行解析，如果解析失败那么就说明该参数不是合法的json，就需要退出该函数；如果<code>attrs</code>为合法的json，那么我们就可以将其解析为Python中的数据类型应用于下面的代码中。关于<code>try...except</code>的详细讲解我们会在番外篇中提到。</p>
+<blockquote>
+<p>Tips Python中<code>None</code>的判断</p>
+</blockquote>
+<blockquote>
+<p>在Python中判断一个变量是否是<code>None</code>的写法不是 <code>if var == None</code>而是<code>if var is None</code>，这里我们推荐大家使用第二种方法，具体关于等于判断的区别我们会在番外篇中提到。</p>
+</blockquote>
+<ul>
+<li>从文件中读取数据源</li>
+</ul>
+<p>这一步就是运用我们上节课所讲的内容，此处不再赘述</p>
+<ul>
+<li>分割<code>path</code>路径</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">path_seg = path.split(<span class="string">&quot;/&quot;</span>)[<span class="number">1</span>:]  <span class="comment"># 分割path路径</span></span><br></pre></td></tr></table></figure>
+
+<p>这里就是运用到Python中对字符串的操作，<code>str.split()</code>用于分割字符串，通过传入分隔符，可以将字符串按分隔符切分成数组返回，所以这里的<code>path_seg</code>就是一个路径的数组，我们只需要根据这个数组，一层一层的定位到数据源的指定位置即可。这里同时运用到了数组切片的原理，因为我们的路径假设为<code>/region/idc/switch</code>的格式，所以按照<code>/</code>切割后，路径数组为<code>[&quot;&quot;, &quot;region&quot;, &quot;idc&quot;, &quot;switch&quot;]</code>，第一个元素为空字符串，所以通过<code>path_seg[1:]</code>的方式只取第二个到最后一个的路径元素。</p>
+<ul>
+<li>根据路径定位数据源的指定位置并将<code>attrs</code>添加到指定路径</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">target_path = data</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> idx, seg <span class="keyword">in</span> <span class="built_in">enumerate</span>(path_seg): <span class="comment"># 根据路径定位数据源的指定位置</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> idx == <span class="built_in">len</span>(path_seg)-<span class="number">1</span>:</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> seg <span class="keyword">in</span> target_path:</span><br><span class="line"></span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;%s already exists in %s, please use update operation&quot;</span> % (seg, path))</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">        target_path[seg] = attrs <span class="comment"># 将attrs添加到指定路径</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">    target_path = target_path[seg]</span><br></pre></td></tr></table></figure>
+
+<p>这一块可能是一个难点，需要大家对循环的有一定的理解，首先我们先定义一个目标路径的变量<code>target_path</code>，它一开始等于整个data的最外层，在后面的循环中它会不断的更新；在循环语句中用到了一个Python的语法糖<code>enumerate()</code>，通过传入一个可迭代对象(此处为我们的路径数组)，可以对于下标和内容同时进行循环遍历，所以<code>for idx, seg in enumerate(path_seg[1:])</code>这里的<code>idx</code>和<code>seg</code>分别表示路径数组中某一段路径的下标和内容。</p>
+<p>这里向大家说明一下循环语句的本质原理，循环其实就是有一个可以重复的操作不停的在执行，当达到某一个边界条件时就退出循环，所以一般的循环语句都会存在边界条件，如果没有边界条件我们就称其为死循环。</p>
+<p>我们上述代码块的边界条件就是遍历完整个路径数组，在每次遍历的时候对<code>data</code>一层一层的取值并返回，直到我们遍历到路径数组的最后一个元素（也就是其下标<code>idx == len(path_seg)-1</code>，之所以 <code>-1</code>是因为下标是从<code>0</code>开始的，所以数组的长度会比最后一个下标大<code>1</code>），这时候我们判断这个路径元素是否存在于当前位置，如果存在则说明不可以进行添加，直接通过<code>return</code>退出函数，如果不存在则我们通过字典赋值的方式将<code>attrs</code>添加到该位置，并通过<code>break</code>结束循环。</p>
+<blockquote>
+<p><strong>Tips: break与continue</strong></p>
+</blockquote>
+<blockquote>
+<p>对于刚接触编程的读者可能不太清楚break与continue的区别，break可以理解为直接退出这个循环，不管这个循环有没有到达边界条件；而continue则是跳过此次循环，如果还没有达到边界条件则继续进行下一次循环。如下代码</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]:</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> i == <span class="number">2</span>:</span><br><span class="line"></span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(i)</span><br><span class="line"></span><br><span class="line"> <span class="comment"># 输出 1 3   </span></span><br><span class="line"></span><br><span class="line"> <span class="keyword">for</span> i <span class="keyword">in</span> [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]:</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> i == <span class="number">2</span>:</span><br><span class="line"></span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(i)  </span><br><span class="line"></span><br><span class="line"> <span class="comment"># 输出 1</span></span><br></pre></td></tr></table></figure>
+
+<p>上面的描述可能会有些晦涩难懂，下面我们通过<code>Debug</code>的方式看看每次循环时候的变量值就会清晰很多。</p>
+<p>假设我们已经执行了语句<code>python cmdb-v1.0.py init beijing</code>，这时我们的数据源如下：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">&quot;beijing&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">&quot;idc&quot;</span><span class="punctuation">:</span> <span class="string">&quot;beijing&quot;</span><span class="punctuation">,</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">&quot;switch&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">&quot;router&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span><span class="punctuation">&#125;</span></span><br><span class="line"></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>那么这时候我们执行</p>
+<p><code>python cmdb-v1.0.py add /beijing/switch/10.0.0.1 &#39;&#123;\&quot;ip\&quot;: \&quot;10.0.0.1\&quot;, \&quot;role\&quot;: \&quot;asw\&quot;&#125;&#39;进行</code>调试</p>
+<p><code>/beijing/switch/10.0.0.1</code>就是我们要指定的路径</p>
+<p><code>&#39;&#123;\&quot;ip\&quot;: \&quot;10.0.0.1\&quot;, \&quot;role\&quot;: \&quot;asw\&quot;&#125;&#39;</code>就是我们要添加的信息，这里的信息是一个json格式的字符串</p>
+<ol>
+<li>在还没有开始循环前的各变量值如下</li>
+</ol>
+<p><img src="https://s2.loli.net/2023/04/07/YujyWKrGqwLF7Oz.png" alt="img"></p>
+<p>此时的<code>target_path = &#123;&quot;beijing&quot;: &#123;&quot;idc&quot;: &quot;beijing&quot;, &quot;switch&quot;: &#123;&#125;, &quot;router&quot;: &#123;&#125;&#125;&#125;</code></p>
+<ol>
+<li>第一次循环结束后各变量值如下</li>
+</ol>
+<p><img src="https://s2.loli.net/2023/04/07/Q58rzW4SjhOTM6P.png" alt="img"></p>
+<p>此时的<code>seg = &quot;beijing&quot;</code> <code>target_path = &#123;&quot;idc&quot;: &quot;beijing&quot;, &quot;switch&quot;: &#123;&#125;, &quot;router&quot;: &#123;&#125;&#125;</code></p>
+<ol>
+<li>第二次循环结束后各变量值如下</li>
+</ol>
+<p><img src="https://s2.loli.net/2023/04/07/QDxHJRqs6krLfvB.png" alt="img"></p>
+<p>此时的<code>seg = &quot;switch&quot;</code> <code>target_path = &#123;&quot;idc&quot;: &quot;beijing&quot;, &quot;switch&quot;: &#123;&#125;, &quot;router&quot;: &#123;&#125;&#125;</code></p>
+<ol>
+<li>当最后一次循环时</li>
+</ol>
+<p><img src="https://s2.loli.net/2023/04/07/xXruqSYtLZNFGDU.png" alt="img"></p>
+<p>此时<code>seg = &quot;10.0.0.1&quot;</code> <code>targe_path = &#123;&#125;</code>，<code>idc</code>与<code>path_seg</code>长度相等，且<code>seg</code>原先不存在，所以可以将<code>attrs</code>更新到<code>target_path</code>上去。</p>
+<p>根据上面一步一步的调试，我们可以清晰的看到每次循环中<code>seg</code>和<code>target_path</code>的变化，其实<code>target_path</code>是一个指针，它最开始指向字典的最外层，随着一次次的循环，它根据<code>seg</code>层层递进，直到指向目标路径，这时候将<code>attrs</code>添加上去就完成了最终操作。</p>
+<p>最后的数据如下：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">&quot;beijing&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">&quot;idc&quot;</span><span class="punctuation">:</span> <span class="string">&quot;beijing&quot;</span><span class="punctuation">,</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">&quot;switch&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line"></span><br><span class="line">      <span class="attr">&quot;10.0.0.1&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line"></span><br><span class="line">        <span class="attr">&quot;ip&quot;</span><span class="punctuation">:</span> <span class="string">&quot;10.0.0.1&quot;</span><span class="punctuation">,</span></span><br><span class="line"></span><br><span class="line">        <span class="attr">&quot;role&quot;</span><span class="punctuation">:</span> <span class="string">&quot;asw&quot;</span></span><br><span class="line"></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line"></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">&quot;router&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span><span class="punctuation">&#125;</span></span><br><span class="line"></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>这一节我们就先讲到这里，这次我们主要讲解了添加资产信息的详细源码，看起来虽然代码不长，但实际上需要注意的思想和需要新手朋友们注意的知识点还是有很多，希望大家可以自己亲自去调试运行一下，仔细体会一下每一次循环过程中变量的变化。一起期待我们下一节的继续讲解。</p>
+<h2 id="篇后语"><a href="#篇后语" class="headerlink" title="篇后语"></a>篇后语</h2><p>其实这一节除了代码细节的讲解之外，我们在阅读源码前的五个步骤是更为关键的部分。根</p>
+<p>据我上面五个步骤的讲解，大家可以再次发现，在编程的过程中，前一到四步可以说是最终代码成型的地基，并且上面的四个步骤在进行的过程中并不需要我们真正掌握哪一门具体的编程语言，而是需要我们充分利用编程的思想，将要解决的问题逐步拆解；第五步才是真正需要利用代码实现，而且我们选择的Python是较为容易上手的语言，这也是对刚接触编程的朋友来说比较友好的。</p>
+<p>最后希望大家能够在跟随我一步一步学习的过程中培养起良好的编程思想。��好的编程思想。</p>
+]]></content>
+      <categories>
+        <category>新手村</category>
+      </categories>
+      <tags>
+        <tag>CMDB</tag>
+        <tag>Python基础</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>自动化运维新手村-Python基础-5</title>
+    <url>/posts/3a3f9332.html</url>
+    <content><![CDATA[<hr>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a><strong>摘要</strong></h2><p>首先说明，以下几类读者请自行对号入座：</p>
+<ul>
+<li><p>对CMDB很了解但对于Python还没有上手的读者，强烈建议阅读前面几篇；</p>
+</li>
+<li><p>对Python了解较少只能写出简单脚本的读者，强烈建议阅读此篇；</p>
+</li>
+<li><p>已经可以熟练写出Python脚本，但对CMDB不是很了解的读者，建议阅读此篇；</p>
+</li>
+<li><p>即了解Python，又了解CMDB的读者，可以出门左转，看下一篇。</p>
+</li>
+</ul>
+<p>上一节可能对刚开始编程的读者朋友们有一点挑战，其中涉及到通过循环来对复杂数据结构的修改，但只要大家认真理解了上一节的内容，这一节的内容就会感觉简单很多，这一节<strong>我们接着阅读剩余的对CMDB进行删改查的代码部分</strong>。</p>
+<span id="more"></span>
+
+<h2 id="上干货"><a href="#上干货" class="headerlink" title="上干货"></a><strong>上干货</strong></h2><p>在讲解删改查之前，我们需要再次回顾一下前两节的代码，看看有没有什么可以优化的地方。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">init</span>(<span class="params">region</span>):</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;data.json&quot;</span>, <span class="string">&quot;r+&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line"></span><br><span class="line">        data = json.load(f)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> region <span class="keyword">in</span> data:</span><br><span class="line"></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;region %s already exists&quot;</span> % region)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    data[region] = &#123;<span class="string">&quot;idc&quot;</span>: region, <span class="string">&quot;switch&quot;</span>: &#123;&#125;, <span class="string">&quot;router&quot;</span>: &#123;&#125;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;data.json&quot;</span>, <span class="string">&quot;w+&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line"></span><br><span class="line">        json.dump(data, f, indent=<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(json.dumps(data, indent=<span class="number">2</span>))</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">add</span>(<span class="params">path, attrs=<span class="literal">None</span></span>):</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> attrs <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line"></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;add operation must have attrs arg&quot;</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line"></span><br><span class="line">        attrs = json.loads(attrs)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">except</span> Exception:</span><br><span class="line"></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;input attribute is an invalid json string&quot;</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;data.json&quot;</span>, <span class="string">&quot;r+&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line"></span><br><span class="line">        data = json.load(f)</span><br><span class="line"></span><br><span class="line">    path_seg = path.split(<span class="string">&quot;/&quot;</span>)[<span class="number">1</span>:]</span><br><span class="line"></span><br><span class="line">    target_path = data</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> idx, seg <span class="keyword">in</span> <span class="built_in">enumerate</span>(path_seg):</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> idx == <span class="built_in">len</span>(path_seg)-<span class="number">1</span>:</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> seg <span class="keyword">in</span> target_path:</span><br><span class="line"></span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&quot;%s already exists in %s, please use update operation&quot;</span> %</span><br><span class="line"></span><br><span class="line">                      (seg, path))</span><br><span class="line"></span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">            target_path[seg] = attrs</span><br><span class="line"></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">        target_path = target_path[seg]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;data.json&quot;</span>, <span class="string">&quot;w+&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line"></span><br><span class="line">        data = json.dump(data, f, indent=<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(json.dumps(data, indent=<span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+
+<p>仔细的读者可能之前就已经发现，我们的初始化地域功能和新增资产信息功能都有对数据源的存取操作，而且看起来好像代码完全一样，那么在代码的重构原则中有涉及到，<strong>如果一段代码在两处及以上地方重复编写，那么就需要将其重构为单独的方法</strong>。</p>
+<p>这个的意思就是说我们对数据源的存取已经有两处都使用了，而且可预见的是在之后的删改查中也会使用，那么我们就<strong>需要将其单独抽象为一个函数</strong>，这样就可以被不同的地方重复调用，重构后代码如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">read_file</span>():</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;data.json&quot;</span>, <span class="string">&quot;r+&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line"></span><br><span class="line">        data = json.load(f)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> data</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">write_file</span>(<span class="params">data</span>):</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;data.json&quot;</span>, <span class="string">&quot;w+&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line"></span><br><span class="line">        json.dump(data, f, indent=<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">init</span>(<span class="params">region</span>):</span><br><span class="line"></span><br><span class="line">    data = read_file()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> region <span class="keyword">in</span> data:</span><br><span class="line"></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;region %s already exists&quot;</span> % region)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    data[region] = &#123;<span class="string">&quot;idc&quot;</span>: region, <span class="string">&quot;switch&quot;</span>: &#123;&#125;, <span class="string">&quot;router&quot;</span>: &#123;&#125;&#125;</span><br><span class="line"></span><br><span class="line">    write_file(data)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(json.dumps(data, indent=<span class="number">2</span>))</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">add</span>(<span class="params">path, attrs=<span class="literal">None</span></span>):</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> attrs <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line"></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;add operation must have attrs arg&quot;</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line"></span><br><span class="line">        attrs = json.loads(attrs)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">except</span> Exception:</span><br><span class="line"></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;input attribute is an invalid json string&quot;</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    data = read_file()</span><br><span class="line"></span><br><span class="line">    path_seg = path.split(<span class="string">&quot;/&quot;</span>)[<span class="number">1</span>:]</span><br><span class="line"></span><br><span class="line">    target_path = data</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> idx, seg <span class="keyword">in</span> <span class="built_in">enumerate</span>(path_seg):</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> idx == <span class="built_in">len</span>(path_seg)-<span class="number">1</span>:</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> seg <span class="keyword">in</span> target_path:</span><br><span class="line"></span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&quot;%s already exists in %s, please use update operation&quot;</span> %</span><br><span class="line"></span><br><span class="line">                      (seg, path))</span><br><span class="line"></span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">            target_path[seg] = attrs</span><br><span class="line"></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">        target_path = target_path[seg]</span><br><span class="line"></span><br><span class="line">    write_file(data)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(json.dumps(data, indent=<span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+
+<p>大家可以看到，已经完成的代码会随着<strong>合理的重构优化而减少</strong>，因为我们会避免掉冗余的代码块，所以编程<strong>绝不是看谁写的行数多谁就会更牛X</strong>。</p>
+<h4 id="更新资产信息"><a href="#更新资产信息" class="headerlink" title="更新资产信息"></a><strong>更新资产信息</strong></h4><p>同样的更新资产信息的功能我们也需要<strong>五步法进行思考和实践</strong></p>
+<ol>
+<li><strong>先要思考一下实现这个功能有哪些地方需要注意：</strong></li>
+</ol>
+<ul>
+<li>更新什么样的信息？</li>
+<li>如何定位到要更新的路径？</li>
+</ul>
+<ol>
+<li><strong>这里我先依次给大家解答一下：</strong></li>
+</ol>
+<ul>
+<li>如何定位到要更新的路径这里我们在上一节介绍过，还不太理解的读者可以看上一节内容</li>
+<li>我们要更新的信息的类型是一个需要注意的地方，因为我们的信息可以是字典格式，也可以是字符串或数组</li>
+</ul>
+<ol>
+<li><strong>现在要做的就是将思路更进一步细化到可实现的伪代码：</strong></li>
+</ol>
+<ul>
+<li>我们需要定义一个<code>update()</code>函数来实现这个功能，并且这个函数需要接收两个参数，分别是要更新的信息和信息要更新到的指定路径，那么我们的函数签名应该是<code>update(path, attrs)</code></li>
+<li>我们传入的<code>attrs</code>必须是一个JSON格式的字符串，传入的<code>path</code>必须是一个通过<code>/</code>分隔的字符串</li>
+<li>通过<code>path</code>去按层级定位数据源中的指定位置，通过字典的赋值将<code>attrs</code>更新到数据源指定位置上</li>
+<li>通过<code>json.load</code>和<code>json.dump</code>做数据持久化</li>
+</ul>
+<ol>
+<li><strong>接下来就是需要写出一份能实现上述功能的伪代码，如下：</strong></li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">def <span class="keyword">update</span>(path, attrs):</span><br><span class="line"></span><br><span class="line">    # 判断attrs的合法性</span><br><span class="line"></span><br><span class="line">    if attrs <span class="keyword">is</span> valid</span><br><span class="line"></span><br><span class="line">    # 将attrs解析成Python类型</span><br><span class="line"></span><br><span class="line">    attrs <span class="operator">=</span> parse_attrs()</span><br><span class="line"></span><br><span class="line">    # 从文本文件中读取数据源</span><br><span class="line"></span><br><span class="line">    data <span class="operator">=</span> read_file()</span><br><span class="line"></span><br><span class="line">    # 分割path路径</span><br><span class="line"></span><br><span class="line">    seg <span class="operator">=</span> path.split()</span><br><span class="line"></span><br><span class="line">    # 根据路径定位数据源的指定位置</span><br><span class="line"></span><br><span class="line">    target_path <span class="operator">=</span> position_data()</span><br><span class="line"></span><br><span class="line">    # 将attrs更新到指定路径</span><br><span class="line"></span><br><span class="line">    data[target_path] <span class="operator">=</span> attrs</span><br><span class="line"></span><br><span class="line">    # 将数据保存到文本文件</span><br><span class="line"></span><br><span class="line">    write_file(data)</span><br><span class="line"></span><br><span class="line">    # 打印数据源</span><br><span class="line"></span><br><span class="line">    print(data)</span><br></pre></td></tr></table></figure>
+
+<p>大家可以发现更新和添加的逻辑十分相似，事实上在<strong>实际的其他增删改查场景中，更新和添加也都是如此</strong>。</p>
+<ol>
+<li><strong>最终更新资产信息的代码如下：</strong></li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">update</span>(<span class="params">path, attrs=<span class="literal">None</span></span>):</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> attrs <span class="keyword">is</span> <span class="literal">None</span>: <span class="comment"># 判断attrs的合法性</span></span><br><span class="line"></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;add operation must have attrs arg&quot;</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line"></span><br><span class="line">        attr_json = json.loads(attrs)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">except</span> Exception:</span><br><span class="line"></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;attributes is not valid json string&quot;</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    data = read_file()</span><br><span class="line"></span><br><span class="line">    target_path = data</span><br><span class="line"></span><br><span class="line">    path_seg = path.split(<span class="string">&quot;/&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> idx, seg <span class="keyword">in</span> <span class="built_in">enumerate</span>(path_seg[<span class="number">1</span>:]):</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> idx == <span class="built_in">len</span>(path_seg)-<span class="number">2</span>:</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> seg <span class="keyword">not</span> <span class="keyword">in</span> target_path:</span><br><span class="line"></span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&quot;update path is not exists in data, please use add function&quot;</span>)</span><br><span class="line"></span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">type</span>(attr_json) != <span class="built_in">type</span>(target_path[seg]):</span><br><span class="line"></span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&quot;update attributes and target_path attributes are different type.&quot;</span>)</span><br><span class="line"></span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">isinstance</span>(attr_json, <span class="built_in">dict</span>):</span><br><span class="line"></span><br><span class="line">                target_path[seg].update(attr_json)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">elif</span> <span class="built_in">isinstance</span>(attr_json, <span class="built_in">list</span>):</span><br><span class="line"></span><br><span class="line">                target_path[seg].extend(attr_json)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line"></span><br><span class="line">                target_path[seg] = attr_json</span><br><span class="line"></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line"></span><br><span class="line">            target_path = target_path[seg]</span><br><span class="line"></span><br><span class="line">    write_file(data)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(json.dumps(data, indent=<span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+
+<p><strong>更新有两个关键点需要大家注意一下：</strong></p>
+<p><strong>5.1 在更新操作时，我们是对数据源中已存在的路径进行更新，这时候就涉及到数据的安全性，如果</strong><code>**attrs**</code><strong>为</strong><code>**None**</code><strong>可能会造成将原有信息清除。</strong></p>
+<p>判断<code>attrs</code>的合法性</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> attrs <span class="keyword">is</span> <span class="literal">None</span>: <span class="comment"># 判断attrs的合法性</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;add operation must have attrs arg&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span></span><br></pre></td></tr></table></figure>
+
+<p>我们首先要保证的就是<code>attrs</code>这个参数不能为<code>None</code>，<code>**None**</code><strong>是Python中的一个表示空的变量类型</strong>，所以如果我们没有从命令行获取到<code>attrs</code>时，那么我们的程序应该给出提示，这里我是打印了一行提醒，要求添加资产的操作必须有<code>attrs</code>参数，然后直接<code>return</code>退出函数</p>
+<p><strong>5.2 第二点就是对于更新信息的类型，在添加功能中由于是在原先不存在的路径上新增信息，所以我们无需考虑</strong><code>**attrs**</code><strong>的类型，直接利用字典的特性进行赋值即可；但更新时，由于路径上已经存在数据，所以我们就需要对其类型做较为详细的判断。</strong></p>
+<p><strong>更新属性</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> seg <span class="keyword">not</span> <span class="keyword">in</span> target_path:</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;update path is not exists in data, please use add function&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">type</span>(attr_json) != <span class="built_in">type</span>(target_path[seg]):</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;update attributes and target_path attributes are different type.&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">isinstance</span>(attr_json, <span class="built_in">dict</span>):</span><br><span class="line"></span><br><span class="line">    target_path[seg].update(attr_json)</span><br><span class="line"></span><br><span class="line"><span class="keyword">elif</span> <span class="built_in">isinstance</span>(attr_json, <span class="built_in">list</span>):</span><br><span class="line"></span><br><span class="line">    target_path[seg].extend(attr_json)</span><br><span class="line"></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line"></span><br><span class="line">    target_path[seg] = attr_json</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>需要判断要更新的路径是否在数据源中存在，如果不存在的话就需要使用添加的功能进行添加</li>
+<li>需要对数据源中指定路径的类型和<code>attrs</code>的类型进行比较，如果类型不同也不可以进行更新</li>
+<li>数据源中指定路径的类型是字典的话不可以直接赋值，这样会将原先的属性信息抹除，这里需要用到字典的一个特性<code>dict.update()</code>，这个功能接收一个参数，可以将两个字典合并，并且用参数字典中的信息更新原始字典中的信息。</li>
+<li>如果源路径上的信息类型是数组，那么我们就需要将要更新的<code>attrs</code>添加到原来的信息上，这里用到了数组的一个特性<code>list.extend()</code>，这个功能接收一个参数，可以将参数数组合并到原始数组后面。</li>
+</ul>
+<blockquote>
+<p><strong>Tips: extend 和 append</strong></p>
+</blockquote>
+<blockquote>
+<p>关于数组的这两个方法是平时经常使用到的，通过例子大家就可以很好的理解用法：</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">&gt; </span><span class="language-bash">my_list = [1, 2, 3]</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">&gt; </span><span class="language-bash">new_list = [4, 5]</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">&gt; </span><span class="language-bash">my_list.append(new_list)</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">&gt; </span><span class="language-bash">my_list</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">输出 [1, 2, 3, [4, 5]]</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">&gt; </span><span class="language-bash">my_list.extend(new_list)</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">&gt; </span><span class="language-bash">my_list</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">输出 [1, 2, 3, 4, 5]</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>可以发现，<code>append</code>是将某个元素整体添加到了原始数组的末尾，而<code>extend</code>是将新的数组整合到原始数组末尾，并且通过查看这两个方法参数也可以看出区别</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">append</span>(<span class="params">self, __<span class="built_in">object</span>: _T</span>) -&gt; <span class="literal">None</span>: ...</span><br><span class="line"></span><br><span class="line"><span class="comment"># append 方法可以接收传入任意类型的参数，因为这个方法只是将参数添加到了原始数组末尾</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">extend</span>(<span class="params">self, __iterable: Iterable[_T]</span>) -&gt; <span class="literal">None</span>: ...</span><br><span class="line"></span><br><span class="line"><span class="comment"># extend 方法要求传入的参数必须是一个可迭代类型，因为这个方法会去迭代参数中的所有元素，将其整合到原始数组末尾</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如果源路径上的信息类型不是字典也不是数组就可以直接赋值</li>
+</ul>
+<p>到目前为止更新属性的功能也已经讲解完了，更新和添加大体上的逻辑类型，<strong>但更新中用到了大量了逻辑判断</strong>，关于判断语句还有一个需要和读者们讲解的地方，比如以上面更新方法中的多个逻辑判断为例，很多刚接触编程的读者可能会这样写：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> seg <span class="keyword">in</span> target_path:</span><br><span class="line"></span><br><span class="line">   <span class="keyword">if</span> <span class="built_in">type</span>(attr_json) == <span class="built_in">type</span>(target_path[seg]):</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">isinstance</span>(attr_json, <span class="built_in">dict</span>):</span><br><span class="line"></span><br><span class="line">        target_path[seg].update(attr_json)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">elif</span> <span class="built_in">isinstance</span>(attr_json, <span class="built_in">list</span>):</span><br><span class="line"></span><br><span class="line">         target_path[seg].extend(attr_json)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line"></span><br><span class="line">        target_path[seg] = attr_json</span><br><span class="line"></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line"></span><br><span class="line">      <span class="built_in">print</span>(<span class="string">&quot;update attributes and target_path attributes are different type.&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;update path is not exists in data, please use add function&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>通过这样<strong>多层次的</strong><code>**if...else...**</code><strong>嵌套</strong>，虽然也可以实现相同的功能，但对于<strong>代码的可读性上会是很大的灾难，并且多层嵌套对于后期逻辑的修改也是十分困难的</strong>，所以我们在编程的同时一定要尽力避免这种多层的嵌套。</p>
+<p>一般常用的标准是<strong>对于循环语句和判断语句不要存在三层及以上的嵌套</strong>。那么当我们遇到上面的这种情况时，我们可以参照我给出的代码示例，先<strong>去判断非法逻辑，如果命中非法逻辑则直接抛出异常或者退出函数</strong>，这样一个简单的改动对代码的可读性和可维护性都会大大提高。</p>
+<p>这一节我们又<strong>着重复习了一次五步法</strong>，并且对于更新功能的逻辑做了详细的解读，本来想把删除和查询也一起在这一节讲解，但又担心知识点太多，大家一时不太容易接受，之后我就不会再带着大家去一步一步的练习五步法，但这是一个熟能生巧的过程，<strong>希望读者朋友们能在自己实践的过程中潜移默化的使用它，我们下一节见。</strong></p>
+<h2 id="篇后语"><a href="#篇后语" class="headerlink" title="篇后语"></a><strong>篇后语</strong></h2><p>​    不知道大家在这几篇的学习中有没有发现，<strong>不管是在编程还是阅读源码前的逻辑梳理都十分的重要</strong>，而且代码中的很多部分都是对一些边界case的处理，所以对于伪代码的抽象也可以帮助我们更好的去理解复杂的业务逻辑。但<strong>这些边界case对于代码的健壮性又起到了关键作用</strong>，所以读者朋友们在编程的同时，也应该去培养对于边界case的敏感度，从<strong>不同维度去预判代码或者业务逻辑可能出现的逻辑，并提前规避它。</strong></p>
+<p>​    除此之外，虽然很多读者朋友是刚接触编程，但我们<strong>仍然从编程思维的养成和源码的阅读上，向大家普及一些更深入的东西</strong>，比如重构的原则，和多层嵌套的优雅处理等，所以我的本意是能够将这些知识在刚开始学习的时候就耳濡目染的让大家去了解，而<strong>不是说新手就应该死记硬背一些基础的方法和规范，这对于学习来说反而会适得其反</strong>，所以希望大家能在阅读文章的同时仔细去感受体会。</p>
+]]></content>
+      <categories>
+        <category>新手村</category>
+      </categories>
+      <tags>
+        <tag>CMDB</tag>
+        <tag>Python基础</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>自动化运维新手村-Python基础-6</title>
+    <url>/posts/a336c288.html</url>
+    <content><![CDATA[<hr>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a><strong>摘要</strong></h2><p>首先说明，以下几类读者请自行对号入座：</p>
+<ul>
+<li>对CMDB很了解但对于Python还没有上手的读者，强烈建议阅读前面几篇；</li>
+<li>对Python了解较少只能写出简单脚本的读者，强烈建议阅读此篇；</li>
+<li>已经可以熟练写出Python脚本，但对CMDB不是很了解的读者，建议阅读此篇；</li>
+<li>即了解Python，又了解CMDB的读者，可以出门左转，看下一篇。</li>
+</ul>
+<span id="more"></span>
+
+<p>前面几节我们完成了CMDBv1.0版本最难的部分的讲解，这节内容我们就带领大家一次将<strong>删除和查询功能分析完成</strong>。话不多说上干货。</p>
+<h2 id="代码优化"><a href="#代码优化" class="headerlink" title="代码优化"></a><strong>代码优化</strong></h2><p>之前我们的新增和更新信息的功能中都有对<code>attrs</code>做校验和解析，那么我们是不是可以将其抽象成一个新的函数，如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">check_parse</span>(<span class="params">attrs</span>):</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> attrs <span class="keyword">is</span> <span class="literal">None</span>: <span class="comment"># 判断attrs的合法性</span></span><br><span class="line"></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;attributes is None&quot;</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line"></span><br><span class="line">        attrs = json.loads(attrs)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> attrs</span><br><span class="line"></span><br><span class="line">    <span class="keyword">except</span> Exception:</span><br><span class="line"></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;attributes is not valid json string&quot;</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">add</span>(<span class="params">path, attrs=<span class="literal">None</span></span>):</span><br><span class="line"></span><br><span class="line">    attrs = check_parse(attrs)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> attrs:</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">update</span>(<span class="params">path, attrs=<span class="literal">None</span></span>):</span><br><span class="line"></span><br><span class="line">    attrs = check_parse(attrs)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> attrs:</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
+
+<p>恭喜我们的代码又成功减少几行</p>
+<h3 id="删除资产信息"><a href="#删除资产信息" class="headerlink" title="删除资产信息"></a><strong>删除资产信息</strong></h3><p>这一节我们就省略五步法的一些步骤，只对最关键的功能进行一下思考</p>
+<ul>
+<li>在任何场景中一旦涉及到删除功能，就需要<strong>慎之又慎</strong>，绝不能多删误删，不然可能就要背锅走人了，那么我们在删除资产信息时需要注意什么呢，其实有时候为了保险期间我们<strong>会尽量使用更新去代替删除</strong>，但有一些多余的属性信息又不得不删除。</li>
+<li>那么如果我们删除的路径上是一个字符串或者数字还比较简单，如果是一个字典，或者是一个数组，就需要<strong>格外注意</strong>了。</li>
+<li>另外就是对于我们的参数，我们是否需要同时传入<code>path</code>和<code>attrs</code>。</li>
+</ul>
+<p>源代码如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">delete</span>(<span class="params">path, attrs=<span class="literal">None</span></span>):</span><br><span class="line"></span><br><span class="line">    attrs = check_parse(attrs)</span><br><span class="line"></span><br><span class="line">    path_seg = path.split(<span class="string">&quot;/&quot;</span>)[<span class="number">1</span>:]</span><br><span class="line"></span><br><span class="line">    data = read_file()</span><br><span class="line"></span><br><span class="line">    target_path = data</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> idx, seg <span class="keyword">in</span> <span class="built_in">enumerate</span>(path_seg):</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> seg <span class="keyword">not</span> <span class="keyword">in</span> target_path:</span><br><span class="line"></span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;delete target path not in data.&quot;</span>)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> idx == <span class="built_in">len</span>(path_seg)-<span class="number">1</span>:</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> attrs:</span><br><span class="line"></span><br><span class="line">                target_path.pop(seg)</span><br><span class="line"></span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">isinstance</span>(attrs, <span class="built_in">list</span>):</span><br><span class="line"></span><br><span class="line">                <span class="keyword">for</span> attr <span class="keyword">in</span> attrs:</span><br><span class="line"></span><br><span class="line">                    <span class="keyword">if</span> attr <span class="keyword">not</span> <span class="keyword">in</span> target_path[seg]:</span><br><span class="line"></span><br><span class="line">                        <span class="built_in">print</span>(<span class="string">&quot;attr %s not in target_path&quot;</span> % attr)</span><br><span class="line"></span><br><span class="line">                        <span class="keyword">continue</span></span><br><span class="line"></span><br><span class="line">                <span class="built_in">isinstance</span>(target_path[seg], <span class="built_in">dict</span>):</span><br><span class="line"></span><br><span class="line">                    target_path[seg].pop(attr)</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> <span class="built_in">isinstance</span>(target_path[seg], <span class="built_in">list</span>)</span><br><span class="line"></span><br><span class="line">                  target_path[seg].remove(attr)</span><br><span class="line"></span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">        target_path = target_path[seg]</span><br><span class="line"></span><br><span class="line">    write_file(data)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(json.dumps(data, indent=<span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+
+<p>这里首先仍然是对传入的属性值做解析，我们为什么不像<code>add</code>和<code>update</code>一样复用<code>check_parse()</code>方法，当解析到的<code>attrs</code>为<code>None</code>时就退出函数呢?</p>
+<p>这里是因为我们的删除功能，可以不传<code>attrs</code>参数，有时候我们的目的就是直接删除数据源中的这个路径下的所有属性，那么就只需要传入<code>path</code>即可。</p>
+<p><strong>在查找指定路径的时候我们同样也做了优化，如下</strong>：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> idx, seg <span class="keyword">in</span> <span class="title function_">enumerate</span>(path_seg):</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> seg not <span class="keyword">in</span> <span class="attr">target_path</span>:</span><br><span class="line"></span><br><span class="line">        <span class="title function_">print</span>(<span class="string">&quot;delete target path not in data.&quot;</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
+
+<p><strong>可以和之前定位路径的代码做一下对比：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> idx, seg <span class="keyword">in</span> <span class="title function_">enumerate</span>(path_seg):</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> idx == <span class="title function_">len</span>(path_seg)-<span class="number">1</span>:</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> seg not <span class="keyword">in</span> <span class="attr">target_path</span>:</span><br><span class="line"></span><br><span class="line">          <span class="title function_">print</span>(<span class="string">&quot;delete path is not exists in datan&quot;</span>)</span><br><span class="line"></span><br><span class="line">          <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
+
+<p>我们之前在定位路径时，对<code>path</code>做了分割，只有在<code>seg</code>为<code>path_seg</code>的最后一个元素时才去判断是否这个<code>seg</code>在<code>target_path</code>上，这样就会导致程序运行<strong>很多无用的循环逻辑</strong>。</p>
+<p>优化之后我们在每次循环的一开始就对<code>seg</code>做了判断，因为如果被分割开的<code>path_seg</code>中任何一段<code>seg</code>不在数据源路径中时，那么整段<code>path</code>就必然不可能在数据源中定位到，<strong>所以我们一旦检测到当前的</strong><code>**seg**</code><strong>不在</strong><code>**target_path**</code><strong>时就可以直接退出函数</strong></p>
+<p><strong>删除功能中的核心代码块如下：</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> idx == <span class="built_in">len</span>(path_seg)-<span class="number">1</span>: <span class="comment"># 循环中定位到指定路径</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> attrs:</span><br><span class="line"></span><br><span class="line">        target_path.pop(seg)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">isinstance</span>(attrs, <span class="built_in">list</span>):</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> attr <span class="keyword">in</span> attrs:</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> attr <span class="keyword">not</span> <span class="keyword">in</span> target_path[seg]:</span><br><span class="line"></span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&quot;attr %s not in target_path&quot;</span> % attr)</span><br><span class="line"></span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">isinstance</span>(target_path[seg], <span class="built_in">dict</span>):</span><br><span class="line"></span><br><span class="line">                target_path[seg].pop(attr)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">isinstance</span>(target_path[seg], <span class="built_in">list</span>):</span><br><span class="line"></span><br><span class="line">                target_path[seg].remove(attr)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+
+<p>删除属性主要分为三个部分：</p>
+<p>1.当我们没有传入要删除的<code>attrs</code>时，我们<strong>默认删除该路径下的所有内容</strong>，这里用到的操作是字典的删除功能<code>dict.pop()</code>，这个方法要求传入一个字典的键值，键值如果不存在会抛出异常，但由于我们在每次循环时都判断了<code>seg</code>是否在<code>target_path</code>中，所以程序运行到这里的话，这个路径就必然是存在的，那么我们通过<code>target_path.pop(seg)</code>就可以将该路径下面的属性全部删除</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> not <span class="attr">attrs</span>:    </span><br><span class="line"></span><br><span class="line">    target_path.<span class="title function_">pop</span>(seg)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Tips: 安全性</p>
+</blockquote>
+<blockquote>
+<p>其实我们考虑到数据的安全性，应该在删除指定路径的全部属性时做一个判断，因为如果是忘记了输入<code>attrs</code>而造成了误删，那可能直接就一个P1了，所以我们可以<strong>这里将</strong><code>**attrs**</code><strong>传入一个</strong><code>**all**</code><strong>或者类似的标志，来表示确定删除指定路径下的全部属性</strong>。</p>
+</blockquote>
+<p>2.当我们的指定路径下是一个字典并且传入的属性<code>attrs</code>是一个数组的时候，我们就去遍历<code>attrs</code>，将其元素一次从<code>target_path</code>下删除，这里有注意点就是我们在上面已经提到，<code>dict.pop()</code>必须传入字典中存在的键，所以我们在循环<code>attrs</code>时，需要<strong>先判断这个要删除的元素是否存在，如果不存在则使用</strong><code>**continue**</code><strong>跳过</strong></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="title function_">isinstance</span>(attrs, list):</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> attr <span class="keyword">in</span> <span class="attr">attrs</span>:</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> attr not <span class="keyword">in</span> target_path[seg]:</span><br><span class="line"></span><br><span class="line">            <span class="title function_">print</span>(<span class="string">&quot;attr %s not in target_path&quot;</span> % attr)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="title function_">isinstance</span>(target_path[seg], dict):</span><br><span class="line"></span><br><span class="line">            target_path[seg].<span class="title function_">pop</span>(attr)</span><br></pre></td></tr></table></figure>
+
+<p>\3. 当我们的指定路径下是一个数组，并且传入的属性<code>attrs</code>也是一个数组的时候，<strong>我们仍然通过遍历</strong><code>**attrs**</code><strong>的方式，将</strong><code>**attrs**</code><strong>中的元素依次从指定路径的数组下面移除</strong>，从数组中删除元素使用到了方法<code>list.remove()</code>，这个方法同样要求传入数组中已存在的元素，如果传入的元素不存在则会抛出异常。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="title function_">isinstance</span>(attrs, list):</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> attr <span class="keyword">in</span> <span class="attr">attrs</span>:</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> attr not <span class="keyword">in</span> target_path[seg]:</span><br><span class="line"></span><br><span class="line">            <span class="title function_">print</span>(<span class="string">&quot;attr %s not in target_path&quot;</span> % attr)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="title function_">isinstance</span>(target_path[seg], dict):</span><br><span class="line"></span><br><span class="line">            target_path[seg].<span class="title function_">remove</span>(attr)</span><br></pre></td></tr></table></figure>
+
+<h3 id="查询资产信息"><a href="#查询资产信息" class="headerlink" title="查询资产信息"></a><strong>查询资产信息</strong></h3><p>终于到了增删改查的最后一个方法，其实查找是这四个方法中<strong>最为简单的，只需要定位到指定路径然后输出就好了</strong>，代码如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">get</span>(<span class="params">path</span>):</span><br><span class="line"></span><br><span class="line">    path_seg = path.split(<span class="string">&quot;/&quot;</span>)[<span class="number">1</span>:]</span><br><span class="line"></span><br><span class="line">    data = read_file()</span><br><span class="line"></span><br><span class="line">    target_path = data</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> idx, seg <span class="keyword">in</span> <span class="built_in">enumerate</span>(path_seg):</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> seg <span class="keyword">not</span> <span class="keyword">in</span> target_path:</span><br><span class="line"></span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;get path is not exists in data&quot;</span>)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> idx == <span class="built_in">len</span>(path_seg)-<span class="number">1</span>:</span><br><span class="line"></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">        target_path = target_path[seg]</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(json.dumps(target_path, indent=<span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+
+<p>不知道读者朋友们有没有觉得这段代码很眼熟，有没有触动你想要重构之前代码的想法。</p>
+<h2 id="完整重构："><a href="#完整重构：" class="headerlink" title="完整重构："></a><strong>完整重构：</strong></h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> os <span class="keyword">import</span> read</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> Iterable</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">read_file</span>():</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;data.json&quot;</span>, <span class="string">&quot;r+&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line"></span><br><span class="line">        data = json.load(f)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> data</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">write_file</span>(<span class="params">data</span>):</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;data.json&quot;</span>, <span class="string">&quot;w+&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line"></span><br><span class="line">        json.dump(data, f, indent=<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">check_parse</span>(<span class="params">attrs</span>):</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> attrs <span class="keyword">is</span> <span class="literal">None</span>: <span class="comment"># 判断attrs的合法性</span></span><br><span class="line"></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;attributes is None&quot;</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line"></span><br><span class="line">        attrs = json.loads(attrs)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> attrs</span><br><span class="line"></span><br><span class="line">    <span class="keyword">except</span> Exception:</span><br><span class="line"></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;attributes is not valid json string&quot;</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">locate_path</span>(<span class="params">data, path</span>):</span><br><span class="line"></span><br><span class="line">    target_path = data</span><br><span class="line"></span><br><span class="line">    path_seg = path.split(<span class="string">&quot;/&quot;</span>)[<span class="number">1</span>:]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> seg <span class="keyword">in</span> path_seg[:-<span class="number">1</span>]:</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> seg <span class="keyword">not</span> <span class="keyword">in</span> target_path:</span><br><span class="line"></span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;update path is not exists in data, please use add function&quot;</span>)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">        target_path = target_path[seg]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> target_path, path_seg[-<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">init</span>(<span class="params">region</span>):</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;data.json&quot;</span>, <span class="string">&quot;r+&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line"></span><br><span class="line">        data = json.load(f)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> region <span class="keyword">in</span> data:</span><br><span class="line"></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;region %s already exists&quot;</span> % region)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    data[region] = &#123;<span class="string">&quot;idc&quot;</span>: region, <span class="string">&quot;switch&quot;</span>: &#123;&#125;, <span class="string">&quot;router&quot;</span>: &#123;&#125;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;data.json&quot;</span>, <span class="string">&quot;w+&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line"></span><br><span class="line">        json.dump(data, f, indent=<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(json.dumps(data, indent=<span class="number">2</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">add</span>(<span class="params">path, attrs=<span class="literal">None</span></span>):</span><br><span class="line"></span><br><span class="line">    attrs = check_parse(attrs)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> attrs:</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;data.json&quot;</span>, <span class="string">&quot;r+&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line"></span><br><span class="line">        data = json.load(f)</span><br><span class="line"></span><br><span class="line">    target_path, last_seg = locate_path(data, path)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> last_seg <span class="keyword">in</span> target_path:</span><br><span class="line"></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;%s already exists in %s, please use update operation&quot;</span> % (last_seg, path))</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    target_path[last_seg] = attrs</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;data.json&quot;</span>, <span class="string">&quot;w+&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line"></span><br><span class="line">        data = json.dump(data, f, indent=<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(json.dumps(data, indent=<span class="number">2</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">update</span>(<span class="params">path, attrs</span>):</span><br><span class="line"></span><br><span class="line">    attrs = check_parse(attrs)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> attrs:</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    data = read_file()</span><br><span class="line"></span><br><span class="line">    target_path, last_seg = locate_path(data, path)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">type</span>(attrs) != <span class="built_in">type</span>(target_path[last_seg]):</span><br><span class="line"></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;update attributes and target_path attributes are different type.&quot;</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">isinstance</span>(attrs, <span class="built_in">dict</span>):</span><br><span class="line"></span><br><span class="line">        target_path[last_seg].update(attrs)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">elif</span> <span class="built_in">isinstance</span>(attrs, <span class="built_in">list</span>):</span><br><span class="line"></span><br><span class="line">        target_path[last_seg].extend(attrs)</span><br><span class="line"></span><br><span class="line">        target_path[last_seg] = <span class="built_in">list</span>(<span class="built_in">set</span>(target_path[last_seg]))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line"></span><br><span class="line">        target_path[last_seg] = attrs</span><br><span class="line"></span><br><span class="line">    write_file(data)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(json.dumps(data, indent=<span class="number">2</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">delete</span>(<span class="params">path, attrs=<span class="literal">None</span></span>):</span><br><span class="line"></span><br><span class="line">    attrs = check_parse(attrs)</span><br><span class="line"></span><br><span class="line">    data = read_file()</span><br><span class="line"></span><br><span class="line">    target_path, last_seg = locate_path(data, path)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> attrs:</span><br><span class="line"></span><br><span class="line">        target_path.pop(last_seg)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">isinstance</span>(attrs, <span class="built_in">list</span>):</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> attr <span class="keyword">in</span> attrs:</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> attr <span class="keyword">not</span> <span class="keyword">in</span> target_path[last_seg]:</span><br><span class="line"></span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&quot;attr %s not in target_path&quot;</span> % attr)</span><br><span class="line"></span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">isinstance</span>(target_path[last_seg], <span class="built_in">dict</span>):</span><br><span class="line"></span><br><span class="line">                target_path[last_seg].pop(attr)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">isinstance</span>(target_path[last_seg], <span class="built_in">list</span>):</span><br><span class="line"></span><br><span class="line">                target_path[last_seg].remove(attr)</span><br><span class="line"></span><br><span class="line">    write_file(data)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(json.dumps(data, indent=<span class="number">2</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get</span>(<span class="params">path</span>):</span><br><span class="line"></span><br><span class="line">    data = read_file()</span><br><span class="line"></span><br><span class="line">    target_path, last_seg = locate_path(data, path)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(json.dumps(target_path[last_seg], indent=<span class="number">2</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line"></span><br><span class="line">    operations = [<span class="string">&quot;get&quot;</span>, <span class="string">&quot;update&quot;</span>, <span class="string">&quot;delete&quot;</span>]</span><br><span class="line"></span><br><span class="line">    args = sys.argv</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(args) &lt; <span class="number">3</span>:</span><br><span class="line"></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;please input operation and args&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> args[<span class="number">1</span>] == <span class="string">&quot;init&quot;</span>:</span><br><span class="line"></span><br><span class="line">            init(args[<span class="number">2</span>])</span><br><span class="line"></span><br><span class="line">        <span class="keyword">elif</span> args[<span class="number">1</span>] == <span class="string">&quot;add&quot;</span>:</span><br><span class="line"></span><br><span class="line">            add(*args[<span class="number">2</span>:])</span><br><span class="line"></span><br><span class="line">        <span class="keyword">elif</span> args[<span class="number">1</span>] == <span class="string">&quot;get&quot;</span>:</span><br><span class="line"></span><br><span class="line">            get(args[<span class="number">2</span>])</span><br><span class="line"></span><br><span class="line">        <span class="keyword">elif</span> args[<span class="number">1</span>] == <span class="string">&quot;update&quot;</span>:</span><br><span class="line"></span><br><span class="line">            update(*args[<span class="number">2</span>:])</span><br><span class="line"></span><br><span class="line">        <span class="keyword">elif</span> args[<span class="number">1</span>] == <span class="string">&quot;delete&quot;</span>:</span><br><span class="line"></span><br><span class="line">            delete(*args[<span class="number">2</span>:])</span><br><span class="line"></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line"></span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;operation must be one of get,update,delete&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h2><p>经过我们一起不懈的努力，终于一行一行的读完了CMDBv1.0.py的源代码，理解了对资产信息增删改查的详细逻辑，并且在阅读源码的过程中逐步培养起良好的编程规范和编程思维，这对于大家以会起到至关重要的作用。</p>
+<p>那么我们到此还没有结束，下一节我们会将CMDBv1.0利用<strong>面向对象</strong>的思想再次重构为CMDBv1.5，到时候将会是从<strong>函数式编程到面向对象编程</strong>的一个大的飞跃，敬请期待。</p>
+]]></content>
+      <categories>
+        <category>新手村</category>
+      </categories>
+      <tags>
+        <tag>CMDB</tag>
+        <tag>Python基础</tag>
       </tags>
   </entry>
 </search>
