@@ -1,0 +1,6 @@
+http://example.com/posts/5cb4afad.html
+http://example.com/posts/71625180.html
+http://example.com/
+http://example.com/tags/Python-Basics/
+http://example.com/tags/CMDB/
+http://example.com/categories/Freshman/

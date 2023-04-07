@@ -1,489 +1,40 @@
-<!DOCTYPE html>
-<html lang="zh">
-<head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 6.3.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>NetDevOps in Python</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="NetDevOps in Python"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="NetDevOps in Python"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta property="og:type" content="blog"><meta property="og:title" content="NetDevOps in Python"><meta property="og:url" content="http://example.com/"><meta property="og:site_name" content="NetDevOps in Python"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="http://example.com/img/og_image.png"><meta property="article:author" content="EthanYue"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://example.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com"},"headline":"NetDevOps in Python","image":["http://example.com/img/og_image.png"],"author":{"@type":"Person","name":"EthanYue"},"publisher":{"@type":"Organization","name":"NetDevOps in Python","logo":{"@type":"ImageObject","url":"http://example.com/img/logo.svg"}},"description":""}</script><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
 
-<link rel="stylesheet" href="/css/main.css">
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
 
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
 
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
-  </script>
-
-  <meta property="og:type" content="website">
-<meta property="og:title" content="NetDevOps in Python">
-<meta property="og:url" content="http://example.com/index.html">
-<meta property="og:site_name" content="NetDevOps in Python">
-<meta property="og:locale">
-<meta property="article:author" content="EthanYue">
-<meta name="twitter:card" content="summary">
-
-<link rel="canonical" href="http://example.com/">
-
-
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : true,
-    isPost : false,
-    lang   : 'zh'
-  };
-</script>
-
-  <title>NetDevOps in Python</title>
-  
-
-
-
-
-
-
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
-
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">NetDevOps in Python</h1>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-        <i class="fa fa-search fa-fw fa-lg"></i>
-    </div>
-  </div>
-</div>
-
-
-
-
-<nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
-
-  </li>
-      <li class="menu-item menu-item-search">
-        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
-        </a>
-      </li>
-  </ul>
-</nav>
-
-
-
-  <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off"
-           placeholder="Searching..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
-  <span class="popup-btn-close">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div id="search-result">
-  <div id="no-result">
-    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
-  </div>
-</div>
-
-    </div>
-  </div>
-
-</div>
-    </header>
-
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content index posts-expand">
-            
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/04/06/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="EthanYue">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="NetDevOps in Python">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/04/06/hello-world/" class="post-title-link" itemprop="url">User Guide</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2023-04-06 08:43:13 / Modified: 08:43:15" itemprop="dateCreated datePublished" datetime="2023-04-06T08:43:13+08:00">2023-04-06</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Python玩转自动化运维-成长路径</p>
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="NetDevOps in Python" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item is-active" href="/">Home</a><a class="navbar-item" href="/categories/freshman">Freshman</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2023-04-06T00:43:13.000Z" title="2023/4/6 08:43:13">2023-04-06</time>发表</span><span class="level-item"><time dateTime="2023-04-07T00:35:25.684Z" title="2023/4/7 08:35:25">2023-04-07</time>更新</span><span class="level-item">15 分钟读完 (大约2316个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/posts/5cb4afad.html">User Guide</a></p><div class="content"><p>Python玩转自动化运维-成长路径</p>
 <p><strong>专注于自动化运维领域，帮助任何想将编程与运维相结合的朋友，从零开始引领大家走进运维自动化。</strong></p>
 <h2 id="内容受众"><a href="#内容受众" class="headerlink" title="内容受众"></a>内容受众</h2><p>你是否已经决定走上了<strong>运维工程师</strong>的道路，或者是深耕运维多年的老手；</p>
 <p>升职加薪一直与自己绝缘，还总是锅从天上来；</p>
 <p>看着别人自动化运维搞得风生水起，自己巡检两台设备的时间别人已经巡检好了一百台设备，还顺带出了个报表，你迷茫了；</p>
-<p>人往往很难跳出自己的舒适圈，对于之前没有涉足过的领域也很难找到合适的切入点，再加上平时的工作已经足够焦头烂额，没有时间去从零开始学一门新技术。</p>
-<h2 id="内容定位"><a href="#内容定位" class="headerlink" title="内容定位"></a>内容定位</h2><p>并不为了单纯的输出枯燥的知识点，区别于其他资料的随意搬运，东一榔头西一棒子；</p>
-<p>而是从场景出发，使输出的内容具有<strong>实操性</strong>，<strong>自顶向下</strong>将具体场景拆分，并落实到每个知识点，让同学清晰的意识到所学知识能够如何运用；</p>
-<p>让运维老手掌握平时经常听到的 <strong>Netmiko, SNMP, Netconf</strong>等知识，能够学有所得，学能所用；</p>
-<p>番外篇会将正篇中涉及到的细节逐一展开，让计算机专业同学能够深入理解，夯实基础，逐步掌握操作系统，数据结构等专业知识；</p>
-<p>并且也会涉及到<strong>编程思想，学习方法论</strong>等技巧，让大家有挑战大厂的底气。</p>
-<h2 id="路径的选择"><a href="#路径的选择" class="headerlink" title="路径的选择"></a>路径的选择</h2><p>对于正在从事运维工作，但工作中遇到了一些自动化的需求的朋友，那么这里作者并不提倡大家去构建整个的自动化运维体系，一个是没有必要，另一个是这也可能会消耗相当大的精力，所以我们就暂时只点与自己<strong>实际工作相关的技能</strong>即可，全部的技能树如下图所示：</p>
-<p><img src="https://s2.loli.net/2023/04/05/WqE3Gb1TmsiQrjY.png" alt="img"></p>
-<h2 id="路径的规划"><a href="#路径的规划" class="headerlink" title="路径的规划"></a>路径的规划</h2><h3 id="一、【自动化运维新手村】"><a href="#一、【自动化运维新手村】" class="headerlink" title="一、【自动化运维新手村】"></a>一、【<strong>自动化运维新手村</strong>】</h3><p>那么对于自动化运维来说肯定首推的编程语言就是Python。</p>
-<p>但网上对于Python语言的教程一抓一大把，我为什么还要在这里去讲解呢？这其实等同于另一个问题：<strong>刚接触编程的人是否能通过看类似的教程快速上手Python?</strong> 或者通俗易懂的讲：<strong>是不是能看得懂?</strong></p>
-<p>大部分从事运维工作的朋友可能都没有编程经验，也没有系统的学习过计算机底层原理，所以对于标准式的教程就会感觉，<strong>好像会了，但又没有全会；好像会了，但又不会用</strong>，所以我根据自己的学习方法再加上身边运维朋友们的学习经历，通过一些生动的例子和实际的场景来让大家快速的上手Python这门语言，并且能直接运用于实际工作中。</p>
-<blockquote>
-<p> 新手村的内容主要是为大家搭建一个简易的CMDB（资产管理），这也符合很多运维朋友的实际需求场景，比如想要做一个小功能，可以提供给其他人使用。除此之外也会对其中涉及到的部分知识点进行详细的深入挖掘，呈现在番外篇中，让对其感兴趣的读者朋友去更多的了解。</p>
-</blockquote>
-<ul>
-<li>Python基本数据结构和操作</li>
-</ul>
-<blockquote>
-<p>将CMDB的增删改查与Python数据结构相结合，将枯燥的基础知识进行深入浅出的讲解</p>
-</blockquote>
-<ul>
-<li><p>番外：数据结构的详解</p>
-</li>
-<li><p>番外：字符串的详解</p>
-</li>
-<li><p>番外：数组的详解</p>
-</li>
-<li><p>番外：字典的详解</p>
-</li>
-<li><p>面试番外：算法</p>
-</li>
-<li><p>Python函数与对象</p>
-</li>
-</ul>
-<blockquote>
-<p>将如何构建CMDB的函数与对象逐步拆解</p>
-</blockquote>
-<ul>
-<li><p>番外：深入了解面向对象</p>
-</li>
-<li><p>番外：设计模式简介</p>
-</li>
-<li><p>Flask Web框架</p>
-</li>
-</ul>
-<blockquote>
-<p>将对CMDB的操作与Web框架相结合，通过API的方式对CMDB进行操作</p>
-</blockquote>
-<ul>
-<li><p>面试番外：计算机网络</p>
-</li>
-<li><p>MySQL数据库</p>
-</li>
-</ul>
-<blockquote>
-<p>将CMDB存储到数据库中，对其进行的增删改查从对文件读写转移到对数据库进行操作</p>
-</blockquote>
-<ul>
-<li><p>番外：MongoDB数据库</p>
-</li>
-<li><p>面试番外：数据库</p>
-</li>
-<li><p>Linux部署应用</p>
-</li>
-</ul>
-<blockquote>
-<p>将应用部署在Linux系统上稳定的运行</p>
-</blockquote>
-<ul>
-<li>面试番外：操作系统</li>
-</ul>
-<h3 id="二、【自动化运维初级村】"><a href="#二、【自动化运维初级村】" class="headerlink" title="二、【自动化运维初级村】"></a>二、【<strong>自动化运维初级村</strong>】</h3><blockquote>
-<p> 其实初级村的内容顺序的设计和新手村是类似的，但这一部分所运用的Python知识就会稍微深入，所以建议已经对Python有一定了解的朋友，可以跳过新手村直接看初级村的内容，因为初级村会是更多运维朋友们经常遇到的需求场景，也是做自动化运必须要走的路。</p>
-</blockquote>
-<ul>
-<li>paramiko和netmiko</li>
-</ul>
-<blockquote>
-<p>两者的使用方式及优劣</p>
-</blockquote>
-<ul>
-<li>Python 正则解析</li>
-</ul>
-<blockquote>
-<p>将通过SSH收集回来的各种信息进行正则解析</p>
-</blockquote>
-<ul>
-<li><p>番外：text-fsm解析</p>
-</li>
-<li><p>Python snmp</p>
-</li>
-</ul>
-<blockquote>
-<p>如何使用Python调用SNMP采集指令，并讲解OID使用方式</p>
-</blockquote>
-<ul>
-<li>NetConf</li>
-</ul>
-<blockquote>
-<p>如何通过NetConf对网络设备进行操作</p>
-</blockquote>
-<ul>
-<li>Crontab并回调CMDB</li>
-</ul>
-<blockquote>
-<p>如何设置定时执行SSH任务进行定期巡检，并更新回写CMDB</p>
-</blockquote>
-<ul>
-<li><p>番外：Python scheduler</p>
-</li>
-<li><p>Flask Web框架</p>
-</li>
-</ul>
-<blockquote>
-<p>将SSH和NetConf与Web框架相结合，通过API方式或前端调用其执行</p>
-</blockquote>
-<h3 id="三、【自动化运维中级村】"><a href="#三、【自动化运维中级村】" class="headerlink" title="三、【自动化运维中级村】"></a>三、【<strong>自动化运维中级村</strong>】</h3><blockquote>
-<p>中级村与初级村最大的不同就是，会从简单需求应用的完成，转变为更为复杂架构的设计与实现，以及能够支撑更大型运维的场景。</p>
-</blockquote>
-<ul>
-<li>Celery任务队列</li>
-</ul>
-<blockquote>
-<p>如何使用任务队列异步处理大量的SSH或NetConf执行操作</p>
-</blockquote>
-<ul>
-<li><p>番外：Redis数据库</p>
-</li>
-<li><p>番外：RabbitMQ中间件</p>
-</li>
-<li><p>Rsyslog日志采集</p>
-</li>
-</ul>
-<blockquote>
-<p>通过Rsyslog收集设备日志并存储进行展示和查询。</p>
-</blockquote>
-<ul>
-<li>Mysql性能优化</li>
-</ul>
-<blockquote>
-<p>支持更大数据量的存储和查询，进行数据库的优化，分库和分表</p>
-</blockquote>
-<ul>
-<li>ELK， Rsyslog - Kafkf - LogStash - ElasticSearch - Kibana</li>
-</ul>
-<blockquote>
-<p>使用ELK套件对日志进行存储及展示</p>
-</blockquote>
-<ul>
-<li>前后端分离</li>
-</ul>
-<blockquote>
-<p>由于系统功能的丰富，需要实现前后端分离的应用。</p>
-</blockquote>
-<h3 id="四、【自动化运维高级村】"><a href="#四、【自动化运维高级村】" class="headerlink" title="四、【自动化运维高级村】"></a>四、【<strong>自动化运维高级村</strong>】</h3><blockquote>
-<p>如果想要做一个完整的自动化运维系统，就必然需要有相应完善的自动化运维的理念和方法论，所以高级村会设计到更多关于自动化运维的理念介绍，以及更为复杂和适应更大型企业的自动化运维系统。 </p>
-</blockquote>
-<ul>
-<li>Celery分时任务队列</li>
-</ul>
-<blockquote>
-<p>使用Celery任务队列，将SNMP大量采集任务或SSH变更任务根据频率发布在不同的队列中进行高效采集</p>
-</blockquote>
-<ul>
-<li>Flink处理</li>
-</ul>
-<blockquote>
-<p>使用Flink对SNMP采集的数据进行清洗并存储</p>
-</blockquote>
-<ul>
-<li>Rsyslog - Kafka - Consumer- MySQL</li>
-</ul>
-<blockquote>
-<p>如何将设备上报的日志进行收集解析，并通过Kafka中间件削峰，并进行存储</p>
-</blockquote>
-<ul>
-<li><p>番外： Kafka中间件</p>
-</li>
-<li><p>告警通知，屏蔽，抑制</p>
-</li>
-</ul>
-<blockquote>
-<p>如何设置告警的通知，屏蔽和抑制机制</p>
-</blockquote>
-<ul>
-<li>任务编排</li>
-</ul>
-<blockquote>
-<p>通过白屏方式将变更步骤注册为执行算子，并进行编排后下发</p>
-</blockquote>
-<ul>
-<li>基于意图的分组配置下发</li>
-</ul>
-<blockquote>
-<p>将设备根据角色分组，并设置基于意图的模板命令，使用SSH或NetConf方式与其结合对网络设备进行变更或查询操作</p>
-</blockquote>
-<h2 id="路径的总结"><a href="#路径的总结" class="headerlink" title="路径的总结"></a>路径的总结</h2><p>上述的路径梳理是一个目前我能给到大家的较为系统的自动化运维方面的实践，在更新的过程中，我可能会根据读者的需要或者平时的思考总结对内容进行更新迭代，所以说路径并不是固定的，它只是一个学习的方向，并且学习的过程必然是会有<strong>阻碍和困难</strong>的，希望大家都能有坚定的决心克服一个个的难点，当然也会提供给大家学习交流的群组，供大家互相探讨，互相进步，也欢迎大家有什么疑问都找我咨询。最后期待大家都能拿到属于自己的结果。</p>
-<p><strong>欢迎大家添加我的个人公众号【Python玩转自动化运维】加入读者交流群，获取更多干货内容</strong></p>
-<p><img src="https://s2.loli.net/2023/04/05/O71nPKbFcWwoRZS.jpg" alt="img"></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/04/06/freshman-python-basics-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="EthanYue">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="NetDevOps in Python">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/04/06/freshman-python-basics-1/" class="post-title-link" itemprop="url">freshman-python-basics-1</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2023-04-06 08:13:34 / Modified: 08:43:04" itemprop="dateCreated datePublished" datetime="2023-04-06T08:13:34+08:00">2023-04-06</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Freshman/" itemprop="url" rel="index"><span itemprop="name">Freshman</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>自动化运维新手村-Python基础-1</p>
+<p>人往往很难跳出自己的舒适圈，对于之前没有涉足过的领域也很难找到合适的切入点，再加上平时的工作已经足够焦头烂额，没有时间去从零开始学一门新技术。</p></div><a class="article-more button is-small is-size-7" href="/posts/5cb4afad.html#more">阅读更多</a></article></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2023-04-06T00:13:34.000Z" title="2023/4/6 08:13:34">2023-04-06</time>发表</span><span class="level-item"><time dateTime="2023-04-06T23:49:54.992Z" title="2023/4/7 07:49:54">2023-04-07</time>更新</span><span class="level-item"><a class="link-muted" href="/categories/Freshman/">Freshman</a></span><span class="level-item">37 分钟读完 (大约5560个字)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/posts/71625180.html">freshman-python-basics-1</a></p><div class="content"><p>自动化运维新手村-Python基础-1</p>
 <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a><strong>摘要</strong></h2><blockquote>
 <p>首先说明，以下几类读者朋友们请自行对号入座：</p>
 </blockquote>
@@ -738,186 +289,48 @@
 <blockquote>
 <p>但对于计算机专业的同学，不管已经毕业或者还未毕业，我都强烈大家建议阅读番外篇，只有基础打的足够牢，才能做到触类旁通。</p>
 </blockquote>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-
-  
-
-
-
-          </div>
-          
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          Table of Contents
-        </li>
-        <li class="sidebar-nav-overview">
-          Overview
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">EthanYue</p>
-  <div class="site-description" itemprop="description"></div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">2</span>
-          <span class="site-state-item-name">posts</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-        <span class="site-state-item-count">1</span>
-        <span class="site-state-item-name">categories</span>
-      </div>
-      <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">2</span>
-        <span class="site-state-item-name">tags</span>
-      </div>
-  </nav>
-</div>
-
-
-
-      </div>
-
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
-
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2023</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">EthanYue</span>
-</div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
-  </div>
-
-        
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
-
-  
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-
-
-  
-
-
-
-
-  
-<script src="/js/local-search.js"></script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
-</body>
-</html>
+</div></article></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="EthanYue"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">EthanYue</p><p class="is-size-6 is-block">NetDevOps</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>HangZhou, China</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">2</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">1</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">2</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/EthanYue" target="_blank" rel="noopener">关注我</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/EthanYue"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">链接</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li><li><a class="level is-mobile" href="https://bulma.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bulma</span></span><span class="level-right"><span class="level-item tag">bulma.io</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">分类</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/Freshman/"><span class="level-start"><span class="level-item">Freshman</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-06T00:43:13.000Z">2023-04-06</time></p><p class="title"><a href="/posts/5cb4afad.html">User Guide</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-06T00:13:34.000Z">2023-04-06</time></p><p class="title"><a href="/posts/71625180.html">freshman-python-basics-1</a></p><p class="categories"><a href="/categories/Freshman/">Freshman</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2023/"><span class="level-start"><span class="level-item">2023</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/CMDB/"><span class="tag">CMDB</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Python-Basics/"><span class="tag">Python-Basics</span><span class="tag">1</span></a></div></div></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">订阅更新</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="NetDevOps in Python" height="28"></a><p class="is-size-7"><span>&copy; 2023 EthanYue</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2019</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
