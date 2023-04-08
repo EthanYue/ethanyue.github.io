@@ -1864,6 +1864,7 @@
 </ul>
 <span id="more"></span>
 
+
 <h2 id="CMDB简介"><a href="#CMDB简介" class="headerlink" title="CMDB简介"></a><strong>CMDB简介</strong></h2><p>简单赘述以下，CMDB的英文全称是Configuration Management Database，中文名叫配置管理数据库，它几乎贯穿了运维的每个环节。在实际的项目中，<strong>CMDB常常被认为是构建其它ITIL(Information Technology Infrastructure Library，IT基础架构库)流程的基础，ITIL项目的成败与是否成功建立CMDB有非常大的关系。</strong></p>
 <p>对于一些中大型的互联网公司必然都有自研的CMDB系统，而一些初创公司可能采用开源的CMDB工具或者部分运维工程师日常使用Excel表格充当简易的CMDB功能，我们的<strong>目的并不是让大家去构建一个新的CMDB去推翻原有系统</strong>，也不是说用Excel表格就不如用Python来的高级，而是<strong>能让大家从CMDB自顶向下的拆解，来更生动的体会到Python基础数据结构的运用</strong></p>
 <h2 id="CMDBv1-0"><a href="#CMDBv1-0" class="headerlink" title="CMDBv1.0"></a><strong>CMDBv1.0</strong></h2><p>实现完整的CMDB十分复杂，但作为讲解Python基本数据结构的范例，我们先实现一个简易的1.0版本。</p>
