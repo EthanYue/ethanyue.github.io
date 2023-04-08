@@ -4614,7 +4614,7 @@
       </tags>
   </entry>
   <entry>
-    <title>0.1 自动化运维番外篇-代码整洁之道</title>
+    <title>0.10 自动化运维番外篇-代码整洁之道</title>
     <url>/posts/cab6c8fa.html</url>
     <content><![CDATA[<hr>
 <h1 id="第一章：整洁代码"><a href="#第一章：整洁代码" class="headerlink" title="第一章：整洁代码"></a><strong>第一章：整洁代码</strong></h1><h5 id="混乱的代价"><a href="#混乱的代价" class="headerlink" title="混乱的代价"></a><strong>混乱的代价</strong></h5><p>只要你干过两三年编程，就有可能曾被某人的糟糕代码绊倒过，如果你编程不止两三年，也可能被这种代码拖过后腿。进度延缓都程度会很严重。有些团队在项目初期进展迅速，但又那么一两年的时间却慢如蜗行。对代码的每次修改都影响到其他多处代码，最后这团乱麻越来越大，再也无法理清，束手无策。</p>
