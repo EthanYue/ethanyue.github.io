@@ -3722,4 +3722,970 @@
         <tag>TextFSM</tag>
       </tags>
   </entry>
+  <entry>
+    <title>0.1 自动化运维番外篇-数据结构-1</title>
+    <url>/posts/556857df.html</url>
+    <content><![CDATA[<hr>
+<h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a><strong>摘要</strong></h3><p><strong>首先说明，以下几类读者请自行对号入座：</strong></p>
+<ul>
+<li><p>刚接触编程并对底层原理知之甚少，但又想了解一下数据结构的读者，强烈建议阅读此篇；</p>
+</li>
+<li><p>计算机专业在读，对编程有一定了解，但对数据结构不够熟悉的读者，强烈建议阅读此篇；</p>
+</li>
+<li><p>传统运维想要快速上手自动化，没有精力对底层原理做深入了解的，请跳过此番外篇系列；</p>
+</li>
+<li><p>计算机专业出身并对数据结构有系统了解的读者，请跳过此系列番外篇。</p>
+</li>
+</ul>
+<p><strong>首先和大家说明一下，计算机专业必学的四大科目：</strong></p>
+<ul>
+<li><strong>计算机组成原理</strong></li>
+<li><strong>操作系统</strong></li>
+<li><strong>数据结构</strong></li>
+<li><strong>计算机网络</strong></li>
+</ul>
+<p>这四大科目可以说是奠定一个人将来技术成长的基石，并且不管是考研还是面试都是一定会考察的内容，我相信很多读者都有在知乎或者其他地方看到过类似的提问：培训机构出身的就一定比不过科班的吗？</p>
+<p>实事求是的讲，<strong>答案是肯定的</strong>。首先培训机构以就业为目的，必然就导致要在短时间内教会学员求职工作中所需要掌握的技巧和框架，但却没有考虑到学员的基础知识劳不牢靠；</p>
+<p>而科班出身的同学，因为系统的掌握了很多底层原理，所以在<strong>应对层出不穷的技术迭代时，会显得游刃有余</strong>。</p>
+<p>所以读者中有一部分是想在传统运维工作之外，掌握一些自动化的技巧来提升工作效率，那么<strong>大可不必对底层原理揪着不放，一是为大大拖慢学习的节奏，二是可能大家的时间和精力也不允许</strong>，当然如果真的对这方面感兴趣，也提倡大家能多了解最好；</p>
+<p>但有一部分读者可能本身就是计算机专业，但上课没有好好听讲，那么这一系列可能就是你<strong>曾经欠下的技术债了，出来混迟早要还了</strong>，如果还抱有一颗做技术的心，那么还是趁早还比较好。</p>
+<span id="more"></span>
+
+<h3 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a><strong>数据结构</strong></h3><p>我们这一系列主要是讲解数据结构相关的内容，这门学科可以说是<strong>编程之路上必备的</strong>，因为任何编程语言都逃不开数据结构，虽然不同编程语言的变量类型各有不同，但它们本质上都是由底层的数据结构衍化而来。</p>
+<p>而且我们面试中经常遇到的算法题，也都是由数据结构衍生而来，诸如翻转链表问题，打家劫舍问题等，实际上都是对数据结构的深入考察，所以一句话总结就是<strong>要想好编程，就必须学好数据结构</strong>。</p>
+<h4 id="什么是数据结构"><a href="#什么是数据结构" class="headerlink" title="什么是数据结构"></a><strong>什么是数据结构</strong></h4><blockquote>
+<p>百度百科上对其的定义为：</p>
+</blockquote>
+<blockquote>
+<p>数据结构(data structure)是带有结构特性的数据元素的集合，它研究的是数据的逻辑结构和数据的物理结构以及它们之间的相互关系，并对这种结构定义相适应的运算，设计出相应的算法，并确保经过这些运算以后所得到的新结构仍保持原来的结构类型。</p>
+</blockquote>
+<blockquote>
+<p>简而言之，数据结构是相互之间存在一种或多种特定关系的数据元素的集合，即带“结构”的数据元素的集合。“结构”就是指数据元素之间存在的关系，分为逻辑结构和存储结构。</p>
+</blockquote>
+<p>通俗的讲，数据是存储在计算机的内存里，在存储时，决定了<strong>数据顺序和位置关系的便是“数据结构“</strong>，数据结构几乎可以体现到在计算机的任何一处地方，我可以举一个生活中应用数据结构的例子：</p>
+<p><img src="https://s2.loli.net/2023/04/08/oUKvzSW9TJeAEdj.jpg" alt="img"></p>
+<p>在手机没有出现之前，我们记录电话号码的方式就是一行一行的把电话抄在笔记本上，那么如果把笔记本当作计算机内存的话，这种数据结构就是数组；</p>
+<p>当有了手机之后，我们可以添加联系人，然后手机会根据联系人名字拼音的顺序进行分组，这样在查找的时候就会方便很多，那么这里就又用到了散列表的数据结构。</p>
+<p>所以由这个例子，大家应该也可以体会到，当<strong>选择合适的数据结构时，可以提高解决问题的效率，而如何高效的解决问题就是算法的内容，所以数据结构的重要性就不言而喻了</strong>。</p>
+<h4 id="数据结构的分类"><a href="#数据结构的分类" class="headerlink" title="数据结构的分类"></a><strong>数据结构的分类</strong></h4><p>数据结构分为<strong>逻辑结构</strong>和<strong>物理结构</strong>。</p>
+<ul>
+<li>逻辑结构：指数据元素之间逻辑关系的数据结构，这里的逻辑关系是指数据元素之间的<strong>前后间关系</strong>，与数据在计算机中的存储位置无关。</li>
+<li>物理结构：指数据的逻辑结构在计算机存储空间中的<strong>存放形式</strong>称为数据的物理结构，也叫做存储结构。</li>
+</ul>
+<p>数据的逻辑结构主要分为<strong>线性结构</strong>和<strong>非线性结构</strong>。</p>
+<ul>
+<li>线性结构：数据结构的元素之间存在<strong>一对一线性关系</strong>，所有结点都最多只有一个直接前趋结点和一个直接后继结点。常见的有数组、队列、链表、栈。</li>
+<li>非线性结构：各个结点之间具有<strong>多个对应关系</strong>，一个结点可能有多个直接前趋结点和多个直接后继结点。常见的有多维数组、广义表、树结构和图结构等。</li>
+</ul>
+<p>数据的物理结构（以后我都统一称存储结构），表示数据元素之间的逻辑关系，一种数据结构的逻辑结构根据需要可以表示成多种存储结构，常用的存储结构有：</p>
+<ul>
+<li><strong>顺序存储</strong>：存储顺序是连续的，在内存中用一组地址连续的存储单元依次存储线性表的各个数据元素。</li>
+<li><strong>链式存储</strong>：在内存中的存储元素不一定是连续的，用任意地址的存储单元存储元素，元素节点存放数据元素以及通过指针指向相邻元素的地址信息。</li>
+<li><strong>索引存储</strong>：除建立存储结点信息外，还建立附加的索引表来标识节点的地址。索引表由若干索引项组成。</li>
+<li><strong>散列存储</strong>：又称Hash存储，由节点的关键码值决定节点的存储地址。</li>
+</ul>
+<h4 id="常用的数据结构"><a href="#常用的数据结构" class="headerlink" title="常用的数据结构"></a><strong>常用的数据结构</strong></h4><ul>
+<li><strong>数组（Array）</strong></li>
+<li><strong>队列（Queue）</strong></li>
+<li><strong>链表（Linked List）</strong></li>
+<li><strong>栈（Stack）</strong></li>
+<li><strong>树（Tree）</strong></li>
+<li><strong>散列表（Hash）</strong></li>
+<li><strong>堆（Heap）</strong></li>
+<li><strong>图（Graph）</strong></li>
+</ul>
+<h5 id="一、数组（Array）"><a href="#一、数组（Array）" class="headerlink" title="一、数组（Array）"></a><strong>一、数组（Array）</strong></h5><p>数组是最简单、使用最频繁的一种数据结构。它一种线性表数据结构，用一组连续的内存空间来存储一组相同类型的数据。</p>
+<p><img src="https://s2.loli.net/2023/04/08/Xvkb6TEA3ftmwM9.jpg" alt="img"></p>
+<p>如上图所示，数据是<strong>按照顺序存储在内存的连续空间</strong>内，arr后面的[]代表下标，由于数据是存储在连续空间内的，所以每个数据的内存地址(在内存上的位置)都可以通过数组下标计算出来，从而可以直接访问目标数据，达到随机访问的目的。</p>
+<h5 id="二、队列（Queue）"><a href="#二、队列（Queue）" class="headerlink" title="二、队列（Queue）"></a><strong>二、队列（Queue）</strong></h5><p>队列也是一种非常基础的数据结构，其特点是<strong>先入先出</strong>，也就是我们常听到的FIFO（First in First Out），即操作数据是从两端进行的。</p>
+<p><img src="https://s2.loli.net/2023/04/08/cjHxK7iR3yaOZJW.jpg" alt="img"></p>
+<h5 id="三、链表（Linked-List）"><a href="#三、链表（Linked-List）" class="headerlink" title="三、链表（Linked List）"></a><strong>三、链表（Linked List）</strong></h5><p>链表是一种物理存储单元上<strong>非连续，非顺序</strong>的存储结构。链表有一系列节点组成，所谓节点就是指链表中的每一个元素，每个节点包含两个数据，一个是存储元素的数据域（值），另一个是存储下一个节点地址的指针域。 </p>
+<p><img src="https://s2.loli.net/2023/04/08/ITSbMrkWGxHLBzE.jpg" alt="img"></p>
+<h5 id="四、栈（Stack）"><a href="#四、栈（Stack）" class="headerlink" title="四、栈（Stack）"></a><strong>四、栈（Stack）</strong></h5><p>栈也是一种数据呈线性排列的数据结构，和上面的队列相反，栈的特点<strong>先进后出、后进先出</strong>，就是常说的LIFO（Last in First Out）。</p>
+<p><img src="https://s2.loli.net/2023/04/08/i4F2ZqgMk3SVPuW.jpg" alt="img"></p>
+<h5 id="五、树（Tree）"><a href="#五、树（Tree）" class="headerlink" title="五、树（Tree）"></a><strong>五、树（Tree）</strong></h5><p>树形结构是一种<strong>层级式</strong>的数据结构，由顶点（节点）和连接它们的边组成。树的结构特点是：</p>
+<ul>
+<li>每个节点有零个或多个子节点；</li>
+<li>没有父节点的节点称为根节点；</li>
+<li>每一个非根节点有且只有一个父节点；</li>
+<li>除了根节点外，每个子节点可以分为多个不相交的子树。</li>
+</ul>
+<p>我们平时用到最多的就是二叉树，我也以二叉树来为例，先看一下树结构：</p>
+<p><img src="https://s2.loli.net/2023/04/08/GNDuadz9nEq3cov.jpg" alt="img"></p>
+<h5 id="六、散列表（Hash）"><a href="#六、散列表（Hash）" class="headerlink" title="六、散列表（Hash）"></a><strong>六、散列表（Hash）</strong></h5><p>散列表又叫哈希表，存储的是由**键(key)和值(value)**组成的数据，根据键直接访问存储在内存存储位置的数据结构。</p>
+<p><img src="https://s2.loli.net/2023/04/08/H9UIjLxZNRnzqCl.jpg" alt="img"></p>
+<h5 id="七、图（Graph）"><a href="#七、图（Graph）" class="headerlink" title="七、图（Graph）"></a><strong>七、图（Graph）</strong></h5><p>图是相对复杂的一种数据结构，由<strong>顶点和连接每对顶点的边</strong>所构成的图形就是图。</p>
+<p><img src="https://s2.loli.net/2023/04/08/3d2fJSX89xQAIbq.jpg" alt="img"></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h3><p>因为数据结构是一个比较系统的学科，所以我认为有必要整体的讲一下常用的数据结构，让大家能有一个基本的该概念，我们在后续会结合我们代码来介绍在实际场景中数据结构的运用，敬请期待。</p>
+]]></content>
+      <categories>
+        <category>番外篇</category>
+      </categories>
+      <tags>
+        <tag>数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>0.3 自动化运维番外篇-数据结构-3</title>
+    <url>/posts/b03811f0.html</url>
+    <content><![CDATA[<hr>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a><strong>摘要</strong></h2><p>首先说明，以下几类读者请自行对号入座：</p>
+<ul>
+<li><p>刚接触编程并对底层原理知之甚少，但<strong>又想了解一下数据结构的读者</strong>，强烈建议阅读此篇；</p>
+</li>
+<li><p>计算机专业在读，对编程有一定了解，但<strong>对数据结构不够熟悉的读者</strong>，强烈建议阅读此篇；</p>
+</li>
+<li><p>传统运维想要快速上手自动化，没有精力对底层原理做深入了解的，请跳过此番外篇系列；</p>
+</li>
+<li><p>计算机专业出身并对数据结构有系统了解的读者，请跳过此系列番外篇。</p>
+</li>
+</ul>
+<p>我们在<strong>【自动化运维番外篇】数据结构-2</strong> 中讲Python中的列表类型与数据结构中的数组进行了详细的讲解和比较，相信大家在操作列表的时候应该都心里更有底了。</p>
+<p>这篇我们就来着重讲解一下数据结构中的<strong>哈希表</strong>与Python中的<strong>字典</strong>类型，并且告诉大家为什么字典是无序的，顺带破除一下网上大部分博客对于这一知识点的误解。</p>
+<span id="more"></span>
+
+<h2 id="哈希表（Hash-Table）"><a href="#哈希表（Hash-Table）" class="headerlink" title="哈希表（Hash Table）"></a><strong>哈希表（Hash Table）</strong></h2><blockquote>
+<p><strong>百度百科：</strong></p>
+</blockquote>
+<blockquote>
+<p>散列表（Hash table，也叫哈希表），是根据键（Key）而直接访问在内存存储位置的数据结构。</p>
+</blockquote>
+<blockquote>
+<p>它通过计算一个关于键值的函数，将所需查询的数据映射到表中一个位置来访问记录。</p>
+</blockquote>
+<blockquote>
+<p>这加快了查找速度，这个映射函数称做散列函数，存放记录的数组称做散列表。</p>
+</blockquote>
+<p>我觉得一般百度百科对专业名词做出的解释，都让人一脸懵X，本来想搞懂一个知识点，结果它一解释，不懂的知识点更多了，因为我们完全不知道这个东西的用途，也就无法对其有准确的认知。</p>
+<p>我下面用一个生活中最常用到的东西来给大家讲解一下<strong>哈希表</strong>。</p>
+<p>微信好友列表中好友排列就是一个按名字散列的哈希表。</p>
+<p>大家可以假设如果没有按名字散列，那么微信好友的展示就只能按添加的先后顺序排列，这样我们在找某个好友时的效率就会很低，<strong>因为我们知道TA的名字，但不知道他保存在什么位置，只能从头翻到尾</strong>。</p>
+<p><strong>但如果我们按名称散列之后，我们就可以按照好友名称的拼音首字母很快的检索到好友。</strong></p>
+<p>这里取一个人名字的首字母，就是一种十分简单的<strong>哈希</strong>方法，而按名字哈希之后存放的容器就是一个<strong>表</strong>，我们上一讲中提到<strong>决定了数据顺序和位置关系的便是“数据结构“</strong>，那么上述的这种方式就是决定了我们好友数据的顺序和储存的位置关系，它就属于数据结构的一种：<strong>哈希表</strong>。</p>
+<p>回过头来我们将百度百科的定义用微信好友的场景翻译一下就是：</p>
+<blockquote>
+<p>散列表（Hash table，也叫哈希表），是根据<strong>首字母</strong>而直接访问<strong>好友位置</strong>的数据结构。</p>
+</blockquote>
+<blockquote>
+<p>它通过计算一个关于<strong>名字首字母</strong>函数，将所需查询的<strong>好友</strong>映射到表中一个位置来访问记录。</p>
+</blockquote>
+<blockquote>
+<p>这加快了查找速度，这个映射函数称做散列函数，存放记录的数组称做散列表。</p>
+</blockquote>
+<p>这下是不是清晰很多了，当我们对哈希表的应用有了大致的了解之后，我们就该着重深入一下具体的实现方式。</p>
+<h3 id="哈希函数"><a href="#哈希函数" class="headerlink" title="哈希函数"></a><strong>哈希函数</strong></h3><p>上面我们提到关于名字首字母的函数可以称为哈希函数，而哈希函数的构造方法有很多种，哈希算法也是千变万化的，但大多都需要考虑以下五个因素：</p>
+<p>1.计算散列地址所需要的时间（即hash函数本身不要太复杂）</p>
+<p>2.关键字的长度</p>
+<p>3.表长</p>
+<p>4.关键字分布是否均匀，是否有规律可循</p>
+<p>5.设计的hash函数在满足以上条件的情况下尽量减少冲突</p>
+<p>所以哈希函数十分好理解，就是将我们要存储的元素按某种方式计算出一个值，这个值对应数组的某个位置，然后将这个元素存储进去。</p>
+<p><img src="https://s2.loli.net/2023/04/08/dIj2UD8HOAoQqxf.png" alt="img"></p>
+<p>比如我有一个上述元素的数组，哈希函数为：H(key) &#x3D; key mod 11，现有17，60，29三个元素，分别做哈希之后，得到的下标分别就是6，5，7，所以将他们存储在数组的指定位置上，但是聪明的读者这时候就会有一个疑问，如果再存一个38怎么办，它对应的下标仍然是5，这就涉及到了<strong>哈希冲突</strong>。</p>
+<h3 id="哈希冲突"><a href="#哈希冲突" class="headerlink" title="哈希冲突"></a><strong>哈希冲突</strong></h3><p>任何哈希函数，都会出现两个不同元素映射到同一个位置上的情况，这种情况叫做哈希冲突，解决哈希冲突的方法一般有：<strong>开放定址法、链地址法（拉链法）、再哈希法</strong>等方法。</p>
+<h4 id="开放定址法"><a href="#开放定址法" class="headerlink" title="开放定址法"></a><strong>开放定址法</strong></h4><p>从发生冲突的那个单元起，按照一定的次序，从哈希表中找到一个空闲的单元。然后把发生冲突的元素存入到该单元的一种方法。<strong>开放定址法需要的表长度要大于等于所需要存放的元素</strong>。在开放定址法中解决冲突的方法有：<strong>线性探查法、平方探查法、双散列函数</strong>探查法。</p>
+<p>\1. 线行探查法线行探查法是开放定址法中最简单的冲突处理方法，它从发生冲突的单元起，依次判断下一个单元是否为空，比如元素38，对11取余之后为5，但5位置已经被占了，那就继续看6，但6也被占了，以此类推，最终发现8位置是空的，所以存在8位置上。</p>
+<p>\2. 平方探查法平方探查法即是发生冲突时，用发生冲突的单元d[i], 加上 1²、 2²等。即d[i] + 1²，d[i] + 2², d[i] + 3²…直到找到空闲单元。</p>
+<p>3 伪随机数探测法每次加上一个随机数，直到探测到空闲位置结束。</p>
+<h4 id="再哈希法"><a href="#再哈希法" class="headerlink" title="再哈希法"></a><strong>再哈希法</strong></h4><p>当通过哈希函数求得的哈希地址同其他关键字产生冲突时，使用另一个哈希函数计算，直到冲突不再发生。</p>
+<h4 id="链地址法"><a href="#链地址法" class="headerlink" title="链地址法"></a><strong>链地址法</strong></h4><p>将所有产生冲突的关键字所对应的数据全部存储在同一个线性链表中。例如有一组关键字为{19,14,23,01,68,20,84,27,55,11,10,79}，其哈希函数为：H(key)&#x3D;key MOD 13，使用链地址法所构建的哈希表如下图所示：</p>
+<p>所以了解到哈希函数和哈希冲突之后，几乎就掌握了哈希表的基本原理，下面我们就看看Python中的字典和哈希表究竟有什么样的关系？</p>
+<h2 id="字典（Dict）"><a href="#字典（Dict）" class="headerlink" title="字典（Dict）"></a><strong>字典（Dict）</strong></h2><p><strong>Python的字典格式就是键值类型，每个键对应一个值，使用的是伪随机数探测法解决哈希冲突。</strong></p>
+<p>但根据我们对数据结构中哈希表的学习来看，我们在<strong>遍历字典的时候并不会按我们存进去元素的顺序取出来的</strong>，<strong>这就是为什么说Python的字典是无序的，但为什么又说Python3.6之后又是有序的了呢，这就要看字典的底层实现了</strong></p>
+<h3 id="Python3-6之前"><a href="#Python3-6之前" class="headerlink" title="Python3.6之前"></a><strong>Python3.6之前</strong></h3><p>字典的底层实现实际就是一张hash表，简单可以理解为一个列表，列表中的每一个元素又保存了三个元素，分别是哈希值（hash value）、键（key）和值（value）。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">my_dict = &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">这时的内存如下</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">entries = [</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[--, --, --],</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[--, --, --],</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[--, --, --],</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[--, --, --],</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[--, --, --]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>当我们往字典里添加一个数据的时候</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">my_dict[<span class="string">&quot;test&quot;</span>] = <span class="string">&quot;ethan&quot;</span>  <span class="comment"># 通过计算 hash(&quot;test&quot;) % 5 = -3002718498575948766 % 5 = 4</span></span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">这时的内存示意图如下</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">entries = [</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[--, --, --],</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[--, --, --],</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[--, --, --],</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[--, --, --],</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[-3002718498575948766, 指向name的内存地址, 指向ehtan的内存地址],</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[--, --, --]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>当我们要按test键对应的值时，同样会经过计算 hash(“test”) % 5，得到结果为4，然后从entries中读取4下标对应的值。</strong></p>
+<p>当我们继续往字典里添加数据时同理</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">my_dict[<span class="string">&quot;age&quot;</span>] = <span class="number">18</span></span><br><span class="line"></span><br><span class="line">my_dict[<span class="string">&quot;locate&quot;</span>] = <span class="string">&quot;BJ&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">这时的内存示意图如下</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">entries = [</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[--, --, --],</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[-6504424719545881419, 指向locate的内存地址, 指向BJ的内存地址],</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[-9004587017580859628, 指向age的内存地址, 指向18的内存地址],</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[--, --, --],</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[-3002718498575948766, 指向name的内存地址, 指向ehtan的内存地址],</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[--, --, --]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>当要循环遍历字典的时候，Python<strong>底层会遍历这个二维数组</strong>，如果当前行有数据，那么就返回Key指针对应的内存里面的值。如果当前行没有数据，那么就跳过。所以总是会遍历整个二位数组的每一行。<strong>所以可以很直观的看到，遍历时候的顺序并不是我们插入时的顺序</strong>。</p>
+<h3 id="Python3-6之后"><a href="#Python3-6之后" class="headerlink" title="Python3.6之后"></a><strong>Python3.6之后</strong></h3><p>在Python3.6的版本之后，字典的底层实现发生了很明显的变化</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">my_dict = &#123;&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">这时的内存示意图如下</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">indices = [None, None, None, None, None] 索引表</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">entries = [] 哈希表</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>当我们插入数据时内存的变化如下</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">my_dict[<span class="string">&quot;age&quot;</span>] = <span class="number">18</span></span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># 使用hash(&quot;age&quot;) % 5 = 2, 所以在indices下标为2的位置存储0，这个0对应entries中实际元素存储的下标</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">这时的内存示意图如下</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">indices = [None, None, 0, None, None]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">entries = [</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[-9004587017580859628, 指向age的内存地址, 指向18的内存地址],</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">] 哈希表</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>以此类推</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">my_dict[<span class="string">&quot;test&quot;</span>] = <span class="string">&quot;ethan&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># 使用hash(&quot;test&quot;) % 5 = 4, 所以在indices下标为4的位置存储1，这个1对应entries中实际元素存储的下标</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">这时的内存示意图如下</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">indices = [None, None, 0, None, 1]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">entries = [</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[-9004587017580859628, 指向age的内存地址, 指向18的内存地址],</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[-3002718498575948766, 指向name的内存地址, 指向ehtan的内存地址],</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">] 哈希表</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>当要读取test键对应的值时，hash(“test”) % 5 &#x3D; 4，我们查找indices中下标为4的位置存的是1，这时候再去entries中取出下标为1的位置存放的元素。</strong></p>
+<p>当使用新的底层结构后发现，插入和索引依然有效，<strong>而且可以解决entries中存在空余空间的问题</strong>，并且在对字典进行遍历的时候，<strong>可以直接遍历entries，而entries中存储的顺序就是我们插入数据时的顺序</strong>。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h2><p>这一节我们主要由浅入深了解了<strong>数据结构中的哈希表的应用和底层的原理，并且对Python中的字典也做出了详细的解释</strong>，而且解决了一个很大的知识点，那就是<strong>字典有序性问题</strong>，所以如果读者朋友你的Python环境还在3.6版本之前，那就需要在写代码的时候格外注意这个问题了。</p>
+]]></content>
+      <categories>
+        <category>番外篇</category>
+      </categories>
+      <tags>
+        <tag>数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>0.2 自动化运维番外篇-数据结构-2</title>
+    <url>/posts/2f28b1c7.html</url>
+    <content><![CDATA[<hr>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a><strong>摘要</strong></h2><p>首先说明，以下几类读者请自行对号入座：</p>
+<ul>
+<li><p>刚接触编程并对底层原理知之甚少，但又<strong>想了解一下数据结构的读者，强烈建议阅读此篇</strong>；</p>
+</li>
+<li><p>计算机专业在读，对编程有一定了解，但<strong>对数据结构不够熟悉的读者，强烈建议阅读此篇</strong>；</p>
+</li>
+<li><p>传统运维想要快速上手自动化，没有精力对底层原理做深入了解的，请跳过此番外篇系列；</p>
+</li>
+<li><p>计算机专业出身并对数据结构有系统了解的读者，请跳过此系列番外篇。</p>
+</li>
+</ul>
+<p>我们在【自动化运维新手村】初见Python 一文中涉及到了Python中的列表和字典，我们提到<strong>列表是有序的，而字典不是有序的</strong>，大家可能对这个概念会有疑问？</p>
+<p>列表有序性并不是指<strong>存储的元素是按顺序排列的</strong>，而是指元素存储的顺序会保持不变，<strong>任何时候遍历都会是创建时的顺序</strong>；</p>
+<p>但字典却不是，在Python3.6之前，字典在<strong>每次遍历的时候顺序都可能是不同的</strong>（仅限于3.6版本之前，之后的版本字典就变为有序字典，所以再看到有的文章盲目说Python是无序的，那要么是这个文章太老了，要不就….)</p>
+<p><strong>今天我们就带着大家从计算机的底层结构来深入理解一下Python中的列表和字典。</strong></p>
+<span id="more"></span>
+
+<h2 id="数组（Array）"><a href="#数组（Array）" class="headerlink" title="数组（Array）"></a><strong>数组（Array）</strong></h2><p><strong>Python中的列表对应的数据结构就是数组</strong>，数组是一种十分常见的数据结构，属于线性表的一种。在计算机中的存储的样子大概是如下：</p>
+<p><img src="https://xzsh9e8v26.feishu.cn/space/api/box/stream/download/asynccode/?code=NTJmYTgzZjEwZWFmMGU1ZGUyYzZhYjRmNWJiMGNlMzhfT1lqcXNCclNjQnJlMDRCRGhibHExM2J1OFlIQ0s0OHVfVG9rZW46Ym94Y25jd2lQM2JzdkNzTE53bmFNd2d6ZUZnXzE2ODA5MzUyNzQ6MTY4MDkzODg3NF9WNA" alt="img"></p>
+<p><strong>数组可以实现的操作有下面几种：</strong></p>
+<ul>
+<li><strong>存储</strong></li>
+<li><strong>按下标索引</strong></li>
+<li><strong>插入和删除</strong></li>
+<li><strong>修改</strong></li>
+<li><strong>遍历</strong></li>
+</ul>
+<p>那我们就根据数组的存储原理来依次讲解：</p>
+<h3 id="1-存储"><a href="#1-存储" class="headerlink" title="1. 存储"></a><strong>1. 存储</strong></h3><p>任何一种数据结构在计算机中存储的时候都需要考虑所占用空间大小的问题，<strong>那么数组究竟占用多少空间呢</strong>？</p>
+<p>在数据结构中，<strong>数组中只能存储相同类型的元素</strong>，所以整个数组的空间大小其实<strong>取决于数组中元素的类型和元素的数量</strong>，不同数据类型占用的空间如下表：</p>
+<p>无法复制加载中的内容</p>
+<p>所以，假设我们定义了一个10个长度的int类型的数组变量 <code>int_array</code>，那么它在内存中占用的空间大小为40个字节，并且是<strong>连续的40个字节</strong>。</p>
+<h3 id="2-索引"><a href="#2-索引" class="headerlink" title="2. 索引"></a><strong>2. 索引</strong></h3><p>数组一个很大的好处就是可以<strong>按下标进行索引</strong>，假设我们有一个数组<code>int_array = [1, 2, 3, 4, 5, 6]</code>，那么我们可以直接根据下标取到对应的元素，比如<code>int_array[3]</code>，就是取下标为3的元素。</p>
+<p><strong>划重点：数组下标从0开始</strong></p>
+<p>有个有意思的梗：<strong>想要看一个人是不是程序员，只要让他数十个数就可以，如果他从0开始数，那就铁定是程序员了</strong>。</p>
+<p>很多人可能也会有疑问，为什么下标会从0开始，其实这也和数据的底层存储有关。</p>
+<p>我们这里定义一个具有10个int元素的数组变量<code>int_array</code>，当我们定义一个变量时，这个变量在内存中就有了一个地址，我们假设它为<code>base_address</code></p>
+<p>那么<code>int_array</code>所占的内存空间就是从<code>base_address</code>到<code>base_address+10*4</code>，10为元素数量，4为元素类型大小。</p>
+<p>由此可知，当我们要找<code>int_array</code>的第一个元素时，我们需要知道他的内存地址，他的内存地址的计算方法就是</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">int_array[i]_address = base_address + i * sizeOf(<span class="type">int</span>)</span><br></pre></td></tr></table></figure>
+
+<p>所以数组中我们常说的下标其实也叫做<strong>偏移量</strong>，想要按下标寻址某个元素，就是知道它的偏移量，那么<strong>理所当然数组中第一个元素肯定偏移量是0</strong>。</p>
+<h3 id="3-插入删除"><a href="#3-插入删除" class="headerlink" title="3. 插入删除"></a><strong>3. 插入删除</strong></h3><p>数组的插入和删除分为在末尾进行插入和删除，以及在中间进行插入和删除</p>
+<h5 id="数组尾部插入和删除"><a href="#数组尾部插入和删除" class="headerlink" title="数组尾部插入和删除"></a><strong>数组尾部插入和删除</strong></h5><p>我们根据上面的介绍已经知道了数组在内存中是一块连续的空间，所以当在数组的尾部进行插入和删除时，不需要任何额外的操作，**时间复杂度为O(1)**。</p>
+<h5 id="数组中间插入和删除"><a href="#数组中间插入和删除" class="headerlink" title="数组中间插入和删除"></a><strong>数组中间插入和删除</strong></h5><p>当我们在数组的中间进行插入时，我们需要将插入位置之后的元素<strong>都向后挪动一位</strong>，然后将要插入的元素放在指定下标处；</p>
+<p>而在数组中间进行删除时，为了保证数组内存空间的连续性，就需要将<strong>该下标位置之后的元素依次向前挪动一位</strong>；</p>
+<p>当在数组的开头位置处进行插入删除时，<strong>性能耗费最大，时间复杂度为O(n)</strong></p>
+<h3 id="4-修改"><a href="#4-修改" class="headerlink" title="4. 修改"></a><strong>4. 修改</strong></h3><p>数组的修改的话其实就是先根据下标索引到该元素所在的内存地址，然后再对其进行修改，我们这里不做赘述。</p>
+<h3 id="5-遍历"><a href="#5-遍历" class="headerlink" title="5. 遍历"></a><strong>5. 遍历</strong></h3><p><strong>由于数组内存空间的连续性，我们创建数组时元素的排列，无论何时遍历都可以保证是相同的，所以我们称数组具有有序性。</strong></p>
+<h2 id="列表（List）"><a href="#列表（List）" class="headerlink" title="列表（List）"></a><strong>列表（List）</strong></h2><p>由于Python中的列表对应的数据结构就是数组，所以我们<strong>搞清楚了数组的原理，对于列表的理解就会容易很多</strong>。</p>
+<p>Python的列表具有和数组相同的操作方法，即遍历，索引，插入，删除，但也有<strong>不同之处</strong></p>
+<h3 id="1-元素"><a href="#1-元素" class="headerlink" title="1. 元素"></a><strong>1. 元素</strong></h3><p>我们默认数据结构中的数组所存储的元素都是相同类型的，事实上很多语言，例如C，Golang，Java等都要求在定义数组时声明其类型。</p>
+<p>比如Golang的数组创建的语法就为<code>var intArray = []int&#123;&#125;</code>，但Python做为动态语言，并不要求类型定义，所以我们可以定义一个数组，<strong>存储任意类型的元素类型</strong>，如下：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; array = [1]</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; array.append(<span class="string">&quot;2&quot;</span>)</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">array 为 [1, <span class="string">&quot;2&quot;</span>]</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; array.append([3, 4])</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">array 为 [1, <span class="string">&quot;2&quot;</span>, [3, 4]]</span></span><br></pre></td></tr></table></figure>
+
+<p>所以Python中的列表虽然<strong>仍保留了数组的空间连续性，但它所占用的空间大小，却是和数组中存储的元素类型密切相关</strong>。</p>
+<h3 id="2-长度"><a href="#2-长度" class="headerlink" title="2. 长度"></a><strong>2. 长度</strong></h3><p>我们默认数据结构中的数组在<strong>定义时需要初始化其长度</strong>，也就是其存储的元素数量，这样方便程序为其分配固定大小的内存空间，如C语言中数组的定义为<code>int a[10]=&#123;0&#125;;</code>，含义为初始化一个包含10个int类型元素的数组，每个元素默认赋值为0。</p>
+<p>但<strong>Python在定义数组时并不要求定义其长度</strong>，语法为<code>array = []</code>，我们定义了一个数组变量为<code>array</code>，后续可以向其任意添加元素。</p>
+<p>&#x2F;&#x2F; List列表的具体结构如下所示</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// List列表的具体结构如下所示</span><br><span class="line"></span><br><span class="line">typedef struct &#123;</span><br><span class="line"></span><br><span class="line">    PyObject_VAR_HEAD</span><br><span class="line"></span><br><span class="line">    /* Vector of pointers to list elements. list[0] is ob_item[0], etc. */</span><br><span class="line"></span><br><span class="line">    PyObject **ob_item;</span><br><span class="line"></span><br><span class="line">    /* ob_item contains space for &#x27;allocated&#x27; elements. The number</span><br><span class="line"></span><br><span class="line">     * currently in use is ob_size.</span><br><span class="line"></span><br><span class="line">     * Invariants:</span><br><span class="line"></span><br><span class="line">     * 0 &lt;= ob_size &lt;= allocated</span><br><span class="line"></span><br><span class="line">     * len(list) == ob_size</span><br><span class="line"></span><br><span class="line">     * ob_item == NULL implies ob_size == allocated == 0</span><br><span class="line"></span><br><span class="line">     * list.sort() temporarily sets allocated to -1 to detect mutations.</span><br><span class="line"></span><br><span class="line">     *</span><br><span class="line"></span><br><span class="line">     * Items must normally not be NULL, except during construction when</span><br><span class="line"></span><br><span class="line">     * the list is not yet visible outside the function that builds it.</span><br><span class="line"></span><br><span class="line">     */</span><br><span class="line"></span><br><span class="line">    Py_ssize_t allocated;</span><br><span class="line"></span><br><span class="line">&#125; PyListObject;</span><br></pre></td></tr></table></figure>
+
+<p>Python中的List<strong>本质上是一个长度可变的连续数组</strong>。其中存在一个指针列表<code>ob_item</code>，里边的每一个指针都指向列表中的元素，而 <code>allocated</code>则用于存储该列表目前已被分配的空间大小。</p>
+<p>需要注意的是，<code>allocated</code> 和列表的实际空间大小不同，列表实际空间大小，指的是 <code>len(list)</code> 返回的结果，也就是上边代码中注释中的 <code>ob_size</code>，表示该列表总共存储了多少个元素。</p>
+<p>而在实际情况中，为了<strong>优化存储结构，避免每次增加元素都要重新分配内存，列表预分配的空间</strong> <code>**allocated**</code> <strong>往往会大于</strong> <code>**ob_size**</code><strong>。</strong></p>
+<p>因此 <code>allocated</code> 和 <code>ob_size</code> 的关系是：</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">allocated &gt;= len(<span class="built_in">list</span>) = ob_size &gt;= <span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<p>如果当前列表分配的空间已满（即 <code>allocated == len(list)</code>），则会向系统请求更大的内存空间，并把原来的元素全部拷贝过去。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h2><p>这篇文章我们<strong>着重理解了数组的底层原理以及Python中的List</strong>，这对于后续我们的编程会起到很大的帮助。</p>
+<p>如果把用Python编程比作是在计算机上蒙了一块黑布的话，那么对于计算机底层原理的学习，就会让我们一点点揭开这块黑布，<strong>最终直到我们写下每一行代码都能够清晰的了解到其真正的底层运行逻辑</strong>。</p>
+]]></content>
+      <categories>
+        <category>番外篇</category>
+      </categories>
+      <tags>
+        <tag>数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>0.4 自动化运维番外篇-Python参数</title>
+    <url>/posts/31708b27.html</url>
+    <content><![CDATA[<hr>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a><strong>摘要</strong></h2><p>这是自动化运维新手村中除了数据结构番外篇之外的另一个番外，这个番外主要给大家详细讲解一下Python中的一些<strong>特殊技巧。</strong></p>
+<p>这些技巧在平时写代码的过程中会极大的帮助我们快速的解决问题，所以你想成为一个真正的<strong>Pythoner</strong>，想让自己的代码更<strong>Pythonic</strong>，一定要仔细阅读这个番外！</p>
+<p>在之前的文章中我们偶尔有使用到<code>*args</code>作为函数参数，与之对应的还有<code>**kwargs</code>，这对于刚接触Python的朋友会有点儿晕，这篇文章我就<strong>一次性将Python中的参数讲解清楚。</strong></p>
+<p>Python的参数可分为<strong>必传参数</strong>（必填）、<strong>默认参数</strong>（有默认值的非必填）、<strong>可变参数</strong>，这三种参数适用的场景不同，主要区别在于实参与形参的映射关系。</p>
+<span id="more"></span>
+
+<blockquote>
+<p>形参 -&gt; 实参</p>
+</blockquote>
+<p>本文以实现一个学生的个人情况函数为例。</p>
+<h2 id="必传参数"><a href="#必传参数" class="headerlink" title="必传参数"></a><strong>必传参数</strong></h2><p>通俗来说，<strong>必传参数</strong>就是必须传入的参数，其特点就是<strong>必填</strong>。定义<code>student()</code>如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">student</span>(<span class="params">name, age</span>):</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;My name is &quot;</span>, name)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;I am %s years old.&quot;</span> % age)</span><br></pre></td></tr></table></figure>
+
+<p>我们可以通过调用<code>student()</code>函数来观察一下必传参数有什么特点</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">student(<span class="string">&quot;ethan&quot;</span>, <span class="number">18</span>) <span class="comment"># 输出 My name is ethan \n Iam 18 years old.</span></span><br><span class="line"></span><br><span class="line">student(<span class="number">18</span>, <span class="string">&quot;ethan&quot;</span>) <span class="comment"># 输出 My name is 18 \n Iam ethan years old.</span></span><br></pre></td></tr></table></figure>
+
+<p>\1. 一般来说，必传参数会按照<strong>函数定义时的顺序传入</strong>，即按位置进行映射。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">student(name=<span class="string">&quot;ethan&quot;</span>, age=<span class="number">18</span>) <span class="comment"># 输出 My name is ethan \n Iam 18 years old.</span></span><br><span class="line"></span><br><span class="line">student(age=<span class="number">18</span>, name=<span class="string">&quot;ethan&quot;</span>) <span class="comment"># 输出 My name is ethan \n Iam 18 years old.</span></span><br></pre></td></tr></table></figure>
+
+<p>\2. 如果<strong>指定了所有必传参数的名称，则可以不按顺序传入</strong>，即按名称进行映射。</p>
+<h2 id="默认参数"><a href="#默认参数" class="headerlink" title="默认参数"></a><strong>默认参数</strong></h2><p>此时有一个新需求，需要给学生的<code>age</code>设置默认值为18，即</p>
+<ul>
+<li>不传<code>age</code>时，<code>age</code>为默认值（18）。</li>
+<li>传<code>age</code>为18时，<code>age</code>为传入值。</li>
+</ul>
+<p>这里，使用默认参数（又叫关键字参数，非必填且有默认值），其表现形式为在形参后接 <code>=默认值</code>。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">student</span>(<span class="params">name, age=<span class="number">18</span></span>):</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;My name is &quot;</span>, name)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;I am %s years old.&quot;</span> % age)</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">student(<span class="string">&quot;ethan&quot;</span>) <span class="comment"># 输出 My name is ethan \n Iam 18 years old.</span></span><br><span class="line"></span><br><span class="line">student(<span class="string">&quot;ethan&quot;</span>, age=<span class="number">20</span>) <span class="comment"># 输出 My name is ethan \n Iam 20 years old.</span></span><br></pre></td></tr></table></figure>
+
+<p>上述指定了默认的<code>age</code>参数为18。</p>
+<p>我们下面分为<strong>仅定义默认参数时</strong>、<strong>同时定义必传参数和默认参数时</strong>两种情况来讨论默认参数的具体特点。</p>
+<h3 id="仅定义默认参数时"><a href="#仅定义默认参数时" class="headerlink" title="仅定义默认参数时"></a><strong>仅定义默认参数时</strong></h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">student</span>(<span class="params">name=<span class="string">&quot;ethan&quot;</span>, age=<span class="number">18</span></span>):</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;My name is &quot;</span>, name)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;I am %s years old.&quot;</span> % age)</span><br><span class="line"></span><br><span class="line">student(<span class="string">&quot;ethan&quot;</span>) <span class="comment"># 输出 My name is ethan \n Iam 18 years old.</span></span><br><span class="line"></span><br><span class="line">student(age=<span class="number">20</span>, name=<span class="string">&quot;ethan&quot;</span>) <span class="comment"># 输出 My name is ethan \n Iam 18 years old.</span></span><br></pre></td></tr></table></figure>
+
+<p><em>1.1</em> 函数调用时，默认参数的映射规则与必传参数相似，即：</p>
+<ul>
+<li>一般情况下按位置；</li>
+<li>指定全部名称情况下按名称。</li>
+</ul>
+<h3 id="同时定义必传参数和默认参数时"><a href="#同时定义必传参数和默认参数时" class="headerlink" title="同时定义必传参数和默认参数时"></a><strong>同时定义必传参数和默认参数时</strong></h3><p><em>2.1</em> 定义函数</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">student</span>(<span class="params">name, city=<span class="string">&quot;HZ&quot;</span>, nation=<span class="string">&quot;CN&quot;</span>, age</span>):</span><br><span class="line"></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line"><span class="comment"># SyntaxError: non-default argument follows default argument</span></span><br></pre></td></tr></table></figure>
+
+<p>定义函数时，<strong>必传参数不可以定义在默认参数后面</strong>。</p>
+<p><em>2.2</em> 调用函数时，以下定义一个<code>student()</code>函数来讨论。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">student</span>(<span class="params">name, age, city=<span class="string">&quot;HZ&quot;</span>, nation=<span class="string">&quot;CN&quot;</span></span>): <span class="comment"># name，age为必传，city，nation是默认</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;My name is &quot;</span>, name)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;I am %s years old.&quot;</span> % age)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;I am located at %s, %s&quot;</span> % (city, nation))</span><br></pre></td></tr></table></figure>
+
+<p>其中：</p>
+<ul>
+<li><code>name</code>，<code>age</code>为必传参数，</li>
+<li><code>city</code>，<code>nation</code>为默认参数。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">student(<span class="string">&quot;ethan&quot;</span>, nation=<span class="string">&quot;SG&quot;</span>, <span class="number">18</span>, city=<span class="string">&quot;BJ&quot;</span>) <span class="comment"># SyntaxError: positional argument follows keyword argument</span></span><br><span class="line"></span><br><span class="line">student(<span class="string">&quot;ethan&quot;</span>, nation=<span class="string">&quot;SG&quot;</span>, age=<span class="number">18</span>, city=<span class="string">&quot;BJ&quot;</span>) <span class="comment"># 输出 name=ethan age=18 city=BJ nation=SG</span></span><br></pre></td></tr></table></figure>
+
+<p>\1. 一般情况下，<strong>必传参数必须出现在默认参数前面</strong>，否则映射关系不明确，会报错。</p>
+<blockquote>
+<p>可以这么理解，若默认参数出现在必传参数前面，那第一个参数到底是有传入的默认参数还是在不传默认参数的情况下的必传参数呢？</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">student(name=<span class="string">&quot;ethan&quot;</span>, nation=<span class="string">&quot;SG&quot;</span>, age=<span class="number">18</span>, city=<span class="string">&quot;BJ&quot;</span>) <span class="comment"># 输出 name=ethan age=18 city=BJ nation=SG</span></span><br></pre></td></tr></table></figure>
+
+<p>\2. 如果指定了所有必传参数的名称，则可以不考虑传入的顺序。</p>
+<h2 id="可变参数"><a href="#可变参数" class="headerlink" title="可变参数"></a><strong>可变参数</strong></h2><p>现在新增一个需求，需要计算学生的学科总分，并且学科的数量不定，最多3个。</p>
+<p>这个需求可以通过默认参数来实现，设置3个默认参数，其默认值为<code>None</code>，在函数内部进行判断该值是否传入。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">student</span>(<span class="params">name, age, subject_1=<span class="literal">None</span>, subject_2=<span class="literal">None</span>, subject_3=<span class="literal">None</span></span>): <span class="comment"># subject_*为穷举出来的学科分数</span></span><br><span class="line"></span><br><span class="line">    sum_score = <span class="number">0</span> <span class="comment">## 总分</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (subject_1) &#123;</span><br><span class="line"></span><br><span class="line">        sum_score += subject_1</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (subject_2) &#123;</span><br><span class="line"></span><br><span class="line">        sum_score += subject_2</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (subject_3) &#123;</span><br><span class="line"></span><br><span class="line">        sum_score += subject_3</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;My name is &quot;</span>, name)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;My sum score is &quot;</span> % sum_score)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>在不定参数有限可穷举的情况下，才能通过默认参数来实现，且代码冗余较多。</li>
+<li>但是如果不定参数数量不可估算，则默认参数无法实现。</li>
+</ul>
+<p>因此，为了解决这一问题，Python引入了<strong>可变参数（非必传且传入个数可变）</strong>，在之前的文章中我们偶尔有使用到<code>*args</code>、<code>**kwargs</code>作为函数参数，这两个都属于可变参数。</p>
+<p>可变参数使用到了Python中的一个语法特性：<strong>打包和解包</strong></p>
+<blockquote>
+<p>打包：把多个值打包成一个元组。</p>
+</blockquote>
+<blockquote>
+<p>解包：把一个元组或数组解析成多个值。</p>
+</blockquote>
+<h3 id="打包和解包"><a href="#打包和解包" class="headerlink" title="打包和解包"></a><strong>打包和解包</strong></h3><p>关于打包和解包在很多语言中都支持这个特性，但使用的语法略有不同，下面通过几个例子了解一下Python中的打包解包如何使用。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">scores = <span class="number">80</span>, <span class="number">90</span>, <span class="number">98</span> <span class="comment"># 打包语法</span></span><br><span class="line"></span><br><span class="line">chinese, math, english = val <span class="comment"># 解包语法</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(chinese, math, english) <span class="comment"># 输出 80, 90, 98</span></span><br><span class="line"></span><br><span class="line">chinese, math, english = scores <span class="comment"># ValueError: not enough values to unpack (expected 4, got 3)</span></span><br></pre></td></tr></table></figure>
+
+<p>\1. 在其他编程语言中，不会出现<strong>一个等号左边多个变量而右边只有一个变量的语法</strong>，这种写法是Python中特有的解包语法。</p>
+<p>\2. 被解包的序列中的元素数量必须与赋值符号<code>=</code>左边元素的<strong>数量完全一样。</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">scores = <span class="number">80</span>, <span class="number">90</span>, <span class="number">98</span>, <span class="number">100</span> <span class="comment"># 打包语法</span></span><br><span class="line"></span><br><span class="line">a, b = scores <span class="comment"># ValueError: too many values to unpack (expected 2)</span></span><br><span class="line"></span><br><span class="line">a, *b, c = scores <span class="comment"># 打包和解包语法一起使用</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(b) <span class="comment"># [90, 98]</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(c) <span class="comment"># 100</span></span><br></pre></td></tr></table></figure>
+
+<p>\3. 可以在<strong>等号左边使用打包语法，如*b</strong>，<strong>将等号右边变量的多个值打包赋值给变量b，此时b为列表类型的变量</strong>。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">scores = [<span class="number">80</span>, <span class="number">90</span>]</span><br><span class="line"></span><br><span class="line">chinese, math = *scores <span class="comment"># SyntaxError: can&#x27;t use starred expression here</span></span><br></pre></td></tr></table></figure>
+
+<p>\4. <strong>不能将</strong><code>*****</code><strong>操作符用于表达式的右边</strong>，这是需要特别注意的，如果要解包，直接使用<code>a, b = val</code>即可。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">student</span>(<span class="params">name, age, city, nation</span>):</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;My name is &quot;</span>, name)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;I am %s years old.&quot;</span> % age)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;I am located at %s, %s&quot;</span> % (city, nation))</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">student(*[<span class="string">&quot;ethan&quot;</span>, <span class="number">18</span>, <span class="string">&quot;BJ&quot;</span>, <span class="string">&quot;CN&quot;</span>]) <span class="comment"># 输出 My name is ethan \n Iam 18 years old. I am located at HZ, CN.</span></span><br><span class="line"></span><br><span class="line">student(*[<span class="string">&quot;ethan&quot;</span>, <span class="number">18</span>, <span class="string">&quot;BJ&quot;</span>]) <span class="comment"># TypeError: student() missing 1 required positional argument: &#x27;nation&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>\5. <strong>解包同样可以运用于函数传参中</strong>，上面例子就是将数组解包传入函数中，分别对应<code>a, b, c</code>三个形参。</p>
+<p>\6. <strong>解包后的数量必须与函数定义的形参数量相同</strong>。</p>
+<p>如果我们不知道具体会传入多少个参数，这时候就要<code>*args</code>上场了</p>
+<h3 id="args"><a href="#args" class="headerlink" title="*args"></a>*<strong>args</strong></h3><p><code>*args</code>属于参数中的可变参数，因为它并没有指定关键字，而是表示诸多参数的合并。</p>
+<p>这里函数定义时的<code>*</code>其实就是起到打包的作用，函数定义时的<code>*args</code>可以表示任意个数的参数</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">student</span>(<span class="params">name, *scores</span>):</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;My name is &quot;</span>, name)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;My scores are &quot;</span>, *scores)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;My avg score is &quot;</span>, <span class="built_in">sum</span>(scores))</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">student(<span class="string">&quot;ethan&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出 My name is ethan</span></span><br><span class="line"></span><br><span class="line">student(<span class="string">&quot;ethan&quot;</span>, <span class="number">80</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出 My name is ethan \n My scores are 80 \n My sum score is 80</span></span><br><span class="line"></span><br><span class="line">student(<span class="string">&quot;ethan&quot;</span>, <span class="number">80</span>, <span class="number">90</span>, <span class="number">98</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出 My name is ethan \n My scores are 80 90 98 \n My sum score is 268</span></span><br></pre></td></tr></table></figure>
+
+<p>根据上面的实例可以观察到以下几点：</p>
+<p>\1. <code>***args**</code><strong>可以将多个参数打包成一个元组。</strong></p>
+<p>\2. <code>***args**</code><strong>是可变参数，可以不传，也可以传任意多个。</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">student</span>(<span class="params">*scores, name</span>):</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;My name is &quot;</span>, name)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;My scores are &quot;</span>, *scores)</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">student(<span class="number">80</span>, <span class="number">90</span>, <span class="string">&quot;ethan&quot;</span>) <span class="comment"># 输出 TypeError: foo() missing 1 required keyword-only argument: &#x27;a&#x27;</span></span><br><span class="line"></span><br><span class="line">student(<span class="number">80</span>, <span class="number">90</span>, name=<span class="string">&quot;ethan&quot;</span>) <span class="comment"># 输出 My name is ethan \n My scores are 80 90</span></span><br></pre></td></tr></table></figure>
+
+<p>\3.  <code>args</code>只是<strong>通俗约定的名称，实际可以叫任何其他的名称</strong>，例如本例中就叫做<code>scores</code>。 </p>
+<p>\4. <code>*args</code>本质上<strong>为在函数传参时将剩余所有的参数一起打包</strong>，所以上面的案例中，我们无论传几个参数，都会被<code>*args</code>打包，而函数定义中的<code>name</code>参数则永远都不会有值，而<code>name</code>不是可变参数，属于必传参数，所以会直接报错</p>
+<p>\5. 由于必传参数可以通过指定参数名称传入，所以<strong>当定义函数时必传参数位于可变参数后，调用时就必须指定参数名称</strong></p>
+<p>大家可以假设一下如果不用<code>*args</code>的话会怎么样？以Python中最常用的<code>print</code>函数为例，定义如下</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">print</span>(<span class="params">self, *args, sep=<span class="string">&#x27; &#x27;</span>, end=<span class="string">&#x27;\n&#x27;</span>, file=<span class="literal">None</span></span>): <span class="comment"># known special case of print</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>) <span class="comment"># 输出 1 2 3</span></span><br></pre></td></tr></table></figure>
+
+<p>根据<code>print</code>函数的定义，可以直接<code>print(1, 2, 3)</code>，或者传入任何数量个想要打印输出的变量，那么不用<code>*args</code>的话，改写如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">print</span>(<span class="params">self, args, sep=<span class="string">&#x27; &#x27;</span>, end=<span class="string">&#x27;\n&#x27;</span>, file=<span class="literal">None</span></span>): <span class="comment"># known special case of print</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]) <span class="comment"># 输出 1 2 3</span></span><br></pre></td></tr></table></figure>
+
+<p>同样要实现打印任何数量个变量，我们就必须将其组合成一个数组或元组传入，上述打印<code>[1, 2, 3]</code>的例子还勉强可以接受的话，那么如果想要打印很多不同类型的变量的时候，还需要将这些不同类型的变量先组成一个数组，这就会让代码<strong>显得很怪异，似乎不符合逻辑</strong>，而且代码的可读性也会下降。</p>
+<h3 id="kwargs"><a href="#kwargs" class="headerlink" title="**kwargs"></a>*<strong>*kwargs</strong></h3><p><code>*</code>操作其实本质上讲就是<strong>对于可迭代对象的解包</strong>，对于列表和元组这种可迭代对象，<code>*</code>就可以直接将其解包成一个一个的元素。</p>
+<p>但字典同样是可迭代对象，那么对字典使用<code>*</code>操作会是什么样的结果</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">student</span>(<span class="params">name, age</span>):</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;My name is &quot;</span>, name)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;I am %s years old.&quot;</span> % age)</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">student(*&#123;<span class="string">&quot;name&quot;</span>: <span class="string">&quot;ethan&quot;</span>, <span class="string">&quot;age&quot;</span>: <span class="number">18</span>&#125;) <span class="comment"># 输出 My name is name \n I am age years old.</span></span><br><span class="line"></span><br><span class="line">student(*&#123;<span class="string">&quot;Name&quot;</span>: <span class="string">&quot;ethan&quot;</span>, <span class="string">&quot;Age&quot;</span>: <span class="number">18</span>&#125;) <span class="comment"># 输出 My name is Name \n Iam Age years old.</span></span><br></pre></td></tr></table></figure>
+
+<p>从上面的输出结果可以看出，<code>*****</code><strong>解包操作似乎只是讲字典的键做了解包</strong>，所以上述的函数调用其实等价于</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">fun(*[<span class="string">&quot;name&quot;</span>, <span class="string">&quot;age&quot;</span>])</span><br><span class="line"></span><br><span class="line">fun(*[<span class="string">&quot;Name&quot;</span>, <span class="string">&quot;Age&quot;</span>])</span><br></pre></td></tr></table></figure>
+
+<p>那么如果想对键和值都做解包要怎么实现呢？</p>
+<p><strong>在Python中对于字典的打包解包要使用</strong><code>***\***</code><strong>，如下</strong>：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">student(**&#123;<span class="string">&quot;name&quot;</span>: <span class="string">&quot;ethan&quot;</span>, <span class="string">&quot;age&quot;</span>: <span class="number">18</span>&#125;) <span class="comment"># 输出 My name is ethan \n I am 18 years old.</span></span><br></pre></td></tr></table></figure>
+
+<p>\1. <strong>对于字典解包进行传参，必须保证字典的键和函数定义的形参名称一致</strong></p>
+<blockquote>
+<p>很多朋友对于<code>*</code>和<code>**</code>总是搞混淆，其实我的记法是，<code>*</code>可以相当于对可迭代对象的元素寻址，但根据字典的底层数据结构，字典底层是一个二维数组，那么对于二维数组的元素寻址就需要使用两个<code>*</code>。</p>
+</blockquote>
+<p>同样的如果我们定义函数时<strong>无法确定需要传入什么样的关键字参数呢</strong>？那么就可以在定义函数时使用关键字参数的打包语法</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">student</span>(<span class="params">name, age, *scores, **kwargs</span>):</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;My name is &quot;</span>, name)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;I am %s years old.&quot;</span> % age)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;My scores are &quot;</span>, *scores)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;My avg score is &quot;</span>, <span class="built_in">sum</span>(scores)/<span class="built_in">len</span>(scores))</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Other information:&quot;</span>, kwargs)</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">student(<span class="string">&quot;ethan&quot;</span>, <span class="number">18</span>, <span class="number">80</span>, <span class="number">90</span>, <span class="number">98</span>, gender=<span class="string">&quot;male&quot;</span>, weight=<span class="number">70</span>)</span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27; 输出</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">My name is ethan</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">I am 18 years old.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">My scores are 80 90 98</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">My avg score is 89.33333333333333</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Other information: &#123;&#x27;gender&#x27;: &#x27;male&#x27;, &#x27;weight&#x27;: 70&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line">student(<span class="string">&quot;ethan&quot;</span>, <span class="number">18</span>, <span class="number">80</span>, <span class="number">90</span>, <span class="number">98</span>, **&#123;<span class="string">&quot;gender&quot;</span>:<span class="string">&quot;male&quot;</span>, <span class="string">&quot;weight&quot;</span>:<span class="number">70</span>&#125;) <span class="comment"># 输出同上</span></span><br></pre></td></tr></table></figure>
+
+<p>\2. <code>**kwargs</code>同样是一个<strong>约定俗成的写法</strong>，没有其他特殊含义，但是为了代码可读性，<strong>最好还是用约定俗成的</strong>。</p>
+<p>\3. 在函数定义的形参中<code>***args**</code><strong>是对多个参数进行打包，而</strong><code>***\*kwargs**</code><strong>是对关键字参数进行打包。</strong></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h2><p>一般特殊技巧虽然好用，但都有一些额外需要注意的地方，所以显而易见的是我们这篇文章太“干”了，但这又是想写出更Pythonic的代码所必须要经历的。</p>
+<p>最后留一个小问题供大家思考，为什么不能使用<code>print(**kwargs)</code>来打印关键字参数解包后的结果？</p>
+]]></content>
+      <categories>
+        <category>番外篇</category>
+      </categories>
+      <tags>
+        <tag>可变参数</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>0.5 自动化运维番外篇-调试</title>
+    <url>/posts/305cfeff.html</url>
+    <content><![CDATA[<hr>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a><strong>摘要</strong></h2><p><strong>这是自动化运维新手村里最重要的一篇番外，没有之一。</strong></p>
+<p><strong>调试</strong>应该是所有编程语言中都需要用到的一种技巧，不管对于编程新手还是资深码农，调试都会是不可或缺的技能。</p>
+<p>刚接触编程的朋友经常会遇到的困惑就是，<strong>已经了解某段代码的功能逻辑，但却对于逻辑具体的实现却充满疑惑，其实这是十分正常的现象。</strong></p>
+<span id="more"></span>
+
+<h2 id="看不懂代码？"><a href="#看不懂代码？" class="headerlink" title="看不懂代码？"></a><strong>看不懂代码？</strong></h2><p>最本质的原因是抽象到具体之间存在一定的代沟。功能逻辑其实就是对某个场景或需求，依照我们的编程思路抽象出完成该功能的过程。</p>
+<p>功能逻辑是通用的，可以用任何语言去实现这个功能，但不同语言之前的实现方式就会有所区分甚至<strong>大相径庭</strong>。</p>
+<p>Python这门语言其实已经是对于新手来说相对友好的语言，功能逻辑和代码的具体实现之间不会有太大差异，甚至有的<strong>代码阅读起来就像英文一样</strong>，清晰易懂。</p>
+<p>但编程语言总归是<strong>面向计算机的，而不是面向人脑的</strong>，计算机处理代码的方式以及很多时候为了程序健壮性所作出的边界处理都会让刚接触编程的朋友较难理解。</p>
+<p>除此之外还包括每个人编程风格的不同，也会造成代码阅读的困难。</p>
+<p>所以对于刚开始看不懂代码的朋友来说，<strong>调试是一个十分好用的方法</strong>，今天这篇文章就给大家详细介绍一下<strong>代码调试</strong>，帮大家排除编程路上<strong>看不懂代码</strong>的障碍</p>
+<h2 id="什么是调试"><a href="#什么是调试" class="headerlink" title="什么是调试"></a><strong>什么是调试</strong></h2><p><strong>调试通俗的讲就是将程序解剖开然后呈现在我们面前</strong>，解剖的方式也有很多种：</p>
+<p><strong>1.</strong> 将整个代码<strong>拆解成一个个代码块</strong>，分别去执行，以此来了解代码中不同阶段不同步骤所执行的结果。</p>
+<p><strong>2.</strong> 在代码中想要观察的地方<strong>插入打印输出语句</strong>，这样当代码运行起来后就可以观察到此处的具体内容。</p>
+<p><strong>3.<strong>使用</strong>断点调试</strong>，在想要观察的地方加入断点，让程序执行到此处时中断，这时就可以仔细分析断点处的变量情况以及查看上下文信息。</p>
+<h3 id="调试的作用"><a href="#调试的作用" class="headerlink" title="调试的作用"></a><strong>调试的作用</strong></h3><p>调试的作用一般分为两种：</p>
+<h4 id="排查bug。"><a href="#排查bug。" class="headerlink" title="排查bug。"></a><strong>排查bug。</strong></h4><p>当程序运行出现错误，并且通过错误日志无法判断出异常原因时，可以尝试重现bug，并通过上面几种调试的手段来观察程序的执行，以此来判断真正的异常原因</p>
+<h4 id="分析代码。"><a href="#分析代码。" class="headerlink" title="分析代码。"></a><strong>分析代码。</strong></h4><p>如果已经了解了代码的大致逻辑，但对于代码的细节处理仍有疑惑，或者某些使用循环逻辑的地方较难直接用头脑分析演算出执行过程，这时候就可以借助调试手段来更为详尽准确的分析代码。</p>
+<h2 id="如何调试"><a href="#如何调试" class="headerlink" title="如何调试"></a><strong>如何调试</strong></h2><p>上文的三种调试方法中，前两种都十分简单，我觉得即使对于刚接触编程的朋友来说应该也都可以自己尝试使用。</p>
+<p>今天我们着重讲解一下第三点：<strong>断点调试</strong>，这里主要是达到分析代码的作用，至于排查bug我们后续会详细讲解。</p>
+<p>任何语言编程语言，不管是Java，C++，Golang还是Python，都可以借助工具实现断点调试，对于Python来说一般主流的代码编辑器都具备断点调试的功能，比如VSCode或者Pycharm。</p>
+<p>但今天先不讲解如何通过IDE（Integrated Development Environment，集成开发环境）自带的功能做调试，而是教给大家一个Python里面自带的代码调试方法，<strong>我觉得这种方式是最为通用的，即使在没有IDE的服务器上也一样可以进行代码调试</strong>。</p>
+<h2 id="PDB"><a href="#PDB" class="headerlink" title="PDB"></a><strong>PDB</strong></h2><p><code>pdb</code>是Python<strong>内置的一个方法库</strong>，为 Python 程序提供了一种交互的源代码调试功能。</p>
+<p>主要特性包括设置断点、单步调试、进入函数调试、查看当前代码、查看栈片段、动态改变变量的值等。</p>
+<p>这里举一个简单的例子：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">foo</span>(<span class="params">num</span>):</span><br><span class="line"></span><br><span class="line">    ret = []</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(num):</span><br><span class="line"></span><br><span class="line">        tmp = i ** <span class="number">2</span></span><br><span class="line"></span><br><span class="line">        ret.append(tmp)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> ret</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line"></span><br><span class="line">    args = sys.argv</span><br><span class="line"></span><br><span class="line">    result = foo(<span class="built_in">int</span>(args[<span class="number">1</span>]))</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(args)</span><br></pre></td></tr></table></figure>
+
+<p>如上代码是一个获取从零到某个指定数字的平方序列的函数，通过命令行传入指定数字，然后返回它的平方序列。</p>
+<p>我相信通过上面的解释大家都可以理解这个程序的功能逻辑，但仔细看代码实现时，大家可以会有困惑：</p>
+<p>通过<code>sys.argv</code>获取到的<strong>究竟是什么，是什么类型，包含了哪些值</strong>，以及我在<code>foo()</code>函数的循环中每次<code>tmp</code>值是什么。</p>
+<p><strong>当然这些问题其实应该属于Python的基础知识，理应熟记并且掌握，但对于刚接触编程的朋友来说某些基础知识可能记得不牢固，或者有的代码细节略微晦涩难懂，这时候就可以通过</strong><code>**pdb**</code><strong>这一利器来解剖代码。</strong></p>
+<p>引入<code>pdb</code>并在某一行插入断点：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># my_square.py</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> pdb</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">foo</span>(<span class="params">num</span>):</span><br><span class="line"></span><br><span class="line">    ret = []</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(num):</span><br><span class="line"></span><br><span class="line">        tmp = i ** <span class="number">2</span></span><br><span class="line"></span><br><span class="line">        ret.append(tmp)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> ret</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line"></span><br><span class="line">    args = sys.argv</span><br><span class="line"></span><br><span class="line">    pdb.set_trace()</span><br><span class="line"></span><br><span class="line">    result = foo(<span class="built_in">int</span>(args[<span class="number">1</span>]))</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(args)</span><br></pre></td></tr></table></figure>
+
+<p>在命令行中执行<code>python my_square 10</code>会得到如下输出</p>
+<p><img src="https://s2.loli.net/2023/04/08/KspWId43TCvLHfu.png" alt="img"></p>
+<p>这里表示程序在<code>result = foo(args[1])</code>处中断了，并且开头的<code>(Pdb)</code>表示已经进入到了<code>pdb</code>交互模式，我们这时候可以输出一些<code>pdb</code>的指令进行调试。</p>
+<ol>
+<li><code>**l(ist)**</code><strong>（小写的L）表示查看上下文代码</strong>，结果如下：</li>
+</ol>
+<p><img src="https://s2.loli.net/2023/04/08/OqvXLYPToSN9HKx.png" alt="img"></p>
+<p>可以查看到断点处的上下文代码，清晰的看到当前断点所处的位置，以此来去对上下文做出更进一步的调试操作。</p>
+<ol>
+<li><code>**p(rint) [var_name]**</code><strong>使用p字母加变量名查看变量</strong>，结果如下：</li>
+</ol>
+<p><img src="https://s2.loli.net/2023/04/08/4qOXjHkP8QDbxpr.png" alt="img"></p>
+<p>这里可以看到<code>args</code>是一个数组类型，并且第一个元素是程序代码的文件名，第二个元素才是输入的参数，所以这也是为什么我们调用函数时传入的<code>args[1]</code>。</p>
+<p>这里有一个需要注意的点就是p字母在某些时候可以省略，直接输入变量名也可以查看变量详情，但<strong>当变量名与</strong><code>**pdb**</code><strong>内置的关键字冲突时就无法生效</strong>，所以建议大家平时也都使用<code>p + var_name</code>的方式查看变量。</p>
+<ol>
+<li><code>**s(tep)**</code><strong>使用s字母可以执行下一步并且步进到函数中去</strong>，结果如下：</li>
+</ol>
+<p><img src="https://s2.loli.net/2023/04/08/nmv5iUfhHP17IOe.png" alt="img"></p>
+<p>由之前的断点位置可知下一步该调用<code>foo()</code>函数，如果想观察到<code>foo()</code>函数内部的具体实现，就可以使用s字母，步进到函数体中，由上图也可以看出，输入s后已经位于了<code>foo()</code>函数的定义处，这时候就已经可以使用<code>p num</code>查看函数的参数详情了。</p>
+<p>这里需要注意的是，如果想直接观察<code>foo()</code>函数，也可以在<code>foo()</code>函数内部写<code>pdb.set_trace()</code>并不是一定要从最外层步进才可以。</p>
+<ol>
+<li><code>**n(ext)**</code><strong>使用n字母同样可以执行下一步</strong>，结果如下：</li>
+</ol>
+<p><img src="https://s2.loli.net/2023/04/08/B6puAcrM9eHaTIC.png" alt="img"></p>
+<p>输入字母n之后可以让程序执行下一步，如上图我们输入n之后，-&gt;表示程序已经执行到了下一行，<strong>这里可以结合</strong><code>**p p [var_name]**</code><strong>一起使用，观察当前断点处的上下文变量信息</strong>。</p>
+<ol>
+<li><code>**r(eturn)**</code><strong>使用r字母同样可以执行下一步，但如果当前位于函数内，则会直接执行到函数结束处</strong></li>
+</ol>
+<p><img src="https://s2.loli.net/2023/04/08/veEnl8o4V2M6grb.png" alt="img"></p>
+<p>如上图，输入r后直接跳转到了<code>foo()</code>函数的最后一行。</p>
+<ol>
+<li><code>**c(ontinue)**</code><strong>使用c字母可以继续执行程序</strong>。通常在观察到想要观察的信息后，会直接输入c执行完程序的剩余内容。</li>
+<li><code>**break line_number**</code><strong>使用break+行号可以设置断点</strong>，如下图：</li>
+</ol>
+<p><img src="https://s2.loli.net/2023/04/08/DgHo4BCvhMUrK6N.png" alt="img"></p>
+<p>输入break可以在当前行设置断点，如果break后加行号则可以在指定行号设置断点，如上图，在第八行有一个<code>B-&gt;</code>的符号，表示在第八行处有断点。</p>
+<p>当通过break设置断点后，<strong>无论是输入 r 还是输入 c 都会在断点处中断</strong>，所以还需要通过 <code>clear</code>清除断点，使用<code>clear [line_number]</code>可以清除指定行号处的断点。</p>
+<ol>
+<li><code>**q(uit)**</code><strong>使用q字母可以直接退出调试模式</strong></li>
+<li><strong>有两点需要注意的是：</strong></li>
+</ol>
+<p>直接输入Enter，会执行上一条命令；</p>
+<p>输入PDB不认识的命令，PDB会把他当做Python语句在当前环境下执行；</p>
+<p><strong>pdb还有很多其他的用法，但我们先学习这些较为常用的即可。</strong></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h2><p>代码调试虽然是一个利器，但仍需要合理正确的使用它，任何时候都不应该无脑的使用调试，而是应该<strong>先尝试理解分析代码的逻辑，这样才能事倍功半，我们还会继续在下一篇中给大家讲解一下如何使用Pycharm和VScode进行调试，敬请期待。</strong></p>
+]]></content>
+      <categories>
+        <category>番外篇</category>
+      </categories>
+      <tags>
+        <tag>Debug</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>0.6 自动化运维番外篇-Pycharm调试</title>
+    <url>/posts/1f97a037.html</url>
+    <content><![CDATA[<hr>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a><strong>摘要</strong></h2><p>上一篇番外讲解了调试对于编程的重要性，并且介绍了Python中的<code>pdb</code>工具包，可以帮我们在没有IDE的环境下进行代码调试。</p>
+<p>但<code>pdb</code>终归是基于<strong>命令行交互式</strong>的，对于刚接触编程的朋友来说并不友好，并且在日常开发中，如果代码架构略微复杂，或者是引用的第三方库，不太了解具体的实现细节，<strong>那么</strong><code>**pdb**</code><strong>就不是最合适的调试方法</strong>了。</p>
+<p>那么今天我们就讲解一下最容易上手且很直观的<strong>IDE调试方法</strong></p>
+<span id="more"></span>
+
+<h2 id="IDE"><a href="#IDE" class="headerlink" title="IDE"></a><strong>IDE</strong></h2><p>集成开发环境（IDE，Integrated Development Environment ）是用于提供程序开发环境的应用程序。</p>
+<p>一般包括代码<strong>编辑器、编译器、调试器和图形用户界面</strong>等工具。</p>
+<p>集成了代码编写功能、分析功能、编译功能、调试功能等一体化的开发软件服务套。</p>
+<p>所有具备这一特性的软件或者软件套（组）都可以叫集成开发环境。</p>
+<p><strong>目前Python语言中使用最常用的就是Pycharm和VSCode。</strong></p>
+<p><strong>今天我们就详细讲解一下如何使用Pycharm进行调试</strong></p>
+<h2 id="Pycharm"><a href="#Pycharm" class="headerlink" title="Pycharm"></a><strong>Pycharm</strong></h2><p>IDE除了显而易见的代码补全功能以外，清晰便捷的Debug功能也是非常重要的，<strong>如果你还是只用Pycharm来编辑代码，那可就有点儿暴殄天物了</strong>。</p>
+<p>这次仍然用<code>pdb</code>篇中的示例代码为大家讲解</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">foo</span>(<span class="params">num</span>):</span><br><span class="line"></span><br><span class="line">    ret = []</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(num):</span><br><span class="line"></span><br><span class="line">        tmp = i ** <span class="number">2</span></span><br><span class="line"></span><br><span class="line">        ret.append(tmp)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> ret</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line"></span><br><span class="line">    args = sys.argv</span><br><span class="line"></span><br><span class="line">    result = foo(<span class="built_in">int</span>(args[<span class="number">1</span>]))</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(args)</span><br></pre></td></tr></table></figure>
+
+<p>在Pycharm中展示如下图</p>
+<p><img src="https://s2.loli.net/2023/04/08/SpfojDNIZ4TyxV8.png" alt="img"></p>
+<p>关于Pycharm的其他细节使用不是今天这篇文章的主题，我们就略过不谈，单独了解一下Pycharm的调试功能</p>
+<h3 id="开启调试"><a href="#开启调试" class="headerlink" title="开启调试"></a><strong>开启调试</strong></h3><p>Pycharm开启调试有三种方法</p>
+<p>**1.**当文件中有<code>if __name__ == &quot;__main__&quot;:</code>时，Pycharm会识别到，并将该行标识为程序入口，用一个绿色的三角形表示。</p>
+<p>左键单击该三角形会有一个下拉框，第二个选项<code>Debug &#39;main&#39;</code>就是开启调试的按钮</p>
+<p><img src="https://s2.loli.net/2023/04/08/wNKMjuvmIXrRbfy.png" alt="img"></p>
+<p>**2.**在文件空白处右键单击可以弹出下拉选相框，其中同样会有<code>Debug &#39;main&#39;</code>按钮</p>
+<p><img src="https://s2.loli.net/2023/04/08/A7ymclLR8iPgGoJ.png" alt="img"></p>
+<p>**3.**工具栏中有一个虫子符号的按钮，同样也是<code>Debug &#39;main&#39;</code>的按钮</p>
+<p><img src="https://s2.loli.net/2023/04/08/cIShxJ786TRXmAi.png" alt="img"></p>
+<h3 id="断点调试"><a href="#断点调试" class="headerlink" title="断点调试"></a><strong>断点调试</strong></h3><p>**1.**右侧黄色框中点击可以为指定行添加断点，添加断点后程序会执行到断点所在行中断，断点所在行为将要执行的下一行代码</p>
+<p><img src="https://s2.loli.net/2023/04/08/oU8HsOJxB5CiWbf.png" alt="img"></p>
+<p>**2.**我们已经在12行添加了一个断点，现在采取上述任意一种方式开启调试后，Pycharm页面如下图</p>
+<p><img src="https://s2.loli.net/2023/04/08/NmHUqQu1SaLXKGz.png" alt="img"></p>
+<p><strong>页面中有几大重要的部分已经通过红框和注释标识出来，我分别对其做一下详细的解释：</strong></p>
+<ol>
+<li><strong>变量值：</strong></li>
+</ol>
+<p>进行调试一个最主要的目的就是要知道程序运行过程中，定义的变量是如何变化的，他们的值或者类型分别是什么？</p>
+<p><strong>Pycharm会在程序代码每行的行尾空白处表明该变量的当前值；</strong></p>
+<p><strong>页面下方的Variables框中则会显示更为详细的变量信息</strong>，包括变量值，变量具有的属性和方法等；</p>
+<p>并且Variables框的左侧有一列按钮可以对变量进行其他操作，<strong>最常用的就是添加要Watch的变量</strong>，比如我想查看<code>args</code>的长度，就可以点击黄色框中的加号，输入<code>len(args)</code>即可， 如下图</p>
+<ol>
+<li><strong>调试窗口&#x2F;输出窗口：</strong></li>
+</ol>
+<p>开启调试后默认页面就处在<code>Debugger</code>调试窗口下，但如果程序中存在打印输出的内容，则需要点击<code>Console</code>按钮，切换到输出窗口才可以看到输出内容。</p>
+<ol>
+<li><strong>调试操作按钮</strong></li>
+</ol>
+<p>调试时最主要的几个按钮如下图所示</p>
+<ol>
+<li>继续调试，在12行断点处点击Step Over按钮，会发现程序抛出了异常，如下图：</li>
+</ol>
+<p>这个错误的含义是<strong>数组的下标超出了范围</strong>，从上一步可以看出<code>args = [&#39;./main.py&#39;]</code>，<code>args</code>的长度只有1，但12行却要访问<code>args[1]</code>，表示访问<code>args</code>的第二个元素，很明显会<strong>发生数组越界</strong>，所以程序抛出了异常。</p>
+<p><strong>这里要求我们通过命令行传入一个参数，但我们目前是直接使用Pycharm的调试按钮启动的程序，如何输入自定义参数呢</strong>？如下图</p>
+<p><strong>上图中的红框处可以输入参数</strong>，相当于命令行执行时<code>python main.py</code>后面的内容，所以这里输入3，等价于<code>python main.py 3</code></p>
+<ol>
+<li><p>步入函数，现在输入参数后就可以在12行处点击Step Into或者Step Into MyCode按钮进入函数中</p>
+</li>
+<li><p><strong>一直点击Step Over一行一行执行函数</strong>，可以看到当前行执行到第7行，IDE显示第一次循环的<code>i = 0</code>， 计算得到的<code>tmp = 0</code></p>
+</li>
+<li><p>直接点击<strong>Run to Cursor</strong>，可以执行代码到光标处，因为当前代码执行到了第7行，<strong>光标默认位于此处</strong>，所以点击Run to Cursor可以直接执行下一次循环到此处，<strong>不用点击多次Step Over</strong>。</p>
+</li>
+</ol>
+<p>当想要直接结束所处函数的执行，可以点击<strong>Step Out</strong>，便会<strong>执行完函数并返回至上一层</strong></p>
+<ol>
+<li><strong>如果存在多个断点的情况</strong>，可以直接点击左下角框选的按钮，则会跳转到下一个最近的断点处，如果当前断点之后没有断点则会直接运行完剩余程序。</li>
+</ol>
+<h2 id="Flask示例"><a href="#Flask示例" class="headerlink" title="Flask示例"></a><strong>Flask示例</strong></h2><p>前几天有个朋友提了一个问题，正好可以来为大家演示一下，当<strong>不了解程序内部实现时</strong>如何使用Pycharm进行代码调试</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> <span class="title class_">Flask</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">app = <span class="title class_">Flask</span>(__name__)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line"></span><br><span class="line">    app.<span class="title function_">run</span>()</span><br></pre></td></tr></table></figure>
+
+<p>上面的代码是一段最为简单的启动Flask项目的示例代码</p>
+<blockquote>
+<p>Tips：Flask是使用Python编写的轻量级Web框架，马上我们会出相应的专题</p>
+</blockquote>
+<p>第二行<code>app = Flask(__name__)</code>的作用是创建一个应用对象实例。</p>
+<p>app是Flask的实例，它接收包或者模块的名字作为参数，但一般都是传递(<code>__name__</code>)，让<code>flask.helpers.get_root_path</code>函数通过传入这个名字确定程序的根目录，以便获得静态文件和模板文件的目录。</p>
+<p><strong>现在我们使用代码调试试图看看Flask是如何根据</strong><code>**__name__**</code><strong>确定程序根目录的。</strong></p>
+<p>在app初始化处加入断点，然后点击Debug开启调试</p>
+<p>现在点击<strong>Step Into</strong>跳进<code>Flask()</code>函数中</p>
+<p>由上图可以看出，<strong>Flask类继承了Scaffold类</strong>，并且我们当前处于<code>super().__init__()</code>这一行，<strong>这一行表示对父类进行初始化</strong>，所以再次点击<strong>Step Into</strong>步入父类中（由于此处函数参数过长，代码存在换行，所以需要点击多次步入按钮，直到跳入父类中即可）。</p>
+<p>由上图可知，现在已经进入到Flask的父类Scaffold的初始化函数中，并且我又点击了几次<strong>Step Over</strong>，直到运行到上图所在行。</p>
+<p>这里就是<strong>对项目根目录的确定逻辑</strong>，由于我们在初始化app时没有传入<code>root_path</code>参数，所以当前root_path为None，这样就会用到<code>flask.helpers.get_root_path()</code>根据传入的<code>import_name</code>来确定项目根目录。</p>
+<p>而<code>import_name</code>就是初始化类时传入的<code>__name__</code>。至于<code>get_root_path()</code>函数中<strong>具体如何实现的就留给大家自己探索</strong>。</p>
+<h2 id="总结】"><a href="#总结】" class="headerlink" title="总结】"></a><strong>总结】</strong></h2><p>IDE的调试功能十分强大，毋庸置疑，如果能够合理运用，<strong>一定会在学习之路上让大家事半功倍</strong>，VSCode的调试方法我这里没有提到，如果有使用VSCode的朋友想了解它的调试方法，也可以在公众号给我留言，我也会出一篇详细的讲解。</p>
+]]></content>
+      <categories>
+        <category>番外篇</category>
+      </categories>
+      <tags>
+        <tag>Debug</tag>
+        <tag>Pycharm</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>0.7 自动化运维番外-迭代器生成器</title>
+    <url>/posts/f3a52318.html</url>
+    <content><![CDATA[<hr>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a><strong>摘要</strong></h2><p>在之前的文章中我们提到过很多次的<strong>可迭代对象</strong>，并且很多面试中对于Python几乎必问的一个问题是：“<strong>请解释一下迭代器和生成器？</strong>”</p>
+<p>在Python中对象是否可迭代是一个十分重要的特性，今天就一次性的给大家讲解清楚究竟什么是<strong>可迭代</strong>，如何判断一个对象是否是可迭代的，什是<strong>迭代器</strong>，以及什么是又<strong>生成器</strong>？</p>
+<span id="more"></span>
+
+<p>下图可以清晰的表示<strong>可迭代对象， 迭代器， 生成器</strong>之间的关系：</p>
+<p><img src="https://s2.loli.net/2023/04/08/GAbRtosKkmP6N2a.png" alt="img"></p>
+<h2 id="可迭代对象（Iterable）"><a href="#可迭代对象（Iterable）" class="headerlink" title="可迭代对象（Iterable）"></a><strong>可迭代对象（Iterable）</strong></h2><p><strong>可迭代对象的概念比迭代器要广很多，从上图可以看到，可迭代对象包括迭代器，而生成器又是一种特殊的迭代器。</strong></p>
+<p>通俗的讲<strong>可以通过for循环遍历的对象都是可迭代对象</strong>。</p>
+<p>准确的讲，<strong>一个实现了</strong><code>**__iter__**</code><strong>()&#96;方法的对象就是可迭代对象</strong>，判断一个对象是不是可迭代，有两种方法：</p>
+<p>1.通过<code>dir</code>函数获取某个对象的所有属性和方法，只要这个对象实现了<code>__iter()__</code>方法，那么它就是可迭代对象, 如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">dir</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出 [..., &#x27;__iter__&#x27;, &#x27;__le__&#x27;, &#x27;__len__&#x27;, &#x27;__lt__&#x27;, &#x27;__mul__&#x27;, &#x27;__ne__&#x27;, &#x27;__new__&#x27;, &#x27;__reduce__&#x27;,...]</span></span><br></pre></td></tr></table></figure>
+
+<p>2.通过<code>isinstance()</code>函数，判断一个对象是否是<code>Iterable</code>类型</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Iterable</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">isinstance</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], Iterable))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出 True</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>既然可以被for循环遍历的对象就是可迭代对象，那是否可迭代对象都可以通过for循环遍历呢？</strong></p>
+<p>现在可以自己定义一个可迭代对象做一下验证</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Iterable</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyIter</span>:</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__iter__</span>(<span class="params">self</span>):</span><br><span class="line"></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">my_iter = MyIter()</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">isinstance</span>(my_iter, Iterable))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出 True</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> my_iter:</span><br><span class="line"></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出 TypeError: iter() returned non-iterator of type &#x27;NoneType&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>上述代码证明<strong>不是所有的可迭代对象都可以被for循环遍历，前提是必须正确的实现</strong><code>**__iter__()**</code><strong>方法，让可迭代对象返回一个迭代器</strong>。</p>
+<p>所以看到这里大家可以认为，<strong>for循环遍历的对象必须是一个可以返回迭代器的可迭代对象</strong>。</p>
+<h2 id="迭代器对象（iterator）"><a href="#迭代器对象（iterator）" class="headerlink" title="迭代器对象（iterator）"></a><strong>迭代器对象（iterator）</strong></h2><p>上面已经介绍过，一个可迭代对象要正确的实现<code>__iter__()</code>方法让其返回一个迭代器，最终才可以被for循环遍历。</p>
+<p>那么究竟要返回一个什么样的东西才叫迭代器呢？</p>
+<blockquote>
+<p><strong>官方定义如下：</strong></p>
+</blockquote>
+<ol>
+<li><blockquote>
+<p>迭代器是一个对象，该对象代表了一个数据流。</p>
+</blockquote>
+</li>
+<li><blockquote>
+<p>重复调用迭代器的<code>__next__</code>方法（或将迭代器对象当作参数传入內置函数next()中）将依次返回数据流中的元素。</p>
+</blockquote>
+</li>
+<li><blockquote>
+<p>当数据流中无可返回元素时，则抛出StopIteration异常。</p>
+</blockquote>
+</li>
+<li><blockquote>
+<p>迭代器必须拥有<code>__iter__</code>方法，该方法返回迭代器对象自身</p>
+</blockquote>
+</li>
+</ol>
+<p>通俗的讲就是迭代器对象必须同时实现<code>__iter__()</code>方法和<code>__next()__</code>方法。</p>
+<p>for循环在遍历一个可迭代对象的时候，底层机制为</p>
+<ol>
+<li>先调用其<code>__iter__()</code>方法获取到其对应的迭代器对象；</li>
+<li>并不断调用迭代器对象的<code>__next__()</code>方法获取下一个元素；</li>
+<li>最终遇到StopIteration异常结束</li>
+</ol>
+<h3 id="列表是迭代器吗？"><a href="#列表是迭代器吗？" class="headerlink" title="列表是迭代器吗？"></a><strong>列表是迭代器吗？</strong></h3><p>这里有一个重要的问题需要大家思考一下：<strong>列表可以被for循环遍历，那列表是不是迭代器呢？</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># for循环遍历list的代码如下：</span></span><br><span class="line"></span><br><span class="line">my_list = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> my_list:</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(i)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出 1， 2， 3</span></span><br></pre></td></tr></table></figure>
+
+<p>按照官方的迭代器的定义，我们只需要做如下操作就可以验证列表是不是迭代器：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">my_list = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"></span><br><span class="line"><span class="built_in">next</span>(my_list)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出 TypeError: &#x27;list&#x27; object is not an iterator</span></span><br></pre></td></tr></table></figure>
+
+<p>答案很明显，<strong>list并不是一个迭代器</strong>，我们进一步看看list具有哪些属性和方法：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">dir</span>(my_list)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出 [&#x27;__add__&#x27;, &#x27;__class__&#x27;, &#x27;__contains__&#x27;, &#x27;__delattr__&#x27;, &#x27;__delitem__&#x27;, &#x27;__dir__&#x27;, &#x27;__doc__&#x27;, &#x27;__eq__&#x27;, &#x27;__format__&#x27;, &#x27;__ge__&#x27;, &#x27;__getattribute__&#x27;, &#x27;__getitem__&#x27;, &#x27;__gt__&#x27;, &#x27;__hash__&#x27;, &#x27;__iadd__&#x27;,</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x27;__imul__&#x27;, &#x27;__init__&#x27;, &#x27;__init_subclass__&#x27;, &#x27;__iter__&#x27;, &#x27;__le__&#x27;, &#x27;__len__&#x27;, &#x27;__lt__&#x27;, &#x27;__mul__&#x27;, &#x27;__ne__&#x27;, &#x27;__new__&#x27;, &#x27;__reduce__&#x27;, &#x27;__reduce_ex__&#x27;, &#x27;__repr__&#x27;, &#x27;__reversed__&#x27;, &#x27;__rmul__&#x27;, &#x27;__setattr__&#x27;,</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x27;__setitem__&#x27;, &#x27;__sizeof__&#x27;, &#x27;__str__&#x27;, &#x27;__subclasshook__&#x27;, &#x27;append&#x27;, &#x27;clear&#x27;, &#x27;copy&#x27;, &#x27;count&#x27;, &#x27;extend&#x27;, &#x27;index&#x27;, &#x27;insert&#x27;, &#x27;pop&#x27;, &#x27;remove&#x27;, &#x27;reverse&#x27;, &#x27;sort&#x27;]</span></span><br></pre></td></tr></table></figure>
+
+<p>可以很清楚的看到，list并没有实现<code>__next__()</code>方法，所以它不是一个迭代器。</p>
+<p><strong>在使用for循环对list进行遍历的时候，是Python底层调用了</strong><code>**iter()**</code><strong>方法，帮我们获取到了list对应的迭代器</strong>，如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="built_in">iter</span>(my_list))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出 &lt;list_iterator object at 0x7fccb81ca7c0&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(my_list.__iter__())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出 &lt;list_iterator object at 0x7fccb81ca7c0&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>那么list对应的迭代器又实现了哪些属性和方法呢：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">dir</span>(<span class="built_in">iter</span>(my_list))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出 [&#x27;__class__&#x27;, &#x27;__delattr__&#x27;, &#x27;__dir__&#x27;, &#x27;__doc__&#x27;, &#x27;__eq__&#x27;, &#x27;__format__&#x27;, &#x27;__ge__&#x27;, &#x27;__getattribute__&#x27;, &#x27;__gt__&#x27;, &#x27;__hash__&#x27;, &#x27;__init__&#x27;, &#x27;__init_subclass__&#x27;, &#x27;__iter__&#x27;, &#x27;__le__&#x27;, &#x27;__length_hint__&#x27;,</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># &#x27;__lt__&#x27;, &#x27;__ne__&#x27;, &#x27;__new__&#x27;, &#x27;__next__&#x27;, &#x27;__reduce__&#x27;, &#x27;__reduce_ex__&#x27;, &#x27;__repr__&#x27;, &#x27;__setattr__&#x27;, &#x27;__setstate__&#x27;, &#x27;__sizeof__&#x27;, &#x27;__str__&#x27;, &#x27;__subclasshook__&#x27;]</span></span><br></pre></td></tr></table></figure>
+
+<p>显而易见，list对应的迭代器对象实现了<code>__next__()</code>方法，所以可以验证一下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>my_iter = my_list.__iter__()</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>my_iter.__next__()</span><br><span class="line"></span><br><span class="line"><span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>my_iter.__next__()</span><br><span class="line"></span><br><span class="line"><span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>my_iter.__next__()</span><br><span class="line"></span><br><span class="line"><span class="number">3</span></span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>my_iter.__next__()</span><br><span class="line"></span><br><span class="line">Traceback (most recent call last):</span><br><span class="line"></span><br><span class="line">  File <span class="string">&quot;&lt;stdin&gt;&quot;</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line"></span><br><span class="line">StopIteration</span><br></pre></td></tr></table></figure>
+
+<p>从上述代码可以看出：</p>
+<ul>
+<li>我们可以对<code>my_list</code>通过<code>__iter__()</code>返回的迭代器对象执行<code>__next__()</code>方法</li>
+<li>并且每次对<code>my_iter</code>执行<code>__next__()</code>方法后，<code>my_iter</code>都会发生变化，但<code>my_list</code>却是不变的</li>
+</ul>
+<p><strong>综上，for循环遍历list其实本质在做的事情如下：</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">my_iter = <span class="built_in">iter</span>(my_list)</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line"></span><br><span class="line">        <span class="built_in">print</span>(<span class="built_in">next</span>(my_iter))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">except</span> StopIteration:</span><br><span class="line"></span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出 1， 2， 3</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># iter(my_iter) 等价于 my_list.__iter__()</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># next(my_iter) 等价于 my_iter.__next__()</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>所以最终可以得出的结论是：</strong></p>
+<ol>
+<li>for循环遍历的并不是可迭代对象本身，而是其对应的迭代器对象</li>
+<li>可迭代对象对应的迭代器对象遍历结束后就会失效，无法回到起始位置</li>
+<li>可以多次对可迭代对象进行遍历，是因为每次都会调用<code>iter()</code>方法生成该可迭代对象的新的迭代器对象</li>
+</ol>
+<h3 id="迭代器的优点："><a href="#迭代器的优点：" class="headerlink" title="迭代器的优点："></a><strong>迭代器的优点：</strong></h3><p><strong>迭代器最大的好处就是节省内存</strong></p>
+<p>在Python中，文件对象也是一个迭代器，我们可以做如下验证：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; f = open(<span class="string">&quot;test.txt&quot;</span>)</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; <span class="built_in">dir</span>(f)</span></span><br><span class="line"></span><br><span class="line">[&#x27;_CHUNK_SIZE&#x27;, &#x27;__class__&#x27;, &#x27;__del__&#x27;, &#x27;__delattr__&#x27;, &#x27;__dict__&#x27;, &#x27;__dir__&#x27;, &#x27;__doc__&#x27;, &#x27;__enter__&#x27;, &#x27;__eq__&#x27;, &#x27;__exit__&#x27;, &#x27;__format__&#x27;, &#x27;__ge__&#x27;, &#x27;__getattribute__&#x27;, &#x27;__gt__&#x27;, &#x27;__hash__&#x27;, &#x27;__init__&#x27;, &#x27;__init_subclass__&#x27;, &#x27;__iter__&#x27;, &#x27;__le__&#x27;, &#x27;__lt__&#x27;, &#x27;__ne__&#x27;, &#x27;__new__&#x27;, &#x27;__next__&#x27;, &#x27;__reduce__&#x27;, &#x27;__reduce_ex__&#x27;, &#x27;__repr__&#x27;, &#x27;__setattr__&#x27;, &#x27;__sizeof__&#x27;, &#x27;__str__&#x27;, &#x27;__subclasshook__&#x27;, &#x27;_checkClosed&#x27;, &#x27;_checkReadable&#x27;, &#x27;_checkSeekable&#x27;, &#x27;_checkWritable&#x27;, &#x27;_finalizing&#x27;, &#x27;buffer&#x27;, &#x27;close&#x27;, &#x27;closed&#x27;, &#x27;detach&#x27;, &#x27;encoding&#x27;, &#x27;errors&#x27;, &#x27;fileno&#x27;, &#x27;flush&#x27;, &#x27;isatty&#x27;, &#x27;line_buffering&#x27;, &#x27;mode&#x27;, &#x27;name&#x27;, &#x27;newlines&#x27;, &#x27;read&#x27;, &#x27;readable&#x27;, &#x27;readline&#x27;, &#x27;readlines&#x27;, &#x27;reconfigure&#x27;, &#x27;seek&#x27;, &#x27;seekable&#x27;, &#x27;tell&#x27;, &#x27;truncate&#x27;, &#x27;writable&#x27;, &#x27;write&#x27;, &#x27;write_through&#x27;, &#x27;writelines&#x27;]</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; <span class="built_in">type</span>(f)</span></span><br><span class="line"></span><br><span class="line">&lt;class &#x27;_io.TextIOWrapper&#x27;&gt;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; from collections import Iterator</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt;&gt; isinstance(f, Iterator)</span></span><br><span class="line"></span><br><span class="line">True</span><br></pre></td></tr></table></figure>
+
+<p>既然文件对象也是一个迭代器，那我们假设一个场景：此时有一个很大的文本文件需要读取，常规的做法是</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;test.txt&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line"></span><br><span class="line">    data = f.readlines()</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> data:</span><br><span class="line"></span><br><span class="line">     <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<p>上述代码可以将文件内容全部读取出来，并按行保存为数组赋值给<code>data</code>，那么可想而知当文件内容很多时，data就会占用很大的内存。</p>
+<p>但我们可以运用迭代器的性质来很好的做出优化：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;test.txt&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> line <span class="keyword">in</span> f:</span><br><span class="line"></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<p>因为文件对象<code>f</code>是一个迭代器，所以理所当然可以对其使用for循环遍历。</p>
+<p>而for循环遍历时第一步就是调用<code>iter()</code>函数获取到<code>f</code>到迭代器对象（此处f到迭代器对象就是自身），接下来就是每次循环的时候调用<code>__next__()</code>函数来获取下一行。</p>
+<p>所以利用迭代器可以很大程度的节省内存，<strong>只有在调用</strong><code>**next()**</code><strong>方法时才会去获取下一个元素，这样可以避免一次性的加载很大的对象导致占用内存过多，而是在需要时才进行惰性计算</strong></p>
+<h2 id="生成器对象（Generator）"><a href="#生成器对象（Generator）" class="headerlink" title="生成器对象（Generator）"></a><strong>生成器对象（Generator）</strong></h2><p>从开头的图中大家已经可以看出来，生成器是一种特殊的迭代器。</p>
+<h3 id="至于为什么叫生成器？"><a href="#至于为什么叫生成器？" class="headerlink" title="至于为什么叫生成器？"></a><strong>至于为什么叫生成器？</strong></h3><p>主要是因为生成器函数并没有一次性将所有的元素都返回，而是每调用<code>__next__()</code>方法一次，生成一个元素，顾名思义叫做生成器。</p>
+<h3 id="那这不就是迭代器吗？"><a href="#那这不就是迭代器吗？" class="headerlink" title="那这不就是迭代器吗？"></a><strong>那这不就是迭代器吗？</strong></h3><p>确实生成器就是一种迭代器，它具有迭代器所有的特点，只不过在Python中<strong>更轻量，更优雅</strong>，生成器主要有两种形式：</p>
+<ol>
+<li>通过函数创建，称作generator function</li>
+<li>通过推导式创建，例如g&#x3D;(x<em>2 for x in range(10))，称作generator expression</em>*</li>
+</ol>
+<p>生成器对象是一种特殊的Iterator函数，它会在执行过程中保存执行的上下文环境，并在下次循环中从<strong>yield</strong>语句后继续执行，</p>
+<p><strong>生成器的标志就是yield关键字。</strong></p>
+<h3 id="所以生成器和迭代器最大的区别就是："><a href="#所以生成器和迭代器最大的区别就是：" class="headerlink" title="所以生成器和迭代器最大的区别就是："></a><strong>所以生成器和迭代器最大的区别就是</strong>：</h3><p>迭代器是一种宽泛的概念，大家可以将其理解为一种抽象的描述，平时我们并不会感知到，因为大多数的迭代器都有Python内置方法帮我们实现了，而生成器就是平时编程过程中经常会使用到的一种迭代器而已。</p>
+<h2 id="终极示例"><a href="#终极示例" class="headerlink" title="终极示例"></a><strong>终极示例</strong></h2><p>这里给大家分别用普通方法，迭代器以及生成器三种方式实现求解斐波那契数列，并遍历从1到100000点结果：</p>
+<h3 id="传统方式："><a href="#传统方式：" class="headerlink" title="传统方式："></a><strong>传统方式：</strong></h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">fibonacci_fun</span>(<span class="params">num</span>):</span><br><span class="line"></span><br><span class="line">    numlist = [<span class="number">0</span>,<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(num-<span class="number">1</span>):</span><br><span class="line"></span><br><span class="line">        numlist.append(numlist[-<span class="number">2</span>]+numlist[-<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> numlist[<span class="number">1</span>:]</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">res = fibonacci_fun(<span class="number">100000</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> res:</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(i)</span><br></pre></td></tr></table></figure>
+
+<h3 id="迭代器："><a href="#迭代器：" class="headerlink" title="迭代器："></a><strong>迭代器：</strong></h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Fibonacci_Iterator</span>:</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self,counts</span>):</span><br><span class="line"></span><br><span class="line">        self.start = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">        self.end = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        self.counts = counts</span><br><span class="line"></span><br><span class="line">        self.time = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__iter__</span>(<span class="params">self</span>):</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> self</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__next__</span>(<span class="params">self</span>):</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> self.time &gt;= self.counts:</span><br><span class="line"></span><br><span class="line">            <span class="keyword">raise</span> StopIteration</span><br><span class="line"></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line"></span><br><span class="line">            self.time += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">            self.start,self.end = self.end,self.start + self.end</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> self.start</span><br><span class="line"></span><br><span class="line">          </span><br><span class="line"></span><br><span class="line">f_iter = Fibonacci_Iterator(<span class="number">100000</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> f_iter:</span><br><span class="line"></span><br><span class="line">     <span class="built_in">print</span>(i)</span><br></pre></td></tr></table></figure>
+
+<h3 id="生成器："><a href="#生成器：" class="headerlink" title="生成器："></a><strong>生成器：</strong></h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">fibonacci_generator</span>(<span class="params">counts</span>):</span><br><span class="line"></span><br><span class="line">    start = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    end = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(counts):</span><br><span class="line"></span><br><span class="line">        start,end = end,end+start</span><br><span class="line"></span><br><span class="line">        <span class="keyword">yield</span> start</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">f_gene = fibonacci_generator(<span class="number">100000</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> f_gene:</span><br><span class="line"></span><br><span class="line">     <span class="built_in">print</span>(i)</span><br></pre></td></tr></table></figure>
+
+<p>大家可以从上面的代码中看出：</p>
+<p>**1.**传统方法求遍历解时需要一次性算出所有的元素，并将其保存在一个列表中返回；</p>
+<p>**2.**迭代器求解遍历时只会在for循环每次隐式调用<code>__next__()</code>方法时才求解；</p>
+<p>**3.**生成器的实现则最为优雅，代码执行到yield会暂停，把结果返回出来，再次隐式调用<code>__next__()</code>启动生成器的时候会在暂停的位置继续往下执行</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h2><p>关于可迭代对象，迭代器，生成器的讲解在我看来是<strong>刚接触Python时最为难理解的部分</strong>，这篇文章也只是较为粗浅给大家讲解，相信大家会在后续的编程中会对今天的概念有更为深刻的理解和运用。</p>
+]]></content>
+      <categories>
+        <category>番外篇</category>
+      </categories>
+      <tags>
+        <tag>Python基础</tag>
+        <tag>迭代器</tag>
+        <tag>生成器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>0.8 自动化运维番外篇-Python装饰器</title>
+    <url>/posts/b73e3867.html</url>
+    <content><![CDATA[<hr>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a><strong>摘要</strong></h2><p>大多数编程语言都提供了一些<strong>奇技淫巧</strong>，通常叫做<strong>语法糖</strong>，对于语法糖的定义如下：</p>
+<ol>
+<li>计算机语言中特殊的某种语法</li>
+<li>这种语法对语言的功能并没有影响</li>
+<li>对于编程人员有更好的易用性</li>
+<li>能够增加程序的可读性</li>
+</ol>
+<p>Python中同样也有很多语法糖，比如：<strong>列表推导式，with上下文管理器，装饰器</strong>等。其中装饰器是一个十分重要的特性，并且在之前面向对象章节中类的讲解，以及Flask框架的讲解中，也都或多或少使用过装饰器。</p>
+<p><strong>今天这一章节，就来着重给大家讲解一个Python中的装饰器。</strong></p>
+<span id="more"></span>
+
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a><strong>定义</strong></h2><p>装饰器是从<strong>Decorator</strong>直译而来，它可以<strong>在不改变一个函数代码和调用方式的情况下给函数添加新的功能。</strong></p>
+<p>装饰器本质上是一个闭包函数，它接受被装饰的函数(func)作为参数，并返回一个包装过的函数。这样我们可以在不改变被装饰函数的代码的情况下给被装饰函数或程序添加新的功能。</p>
+<p>Python的装饰器广泛应用于缓存、权限校验(如Flask中的@login_required和@permission_required装饰器)、性能测试(比如统计一段程序的运行时间)和插入日志等应用场景。</p>
+<p><strong>有了装饰器，我们就可以抽离出大量与函数功能本身无关的代码，增加一个函数的重用性。</strong></p>
+<p>先看一个最简单的装饰器例子，代码如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">timer</span>(<span class="params">func</span>):</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">inner</span>(<span class="params">num</span>):</span><br><span class="line"></span><br><span class="line">        start = time.time()</span><br><span class="line"></span><br><span class="line">        func(num)</span><br><span class="line"></span><br><span class="line">        end = time.time()</span><br><span class="line"></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;%s cost %f seconds&quot;</span> % (func.__name__, end - start))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> inner</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@timer</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">foo</span>(<span class="params">num</span>):</span><br><span class="line"></span><br><span class="line">    time.sleep(num)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line"></span><br><span class="line">    foo(<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"><span class="comment"># 运行程序后输出</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># foo cost 3.000634 seconds</span></span><br></pre></td></tr></table></figure>
+
+<p>上述代码中的<code>timer</code>函数就是一个装饰器函数，它接收另外一个函数作为参数，并统计其运行的时间。</p>
+<p><code>foo</code>函数是定义的一个示例函数，在其定义语句上面增加一行<code>@timer</code>就是给它增加了一个装饰器。</p>
+<p><strong>所以@其实就是Python中装饰器的语法糖。</strong></p>
+<h2 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a><strong>闭包</strong></h2><p>装饰器函数其实本质上就是一个<strong>闭包函数</strong>，上面代码示例中的<code>timer</code>就是一个闭包函数。</p>
+<p><strong>闭包是Python编程一个非常重要的概念</strong>。如果一个函数中定义了一个内函数，且内函数体内引用到了体外的变量，这时外函数通过return返回内函数的引用时，会把定义时涉及到的外部引用变量和内函数打包成一个整体（闭包）返回。</p>
+<p>闭包的定义可能会有点儿晦涩难懂，我们通过下面的代码示例详细解释一下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">outer</span>(<span class="params">a</span>):</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">inner</span>(<span class="params">b</span>):</span><br><span class="line"></span><br><span class="line">        <span class="built_in">print</span>(a + b)</span><br><span class="line"></span><br><span class="line">    inner(<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">outer(<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出结果为 4</span></span><br></pre></td></tr></table></figure>
+
+<p>上面代码中的<code>inner</code>就是内函数，内函数中定义了一个局部变量<code>b</code>，除此之外还引用到了其函数外部的<code>a</code>变量。</p>
+<p><code>a</code>变量本身不属于<code>inner</code>函数的变量作用域，但如果<code>inner</code>函数使用<code>a</code>变量时<strong>无法在自己的局部作用域中找到该变量时</strong>，<strong>会继续向上一层作用域中寻找</strong>，而<code>inner</code>函数的上一层作用域就是<code>outer</code>函数，<code>a</code>变量就是<code>outer</code>函数的参数，所以此时<code>inner</code>函数就找到了<code>a</code>变量。</p>
+<p>当调用<code>outer()</code>函数时，其实<code>outer</code>内部又调用了<code>inner</code>函数，但如果在<code>outer</code>函数里不调用<code>inner</code>函数，而是返回<code>inner</code>函数的引用，会有什么效果呢？代码如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">outer</span>(<span class="params">a</span>):</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">inner</span>(<span class="params">b</span>):</span><br><span class="line"></span><br><span class="line">        <span class="built_in">print</span>(a + b)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> inner</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">f = outer(<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(f))</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(f)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(f.__name__)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出结果为</span></span><br><span class="line"></span><br><span class="line">&lt;<span class="keyword">class</span> <span class="string">&#x27;function&#x27;</span>&gt;</span><br><span class="line"></span><br><span class="line">&lt;function outer.&lt;<span class="built_in">locals</span>&gt;.inner at <span class="number">0x7f9fd8093280</span>&gt;</span><br><span class="line"></span><br><span class="line">inner</span><br></pre></td></tr></table></figure>
+
+<p>从代码可以看出，执行<code>f = outer(2)</code>之后，并没有任何输出结果，内部也没有运行<code>inner</code>函数，而是将<code>inner</code>函数的引用返回了出来，所以<code>f</code>就是<code>inner</code>函数的引用。</p>
+<p>如果想要调用<code>inner</code>函数，就需要如下写法：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">outer</span>(<span class="params">a</span>):</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">inner</span>(<span class="params">b</span>):</span><br><span class="line"></span><br><span class="line">        <span class="built_in">print</span>(a + b)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> inner</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">f = outer(<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">f(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出结果为 3</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 或者写成 outer(2)(1)</span></span><br></pre></td></tr></table></figure>
+
+<p>正常情况下，一个函数运行结束的时候，临时变量会被<strong>销毁</strong>，所以上面代码中执行了<code>f = outer(2)</code>，<strong>此时其实outer函数已经执行结束了，所以outer函数中的局部变量a理应被销毁。</strong></p>
+<p>但由于我们在<code>outer</code>函数中返回了<code>inner</code>函数的引用，而<code>inner</code>函数又使用了<code>outer</code>函数中的局部变量，所以执行完<code>f = outer(2)</code>后，还不能将被<code>inner</code>函数引用到的变量<code>a</code>销毁，<strong>而是会将outer函数的局部变量同inner函数绑定在一起，并将inner函数返回，以供后续调用。</strong></p>
+<p>所以<code>outer</code>函数中最后的<code>return inner</code>做了两件事情:</p>
+<p><strong>一件是返回了inner函数的引用</strong></p>
+<p><strong>另一件就是暂时保留了被inner函数引用到的外部变量。</strong></p>
+<p>综上所述，闭包就是<strong>即使外函数已经结束了，内函数仍然能够使用外函数的临时变量。</strong></p>
+<h2 id="装饰器"><a href="#装饰器" class="headerlink" title="装饰器"></a><strong>装饰器</strong></h2><p>在了解了闭包之后，就可以开始真正了解Python中的装饰器了。</p>
+<p>计算一个函数执行时间的闭包代码如下所示：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">timer</span>(<span class="params">func</span>):</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">inner</span>(<span class="params">num</span>):</span><br><span class="line"></span><br><span class="line">        start = time.time()</span><br><span class="line"></span><br><span class="line">        func(num)</span><br><span class="line"></span><br><span class="line">        end = time.time()</span><br><span class="line"></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;%s cost %f seconds&quot;</span> % (func.__name__, end - start))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> inner</span><br></pre></td></tr></table></figure>
+
+<p><code>timer</code>函数是一个外函数，并接受一个参数<code>func</code>，<code>inner</code>函数是一个内函数，在<code>inner</code>函数中使用了<code>timer</code>的<code>func</code>变量；最终返回了<code>inner</code>函数的引用。</p>
+<p>比较特殊的是<code>timer</code>函数可以接受的是一个函数的引用，所以我们可以做如下事情：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">foo</span>(<span class="params">num</span>):</span><br><span class="line"></span><br><span class="line">    time.sleep(num)</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">timer(foo)(<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出结果为 foo cost 3.000634 seconds</span></span><br></pre></td></tr></table></figure>
+
+<p><code>timer(foo)(3)</code>这种写法总让人感觉很奇怪，易读性很低，而且编程人员写起来也不优雅。这时候就到了语法糖发挥作用的时候了。</p>
+<p>Python中<code>@</code>就是一个语法糖，它的作用就是将被装饰函数的引用当作参数传入装饰函数中，代码如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">timer</span>(<span class="params">func</span>):</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">inner</span>(<span class="params">num</span>):</span><br><span class="line"></span><br><span class="line">        start = time.time()</span><br><span class="line"></span><br><span class="line">        func(num)</span><br><span class="line"></span><br><span class="line">        end = time.time()</span><br><span class="line"></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;%s cost %f seconds&quot;</span> % (func.__name__, end - start))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> inner</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line"><span class="meta">@timer</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">foo</span>(<span class="params">num</span>):</span><br><span class="line"></span><br><span class="line">    time.sleep(num)</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">foo(<span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出结果为 foo cost 3.000634 seconds</span></span><br></pre></td></tr></table></figure>
+
+<p>所以<code>foo</code>函数被装饰后，在调用<code>foo</code>函数时，会先将<code>foo</code>函数的引用传入了<code>timer</code>函数中，再执行<code>timer</code>函数的返回值，等价于<code>timer(foo)(3)</code>。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h2><p><strong>装饰器始终是Python中十分重要的一个语法糖</strong>，可以说随处可见，这一章节主要从实现的角度给大家讲解了一下装饰器，也是希望大家能够在Python提供的便利下，窥见更多实现原理和细节，并且这种深入的理解对以后的编程也会起到很大的作用。</p>
+<p>下一章节我会讲解规范的Python代码中是如何使用装饰器的，并且带领大家对更深一步的源码进行阅读，敬请期待。</p>
+]]></content>
+      <categories>
+        <category>番外篇</category>
+      </categories>
+      <tags>
+        <tag>Python基础</tag>
+        <tag>装饰器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>0.9 自动化运维番外篇-Python装饰器-进阶</title>
+    <url>/posts/bbbab255.html</url>
+    <content><![CDATA[<hr>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a><strong>摘要</strong></h2><p>通过上一章节闭包函数和简单装饰器的讲解，大家应该能够理解Python中的装饰器的运行原理是怎样的了，这一节就需要讲解一些进阶的知识，并将功能进行泛化，使其更具有<strong>通用性和严谨性</strong>。</p>
+<span id="more"></span>
+
+<h2 id="可变参数"><a href="#可变参数" class="headerlink" title="可变参数"></a><strong>可变参数</strong></h2><p>可以先思考一下，上节示例代码中的<code>foo</code>函数只接受一个<code>num</code>参数，那我们定义的<code>timer</code>装饰器<strong>岂不是不能用来去装饰其他函数了</strong>？</p>
+<p>这里就需要和可变参数进行结合（可变参数的讲解可以跳转到<a href="https://xzsh9e8v26.feishu.cn/docs/doccnHQr7HdMecZtoANNXw9apFc">自动化运维番外篇-Python参数</a> 中了解），代码如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">timer</span>(<span class="params">func</span>):</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">inner</span>(<span class="params">*args, **kwargs</span>):</span><br><span class="line"></span><br><span class="line">        <span class="string">&quot;&quot;&quot;doc of inner&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">        start = time.time()</span><br><span class="line"></span><br><span class="line">        ret = func(*args, **kwargs)</span><br><span class="line"></span><br><span class="line">        end = time.time()</span><br><span class="line"></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;%s cost %f seconds&quot;</span> % (func.__name__, end - start))</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ret</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> inner</span><br></pre></td></tr></table></figure>
+
+<p>上述代码就是修改之后可以用来装饰所有函数的一个装饰器</p>
+<ol>
+<li>因为<code>inner</code>函数接受的是可变的位置参数和关键字参数，所以理论上就可以接受任意被装饰函数的任意参数。</li>
+<li>同时被装饰的函数可能本身会带有返回值，所以还需要定义一个变量接受它，并将其返回。</li>
+</ol>
+<h2 id="函数一致性"><a href="#函数一致性" class="headerlink" title="函数一致性"></a><strong>函数一致性</strong></h2><p>当对一个函数使用上述的装饰器进行装饰时，函数的内置变量会发生改变，诸如<code>__name__</code>和<code>__doc__</code>，示例如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">@timer</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">foo</span>(<span class="params">num</span>):</span><br><span class="line"></span><br><span class="line">    <span class="string">&quot;&quot;&quot;doc of foo&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    time.sleep(num)</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(foo.__name__)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(foo__doc__)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出如下：</span></span><br><span class="line"></span><br><span class="line">inner</span><br><span class="line"></span><br><span class="line">doc of inner</span><br></pre></td></tr></table></figure>
+
+<p>从代码运行结果可以看出，最终的输出与定义的<code>foo</code>函数的内置变量并不相同，原因是经过装饰器的装饰后，<code>foo.__name__</code>等价于<code>timer(foo).__name__</code>，<code>foo.__doc__</code>等价于<code>timer(foo).__doc__</code>。</p>
+<p>所以为了保证程序定义和输出的一致性，需要做出一定的修改，Python提供了内置的方法可以应对该现象，代码如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> wraps</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">timer</span>(<span class="params">func</span>):</span><br><span class="line"></span><br><span class="line"><span class="meta">    @wraps(<span class="params">func</span>)</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">inner</span>(<span class="params">*args, **kwargs</span>):</span><br><span class="line"></span><br><span class="line">        <span class="string">&quot;&quot;&quot;doc of inner&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">        start = time.time()</span><br><span class="line"></span><br><span class="line">        ret = func(*args, **kwargs)</span><br><span class="line"></span><br><span class="line">        end = time.time()</span><br><span class="line"></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;%s cost %f seconds&quot;</span> % (func.__name__, end - start))</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ret</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> inner</span><br></pre></td></tr></table></figure>
+
+<h3 id="wraps"><a href="#wraps" class="headerlink" title="wraps"></a><strong>wraps</strong></h3><p>这里做出的改动是在内函数<code>inner</code>上加一个Python内置的装饰器<code>wraps</code>，该装饰器的功能就是将<code>func</code>参数的内置属性修改到<code>inner</code>上，使最终返回的<code>inner</code>函数看起来就和<code>func</code>一样，具体的<code>warps</code>的实现可以从源码中看出。</p>
+<p><img src="https://s2.loli.net/2023/04/08/oBR2ITwA4itCgz3.png" alt="img"></p>
+<p>通过<code>command+单击</code>跳转到<code>wraps</code>函数内部，可以看到<code>warps</code>函数有三个参数，分别如下 ：</p>
+<ol>
+<li><code>wrapped</code>该参数就是<code>timer</code>中的<code>func</code>，也就是<code>timer</code>要装饰的函数。</li>
+<li><code>assigned</code>该参数等于内置的一个全局变量<code>WRAPPER_ASSIGNMENTS</code>，值为<code>(&#39;__module__&#39;, &#39;__name__&#39;, &#39;__qualname__&#39;, &#39;__doc__&#39;,&#39;__annotations__&#39;)</code>，这些值就是被装饰函数需要修改的内置属性</li>
+<li><code>updated</code>该参数等于内置的另一个全局变量<code>WRAPPER_UPDATES</code>，值为<code>(&#39;__dict__&#39;,)</code>表示要被更新的属性。</li>
+</ol>
+<h3 id="partial"><a href="#partial" class="headerlink" title="partial"></a><strong>partial</strong></h3><p><code>partial</code>函数翻译过来是叫偏函数，通俗地讲，<strong>调用偏函数就是对一个函数做一些额外的操作，然后再返回该函数的调用</strong>。</p>
+<p><strong>这听起来有点儿像装饰器，但其实并不完全相同</strong>。</p>
+<p>在官方文档的描述中，这个函数的声明如下：<code>functools.partial(func, *args, **keywords)</code>。</p>
+<p>它的作用就是返回一个<code>partial</code>对象，当这个<code>partial</code>对象被调用的时候，就像通过<code>func(*args, **kwargs)</code>的形式来调用<code>func</code>函数一样。如果有额外的 位置参数(<em>args)</em> <strong>或者</strong> 关键字参数(*kwargs) 被传给了这个<code>partial</code>对象，那它们也都会被传递给<code>func</code>函数，如果一个参数被多次传入，那么后面的值会覆盖前面的值。</p>
+<p>所以<code>wraps</code>函数其实就是返回了一个<code>partial</code>对象，该对象是对<code>update_wrapper</code>的修饰，会将<code>wraps</code>中的<code>wrapped、assigned、updated</code>参数都传递到<code>update_wrapped</code>中。</p>
+<h3 id="update-wrapper"><a href="#update-wrapper" class="headerlink" title="update_wrapper"></a><strong>update_wrapper</strong></h3><p>最后只需要搞懂<code>update_wrapper</code>函数就可以了，现在跳转进去看一下该函数的源码，如下图</p>
+<p><img src="https://s2.loli.net/2023/04/08/icp9nrDZ6CsJTLH.png" alt="img"></p>
+<p>通过源码可以看出，该函数接收一个<code>wrapper</code>参数，然后通过<code>getattr</code>获取<code>wrapped</code>中的所有<code>assigned</code>属性，然后通过<code>setattr</code>一一设置给<code>wrapper</code>，并且将<code>wrapped</code>函数的<code>__dict__</code>属性全部更新到<code>wrapper</code>的<code>__dict__</code>上（因为一个函数的<code>__dict__</code>是字典类型，所以可以直接通过<code>update</code>方法更新字典），最终返回<code>wrapper</code>函数。</p>
+<p>经过<code>update_wrapper</code>函数之后，<code>wrapped</code>函数（即<code>foo</code>函数）的所有内置属性，都会被更新到<code>wrapper</code>函数（即<code>inner</code>函数）上去。</p>
+<h3 id="整体理解"><a href="#整体理解" class="headerlink" title="整体理解"></a><strong>整体理解</strong></h3><ol>
+<li>对<code>inner</code>函数加上<code>@wraps(func)</code> 的装饰，等价于<code>wraps(func)(inner)</code></li>
+<li><code>wraps(func)</code>等价于<code>partial(update_wrapper, wrapped=func, assigned=assigned, updated=updated)</code></li>
+<li><code>wraps(func)(inner)</code>等价于<code>partial(update_wrapper, wrapped=func, assigned=assigned, updated=updated)(inner)</code></li>
+<li><code>partial(update_wrapper, wrapped=func...)(inner)</code>等价于<code>update_wrapper(inner, wrapped=func, , assigned=assigned, updated=updated)</code></li>
+</ol>
+<p>所以对<code>inner</code>函数使用进行<code>@wraps(func)</code>装饰后，最终<code>timer</code>函数中的返回的<code>inner</code>函数就会具备<code>func</code>(即<code>foo</code>)的所有属性；这样对<code>foo</code>函数使用<code>@timer</code>进行装饰才可以保证函数信息的一致性。</p>
+<h2 id="带参数的装饰器"><a href="#带参数的装饰器" class="headerlink" title="带参数的装饰器"></a><strong>带参数的装饰器</strong></h2><p>通过<code>wraps</code>的学习，大家可能已经发现，<code>wraps</code>也是一个装饰器，但它却可以接受额外的参数，而自定义的<code>timer</code>却只能接受被装饰的函数作为参数。</p>
+<p>其实我们同样也可以对<code>timer</code>进行修改，将其变成<strong>带参数的装饰器</strong>，方法如下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> wraps</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">timer</span>(<span class="params">timeout=<span class="number">10</span></span>):</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">func_log</span>(<span class="params">func</span>):</span><br><span class="line"></span><br><span class="line"><span class="meta">        @wraps(<span class="params">func</span>)</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">wrapper</span>(<span class="params">*args, **kwargs</span>):</span><br><span class="line"></span><br><span class="line">            <span class="string">&quot;&quot;&quot;doc of inner&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">            start = time.time()</span><br><span class="line"></span><br><span class="line">            ret = func(*args, **kwargs)</span><br><span class="line"></span><br><span class="line">            end = time.time()</span><br><span class="line"></span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;%s cost %f seconds&quot;</span> % (func.__name__, end - start))</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> end-start &gt; timeout:</span><br><span class="line"></span><br><span class="line">                <span class="keyword">raise</span> Exception(<span class="string">&quot;%s run timeout&quot;</span> % func.__name__)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> ret</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> wrapper</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> func_log</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line"><span class="meta">@timer(<span class="params"><span class="number">5</span></span>)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">foo</span>(<span class="params">num</span>):</span><br><span class="line"></span><br><span class="line">    time.sleep(num)</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line"></span><br><span class="line">    foo(<span class="number">12</span>)</span><br></pre></td></tr></table></figure>
+
+<p>上述代码经过修改后，<code>timer</code>可以接受一个<code>timeout</code>参数，这个参数默认值为<code>10</code>，表示被装饰的函数如果执行超过10s，则判定为超时异常。</p>
+<p>其实带参数的装饰器就是在原先的函数外面又包了一层函数，具体逻辑如下：</p>
+<ol>
+<li>调用<code>foo</code>函数<code>foo()</code>等价于<code>timer(5)(foo)(12)</code></li>
+<li><code>timer(5)(foo)(12)</code>等价于<code>func_log(foo)(12)</code></li>
+<li><code>func_log(foo)(12)</code>等价于<code>wraper(12)</code></li>
+</ol>
+<h2 id="类装饰器"><a href="#类装饰器" class="headerlink" title="类装饰器"></a><strong>类装饰器</strong></h2><p>上面的装饰器是由函数来完成，实际上由于Python的灵活性， 用类也可以实现一个装饰器。</p>
+<p>类能实现装饰器的功能， 是由于当我们调用一个对象时，实际上调用的是它的 call 方法。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Cache</span>:</span><br><span class="line"></span><br><span class="line">    __cache = &#123;&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, func</span>):</span><br><span class="line"></span><br><span class="line">        self.func = func</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__call__</span>(<span class="params">self</span>):</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 如果缓存字典中有这个方法的执行结果</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 直接返回缓存的值</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> self.func.__name__ <span class="keyword">in</span> Cache.__cache:</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> Cache.__cache[self.func.__name__]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 计算方法的执行结果</span></span><br><span class="line"></span><br><span class="line">        value = self.func()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 将其添加到缓存</span></span><br><span class="line"></span><br><span class="line">        Cache.__cache[self.func.__name__] = value</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 返回计算结果</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> value</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@Cache</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">long_time_func</span>():</span><br><span class="line"></span><br><span class="line">    time.sleep(<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;ok&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">start = time.time()</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(long_time_func())</span><br><span class="line"></span><br><span class="line">end = time.time()</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;func cost %f seconds&quot;</span> % (end - start))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">start = time.time()</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(long_time_func())</span><br><span class="line"></span><br><span class="line">end = time.time()</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;func cost %f seconds&quot;</span> % (end - start))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出内容如下</span></span><br><span class="line"></span><br><span class="line">ok</span><br><span class="line"></span><br><span class="line">func cost <span class="number">5.004846</span> seconds</span><br><span class="line"></span><br><span class="line">ok</span><br><span class="line"></span><br><span class="line">func cost <span class="number">0.000034</span> seconds</span><br></pre></td></tr></table></figure>
+
+<p><strong>上述类装饰器实现的功能就是将函数的调用结果进行缓存</strong>。</p>
+<p>由于类装饰器在平时的编程过程中并不多见，所以大家可以先简单理解上述示例代码了解原理即可。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a><strong>总结</strong></h2><p>这可能目前番外篇中最硬核的一次讲解了，其中涉及到的源码都是大家并不常看到的部分。</p>
+<p>并且可能有的朋友发现，Python内置的源码，不管是从抽象角度，代码注释规范，参数命名，以及异常处理都十分的优雅，这其实也是阅读源码最大的好处，这会对我们今后的编程起到潜移默化的提升作用。</p>
+<p>最后希望大家可以仔细阅读理解这一章节的内容，对Python装饰器能够有一个完整深入的理解。</p>
+]]></content>
+      <categories>
+        <category>番外篇</category>
+      </categories>
+      <tags>
+        <tag>Python基础</tag>
+        <tag>装饰器</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>0.1 自动化运维番外篇-代码整洁之道</title>
+    <url>/posts/cab6c8fa.html</url>
+    <content><![CDATA[<hr>
+<h1 id="第一章：整洁代码"><a href="#第一章：整洁代码" class="headerlink" title="第一章：整洁代码"></a><strong>第一章：整洁代码</strong></h1><h5 id="混乱的代价"><a href="#混乱的代价" class="headerlink" title="混乱的代价"></a><strong>混乱的代价</strong></h5><p>只要你干过两三年编程，就有可能曾被某人的糟糕代码绊倒过，如果你编程不止两三年，也可能被这种代码拖过后腿。进度延缓都程度会很严重。有些团队在项目初期进展迅速，但又那么一两年的时间却慢如蜗行。对代码的每次修改都影响到其他多处代码，最后这团乱麻越来越大，再也无法理清，束手无策。</p>
+<p>随着混乱的增加，团队生产力持续下降，趋向于零，管理层只能添加更多人手带项目中，可新人并不清楚系统的设计，也不了解设计意图，而且团队中的其他人都背负着提升生产力的可怕压力，于是制造了更多的混乱。</p>
+<h5 id="什么是整洁的代码"><a href="#什么是整洁的代码" class="headerlink" title="什么是整洁的代码"></a><strong>什么是整洁的代码</strong></h5><span id="more"></span>
+
+<p>优雅、艺术</p>
+<h1 id="第二章：有意义的命名"><a href="#第二章：有意义的命名" class="headerlink" title="第二章：有意义的命名"></a><strong>第二章：有意义的命名</strong></h1><h5 id="名副其实"><a href="#名副其实" class="headerlink" title="名副其实"></a><strong>名副其实</strong></h5><p>如果名称需要注释来补充，那这个命名就不算是名副其实</p>
+<h5 id="避免误导"><a href="#避免误导" class="headerlink" title="避免误导"></a><strong>避免误导</strong></h5><p>避免使用与本意相悖的词</p>
+<p>避免对不同变量使用外形极为相似的名称</p>
+<h5 id="做有意义的区分"><a href="#做有意义的区分" class="headerlink" title="做有意义的区分"></a><strong>做有意义的区分</strong></h5><p>要区分名称，就要以读者能鉴别不同之处的方式来区分，accountData与account没区别，theMessage也与message没区别</p>
+<h5 id="使用读得出来的名称"><a href="#使用读得出来的名称" class="headerlink" title="使用读得出来的名称"></a><strong>使用读得出来的名称</strong></h5><p>命名时避免使用读不出来的傻乎乎的自造词，而是使用恰当的英语词</p>
+<h5 id="使用可搜索的名称"><a href="#使用可搜索的名称" class="headerlink" title="使用可搜索的名称"></a><strong>使用可搜索的名称</strong></h5><p>单个字母和数字常亮的问题就是很难在一大篇文字中找出来，比如字母e可能出来在任何地方，所以，通常来说，长名称胜于短名称</p>
+<h5 id="类名"><a href="#类名" class="headerlink" title="类名"></a><strong>类名</strong></h5><p>类名应当是名词或短语，如Customer，Account</p>
+<p>避免使用Manager，Data，Info这样的类名</p>
+<p>类名不应该是动词</p>
+<h5 id="方法名"><a href="#方法名" class="headerlink" title="方法名"></a><strong>方法名</strong></h5><p>方法名应当是动词或动词短语，如postPayment，deletePage</p>
+<h5 id="一以贯之"><a href="#一以贯之" class="headerlink" title="一以贯之"></a><strong>一以贯之</strong></h5><p>DeviceManager和ProtoolController之间，为什么不全用Controller或这Manager，所以在程序中，通常命名方式应该一以贯之</p>
+<h1 id="第三章：函数"><a href="#第三章：函数" class="headerlink" title="第三章：函数"></a><strong>第三章：函数</strong></h1><h5 id="短小"><a href="#短小" class="headerlink" title="短小"></a><strong>短小</strong></h5><p>函数的第一规则是要短小，第二规则还是要短小</p>
+<p>理论上通过抽象更小的函数，可以让函数的缩进层级不多于两层。</p>
+<h5 id="只做一件事"><a href="#只做一件事" class="headerlink" title="只做一件事"></a><strong>只做一件事</strong></h5><p>函数应该只做同一抽象层级上的步骤，且只做一件事，</p>
+<p>判断函数是否不止做了一件事，可以看是否还能再拆出一个函数，从而改变目前函数的抽象层级。</p>
+<h5 id="每个函数一个抽象层级"><a href="#每个函数一个抽象层级" class="headerlink" title="每个函数一个抽象层级"></a><strong>每个函数一个抽象层级</strong></h5><p>让代码读起来像是自顶向下。</p>
+<h5 id="使用描述性的名称"><a href="#使用描述性的名称" class="headerlink" title="使用描述性的名称"></a><strong>使用描述性的名称</strong></h5><p>函数越短小，功能越集中，就越便于起一个好名字，更好的描述函数做的事。</p>
+<h5 id="参数"><a href="#参数" class="headerlink" title="参数"></a><strong>参数</strong></h5><p>应尽量避免定义三个以上参数的函数，如果一些函数需要三个及以上的参数，就说明其中一些参数莺歌被封装城类了</p>
+<p>函数参数应与函数处于同一个抽象层级，</p>
+<p>如果参数多于两个，则对于测试的覆盖会是一个灾难。</p>
+<p>避免使用标识参数，例如，函数传入一个bool值，如果为true将这样做，如果为false则那样做，这无异于大声宣布这个函数不止做了一件事；当必须存在这个标识时，应该通过重构，将标识限制在上层范围内。</p>
+<h5 id="无副作用"><a href="#无副作用" class="headerlink" title="无副作用"></a><strong>无副作用</strong></h5><p>避免在函数中做承诺以外的事，比如对其他变量做出预期外的改动。</p>
+<h5 id="将指令与询问分开"><a href="#将指令与询问分开" class="headerlink" title="将指令与询问分开"></a><strong>将指令与询问分开</strong></h5><p>函数要么修改某对象的状态，要么返回该对象的有关信息，两样都干时会导致混乱。</p>
+<h5 id="抽离错误处理代码块"><a href="#抽离错误处理代码块" class="headerlink" title="抽离错误处理代码块"></a><strong>抽离错误处理代码块</strong></h5><p>避免把错误处理与正常流程混为一谈，比如把错误处理单独抽离出来，这样代码会更加易于理解和修改。</p>
+<h5 id="别重复自己"><a href="#别重复自己" class="headerlink" title="别重复自己"></a><strong>别重复自己</strong></h5><p>某个逻辑被重复多次会导致代码臃肿，且修改时需要修改多处地方。</p>
+<h1 id="第四章：注释"><a href="#第四章：注释" class="headerlink" title="第四章：注释"></a><strong>第四章：注释</strong></h1><p>注释存在的时间越久，合理性就越低，没有人可以坚持的维护注释；</p>
+<p>当发现自己需要写注释时，想想看是否可以用代码来表达。</p>
+<h5 id="注释不能美化糟糕的代码"><a href="#注释不能美化糟糕的代码" class="headerlink" title="注释不能美化糟糕的代码"></a><strong>注释不能美化糟糕的代码</strong></h5><p>写注释的常见动机是糟糕代码的存在。带有少量注释的整洁代码，要比带有大量注释的复杂的代码好得多。</p>
+<p>只要多想几秒钟，就可以用代码解释你的大部分意图，简单到只需要创建一个命名与注释所描述的相符的函数即可。</p>
+<h1 id="第五章：格式"><a href="#第五章：格式" class="headerlink" title="第五章：格式"></a><strong>第五章：格式</strong></h1><h5 id="空白行"><a href="#空白行" class="headerlink" title="空白行"></a><strong>空白行</strong></h5><p>通过空白行标识出新的逻辑段。</p>
+<h5 id="函数调用"><a href="#函数调用" class="headerlink" title="函数调用"></a><strong>函数调用</strong></h5><p>若同一个文件中某个函数调用了另一个函数，那调用方应该放到被调方的上面。</p>
+<h5 id="空格"><a href="#空格" class="headerlink" title="空格"></a><strong>空格</strong></h5><p>赋值语句的等号左右两边应该用空格隔开，函数参数之间也应该用空格隔开。</p>
+<h5 id="团队规范"><a href="#团队规范" class="headerlink" title="团队规范"></a><strong>团队规范</strong></h5><p>同一个团队中的开发者应该遵守同一种格式风格。</p>
+<h1 id="第六章：对象和数据结构"><a href="#第六章：对象和数据结构" class="headerlink" title="第六章：对象和数据结构"></a><strong>第六章：对象和数据结构</strong></h1><p>对象暴露行为，隐藏数据，便于添加新对象类型而无需修改既有行为，但同时难以再既有对象中添加新行为。</p>
+<p>数据结构暴露数据，没有明显的行为，便于向既有数据结构添加新行为，同时难以向既有函数添加新数据结构。</p>
+<p>在任何系统中，我们有时希望能够灵活的添加新数据类型，所以更喜欢在这部分使用对象，在另外一些时候，我们希望能灵活的添加新行为，这时我们更喜欢使用数据类型和过程。</p>
+<h1 id="第七章：错误处理"><a href="#第七章：错误处理" class="headerlink" title="第七章：错误处理"></a><strong>第七章：错误处理</strong></h1><p>错误处理很重要，但如果它搞乱了代码逻辑，就是错误的做法。</p>
+<h5 id="抛出异常"><a href="#抛出异常" class="headerlink" title="抛出异常"></a><strong>抛出异常</strong></h5><p>在支持抛出异常的编程语言中尽量在遇到错误时跑出异常，而不是返回一个错误码。</p>
+<h5 id="适当使用不可控异常"><a href="#适当使用不可控异常" class="headerlink" title="适当使用不可控异常"></a><strong>适当使用不可控异常</strong></h5><p>尽量避免在上层抽象中明确的捕获底层的错误类型，如果底层函数发生了修改，返回了新的异常类型，则上层函数需要全部修改去新增对应异常类型的捕获逻辑，这种做法明显破坏了代码的封装性。</p>
+<h5 id="异常细节"><a href="#异常细节" class="headerlink" title="异常细节"></a><strong>异常细节</strong></h5><p>任何捕获异常的地方都要明确给出异常的上下文信息。</p>
+<h5 id="异常封装"><a href="#异常封装" class="headerlink" title="异常封装"></a><strong>异常封装</strong></h5><p>当需要捕获被调函数多个不同类型的异常时，为了避免冗余的代码以及后续由于被调函数异常的修改而去改动多处代码，尽量将可能抛出的多个异常封装成一个异常类。</p>
+<h5 id="抛出异常而不是返回null值"><a href="#抛出异常而不是返回null值" class="headerlink" title="抛出异常而不是返回null值"></a><strong>抛出异常而不是返回null值</strong></h5><p>避免返回null值，如果你打算在方法中返回null值不如抛出异常或返回特例对象；如果你调用的第三方API中可能返回null值，则可以考虑用新方法打包这个调用，在新方法中抛出异常或返回特例对象；否则返回null值基本上就是给自己增加工作量，也是在给调用者添乱，只要有一处没检查null值，应用程序就会失控。</p>
+<h5 id="避免传入null值"><a href="#避免传入null值" class="headerlink" title="避免传入null值"></a><strong>避免传入null值</strong></h5><p>避免在方法参数中传入null值，虽然可以在方法中对参数做null值校验，但禁止传入null值可以避免出现很多无心之失。</p>
+<h1 id="第八章：边界"><a href="#第八章：边界" class="headerlink" title="第八章：边界"></a><strong>第八章：边界</strong></h1><h5 id="避免暴露边界"><a href="#避免暴露边界" class="headerlink" title="避免暴露边界"></a><strong>避免暴露边界</strong></h5><p>当使用第三方代码的边界接口时，避免直接使用其API的返回值，而是将其进行封装，以便于对应用程序隐藏边界接口，并且能够后续做出更灵活的修改。</p>
+<h5 id="保留未知"><a href="#保留未知" class="headerlink" title="保留未知"></a><strong>保留未知</strong></h5><p>当使用部分细节未知的边界接口时，最好的做法同样是将其进行封装，这样可以尽量避免不被未知的部分所困扰。</p>
+<h1 id="第九章：测试"><a href="#第九章：测试" class="headerlink" title="第九章：测试"></a><strong>第九章：测试</strong></h1><h5 id="避免出现脏测试"><a href="#避免出现脏测试" class="headerlink" title="避免出现脏测试"></a><strong>避免出现脏测试</strong></h5><p>测试代码和生产代码一样重要，脏测试&#x3D;没测试，测试代码必须随着生产代码的演进而修改，否则测试代码越乱，就越需要花更多的时间加入新的测试。</p>
+<h5 id="测试规则"><a href="#测试规则" class="headerlink" title="测试规则"></a><strong>测试规则</strong></h5><p>测试代码要遵循 构造-操作-检验 三个步骤。</p>
+<h1 id="第十章：类"><a href="#第十章：类" class="headerlink" title="第十章：类"></a><strong>第十章：类</strong></h1><h5 id="短小-1"><a href="#短小-1" class="headerlink" title="短小"></a><strong>短小</strong></h5><p>类应该保持短小，并不是指代码行数，而是指“权责”。</p>
+<h5 id="单一权责原则"><a href="#单一权责原则" class="headerlink" title="单一权责原则"></a><strong>单一权责原则</strong></h5><p>系统应该由许多短小的类而不是少量巨大的类组成，每个小类封装一个权责，并与其他类一起协同达到期望的目的。</p>
+<h5 id="内聚"><a href="#内聚" class="headerlink" title="内聚"></a><strong>内聚</strong></h5><p>类应该只有少数的内置变量，类中的方法应该和变量相互依赖并结合成一个逻辑整体。</p>
+<p>保持内聚性有利于得到一个短小的类</p>
+<h5 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a><strong>抽象类</strong></h5><p>具体类包含实现细节，而抽象类则只呈现概念，依赖于具体细节的实现类，我们可以借助接口和抽象类来隔离这些细节带来的影响。</p>
+<h1 id="第十一章：系统"><a href="#第十一章：系统" class="headerlink" title="第十一章：系统"></a><strong>第十一章：系统</strong></h1><h1 id="第十二章：迭代"><a href="#第十二章：迭代" class="headerlink" title="第十二章：迭代"></a><strong>第十二章：迭代</strong></h1><h5 id="运行所有的测试"><a href="#运行所有的测试" class="headerlink" title="运行所有的测试"></a><strong>运行所有的测试</strong></h5><p>全面测试并是吃通过所有测试的系统，才是可以部署的系统</p>
+<h5 id="尽可能减少类和方法的数量"><a href="#尽可能减少类和方法的数量" class="headerlink" title="尽可能减少类和方法的数量"></a><strong>尽可能减少类和方法的数量</strong></h5><p>重构过程中，应该时刻关注变化之后的设计，在出现退步时及时消除重复。保证代码的表达力</p>
+<h1 id="第十三章：并发编程"><a href="#第十三章：并发编程" class="headerlink" title="第十三章：并发编程"></a><strong>第十三章：并发编程</strong></h1><h5 id="并发防御"><a href="#并发防御" class="headerlink" title="并发防御"></a><strong>并发防御</strong></h5><p>建议分离并发代码和其他代码；</p>
+<p>限制并发数据的作用域；</p>
+<p>避免共享数据；</p>
+<p>先使非并发代码正常工作</p>
+]]></content>
+      <categories>
+        <category>番外篇</category>
+      </categories>
+      <tags>
+        <tag>代码整洁之道</tag>
+      </tags>
+  </entry>
 </search>
