@@ -1,0 +1,602 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>2.3 自动化运维初级村-Netmiko-进阶 - NetDevOps in Python</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="NetDevOps in Python"><meta name="msapplication-TileImage" content="/img/profile.jpeg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="NetDevOps in Python"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="摘要上一章节中已经介绍了如何使用Netmiko创建连接，发送命令，并了解了Netmiko如何发送命令并接收数据，但只掌握这些还是远远不够的，实际的场景中会遇到各种各样的问题，诸如：设备类型问题，连接超时问题，执行超时问题等，这些问题其实Netmiko都有办法通过参数的调整来解决。"><meta property="og:type" content="blog"><meta property="og:title" content="2.3 自动化运维初级村-Netmiko-进阶"><meta property="og:url" content="https://ethanyue.github.io/posts/f6ffcca1.html"><meta property="og:site_name" content="NetDevOps in Python"><meta property="og:description" content="摘要上一章节中已经介绍了如何使用Netmiko创建连接，发送命令，并了解了Netmiko如何发送命令并接收数据，但只掌握这些还是远远不够的，实际的场景中会遇到各种各样的问题，诸如：设备类型问题，连接超时问题，执行超时问题等，这些问题其实Netmiko都有办法通过参数的调整来解决。"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://ethanyue.github.io/img/junior.png"><meta property="article:published_time" content="2023-04-08T03:09:00.000Z"><meta property="article:modified_time" content="2023-04-08T03:27:32.339Z"><meta property="article:author" content="EthanYue"><meta property="article:tag" content="Netmiko"><meta property="article:tag" content="SSH"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://ethanyue.github.io/img/junior.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://ethanyue.github.io/posts/f6ffcca1.html"},"headline":"2.3 自动化运维初级村-Netmiko-进阶","image":["https://ethanyue.github.io/img/junior.png"],"datePublished":"2023-04-08T03:09:00.000Z","dateModified":"2023-04-08T03:27:32.339Z","author":{"@type":"Person","name":"EthanYue"},"publisher":{"@type":"Organization","name":"NetDevOps in Python","logo":{"@type":"ImageObject","url":"https://ethanyue.github.io/img/profile.jpeg"}},"description":"摘要上一章节中已经介绍了如何使用Netmiko创建连接，发送命令，并了解了Netmiko如何发送命令并接收数据，但只掌握这些还是远远不够的，实际的场景中会遇到各种各样的问题，诸如：设备类型问题，连接超时问题，执行超时问题等，这些问题其实Netmiko都有办法通过参数的调整来解决。"}</script><link rel="canonical" href="https://ethanyue.github.io/posts/f6ffcca1.html"><link rel="icon" href="/img/profile.jpeg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/profile.jpeg" alt="NetDevOps in Python" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">主页</a><a class="navbar-item" href="/categories/%E6%96%B0%E6%89%8B%E6%9D%91">新手村</a><a class="navbar-item" href="/categories/%E5%88%9D%E7%BA%A7%E6%9D%91">初级村</a><a class="navbar-item" href="/categories/%E4%B8%AD%E7%BA%A7%E6%9D%91">中级村</a><a class="navbar-item" href="/categories/%E9%AB%98%E7%BA%A7%E6%9D%91">高级村</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/EthanYue/PythonAutoOps"><i class="fa-brands fa-github fa-lg"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="目录" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><div class="card-image"><span class="image is-7by3"><img class="fill" src="/img/junior.png" alt="2.3 自动化运维初级村-Netmiko-进阶"></span></div><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time dateTime="2023-04-08T03:09:00.000Z" title="2023/4/8 11:09:00">2023-04-08</time>发表</span><span class="level-item"><time dateTime="2023-04-08T03:27:32.339Z" title="2023/4/8 11:27:32">2023-04-08</time>更新</span><span class="level-item"> EthanYue </span><span class="level-item"><a class="link-muted" href="/categories/%E5%88%9D%E7%BA%A7%E6%9D%91/">初级村</a></span><span class="level-item">30 分钟读完 (大约4462个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">2.3 自动化运维初级村-Netmiko-进阶</h1><div class="content"><hr>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>上一章节中已经介绍了如何使用Netmiko创建连接，发送命令，并了解了Netmiko如何发送命令并接收数据，但只掌握这些还是远远不够的，实际的场景中会遇到各种各样的问题，诸如：设备类型问题，连接超时问题，执行超时问题等，这些问题其实Netmiko都有办法通过参数的调整来解决。</p>
+<span id="more"></span>
+
+<p>先回顾一下基础的代码，如下所示：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> netmiko <span class="keyword">import</span> ConnectHandler</span><br><span class="line"></span><br><span class="line">params = &#123;</span><br><span class="line">    <span class="string">&quot;device_type&quot;</span>: <span class="string">&quot;cisco_ios&quot;</span>, </span><br><span class="line">    <span class="string">&quot;host&quot;</span>: <span class="string">&quot;192.168.31.149&quot;</span>, </span><br><span class="line">    <span class="string">&quot;username&quot;</span>: <span class="string">&quot;cisco&quot;</span>, </span><br><span class="line">    <span class="string">&quot;password&quot;</span>: <span class="string">&quot;cisco&quot;</span></span><br><span class="line">&#125;</span><br><span class="line">net_connect = ConnectHandler(**params)</span><br><span class="line">cmd = <span class="string">&quot;show interface brief&quot;</span></span><br><span class="line">output = net_connect.send_command(cmd)</span><br><span class="line"><span class="built_in">print</span>(output)</span><br></pre></td></tr></table></figure>
+
+<h1 id="连接参数"><a href="#连接参数" class="headerlink" title="连接参数"></a>连接参数</h1><p>Netmiko中支持的不同厂商的连接对象<code>ConnectionClass</code>都是继承自一个基类<code>BaseConnection</code>，并且常见的几种厂商初始化连接对象的方式（即<code>__init__</code>方法）几乎都没有进行重写，也就是说我们目前只需要着重了解基类的初始化即可。</p>
+<p>源码中的连接对象初始化参数如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params"></span></span><br><span class="line"><span class="params">    self,</span></span><br><span class="line"><span class="params">    ip: <span class="built_in">str</span> = <span class="string">&quot;&quot;</span>,</span></span><br><span class="line"><span class="params">    host: <span class="built_in">str</span> = <span class="string">&quot;&quot;</span>,</span></span><br><span class="line"><span class="params">    username: <span class="built_in">str</span> = <span class="string">&quot;&quot;</span>,</span></span><br><span class="line"><span class="params">    password: <span class="type">Optional</span>[<span class="built_in">str</span>] = <span class="literal">None</span>,</span></span><br><span class="line"><span class="params">    secret: <span class="built_in">str</span> = <span class="string">&quot;&quot;</span>,</span></span><br><span class="line"><span class="params">    port: <span class="type">Optional</span>[<span class="built_in">int</span>] = <span class="literal">None</span>,</span></span><br><span class="line"><span class="params">    device_type: <span class="built_in">str</span> = <span class="string">&quot;&quot;</span>,</span></span><br><span class="line"><span class="params">    verbose: <span class="built_in">bool</span> = <span class="literal">False</span>,</span></span><br><span class="line"><span class="params">    global_delay_factor: <span class="built_in">float</span> = <span class="number">1.0</span>,</span></span><br><span class="line"><span class="params">    global_cmd_verify: <span class="type">Optional</span>[<span class="built_in">bool</span>] = <span class="literal">None</span>,</span></span><br><span class="line"><span class="params">    use_keys: <span class="built_in">bool</span> = <span class="literal">False</span>,</span></span><br><span class="line"><span class="params">    key_file: <span class="type">Optional</span>[<span class="built_in">str</span>] = <span class="literal">None</span>,</span></span><br><span class="line"><span class="params">    pkey: <span class="type">Optional</span>[paramiko.PKey] = <span class="literal">None</span>,</span></span><br><span class="line"><span class="params">    passphrase: <span class="type">Optional</span>[<span class="built_in">str</span>] = <span class="literal">None</span>,</span></span><br><span class="line"><span class="params">    disabled_algorithms: <span class="type">Optional</span>[<span class="type">Dict</span>[<span class="built_in">str</span>, <span class="type">Any</span>]] = <span class="literal">None</span>,</span></span><br><span class="line"><span class="params">    allow_agent: <span class="built_in">bool</span> = <span class="literal">False</span>,</span></span><br><span class="line"><span class="params">    ssh_strict: <span class="built_in">bool</span> = <span class="literal">False</span>,</span></span><br><span class="line"><span class="params">    system_host_keys: <span class="built_in">bool</span> = <span class="literal">False</span>,</span></span><br><span class="line"><span class="params">    alt_host_keys: <span class="built_in">bool</span> = <span class="literal">False</span>,</span></span><br><span class="line"><span class="params">    alt_key_file: <span class="built_in">str</span> = <span class="string">&quot;&quot;</span>,</span></span><br><span class="line"><span class="params">    ssh_config_file: <span class="type">Optional</span>[<span class="built_in">str</span>] = <span class="literal">None</span>,</span></span><br><span class="line"><span class="params">    <span class="comment">#</span></span></span><br><span class="line"><span class="params">    <span class="comment"># Connect timeouts</span></span></span><br><span class="line"><span class="params">    <span class="comment"># ssh-connect --&gt; TCP conn (conn_timeout) --&gt; SSH-banner (banner_timeout)</span></span></span><br><span class="line"><span class="params">    <span class="comment">#       --&gt; Auth response (auth_timeout)</span></span></span><br><span class="line"><span class="params">    conn_timeout: <span class="built_in">int</span> = <span class="number">10</span>,</span></span><br><span class="line"><span class="params">    <span class="comment"># Timeout to wait for authentication response</span></span></span><br><span class="line"><span class="params">    auth_timeout: <span class="type">Optional</span>[<span class="built_in">int</span>] = <span class="literal">None</span>,</span></span><br><span class="line"><span class="params">    banner_timeout: <span class="built_in">int</span> = <span class="number">15</span>,  <span class="comment"># Timeout to wait for the banner to be presented</span></span></span><br><span class="line"><span class="params">    <span class="comment"># Other timeouts</span></span></span><br><span class="line"><span class="params">    blocking_timeout: <span class="built_in">int</span> = <span class="number">20</span>,  <span class="comment"># Read blocking timeout</span></span></span><br><span class="line"><span class="params">    timeout: <span class="built_in">int</span> = <span class="number">100</span>,  <span class="comment"># TCP connect timeout | overloaded to read-loop timeout</span></span></span><br><span class="line"><span class="params">    session_timeout: <span class="built_in">int</span> = <span class="number">60</span>,  <span class="comment"># Used for locking/sharing the connection</span></span></span><br><span class="line"><span class="params">    read_timeout_override: <span class="type">Optional</span>[<span class="built_in">float</span>] = <span class="literal">None</span>,</span></span><br><span class="line"><span class="params">    keepalive: <span class="built_in">int</span> = <span class="number">0</span>,</span></span><br><span class="line"><span class="params">    default_enter: <span class="type">Optional</span>[<span class="built_in">str</span>] = <span class="literal">None</span>,</span></span><br><span class="line"><span class="params">    response_return: <span class="type">Optional</span>[<span class="built_in">str</span>] = <span class="literal">None</span>,</span></span><br><span class="line"><span class="params">    serial_settings: <span class="type">Optional</span>[<span class="type">Dict</span>[<span class="built_in">str</span>, <span class="type">Any</span>]] = <span class="literal">None</span>,</span></span><br><span class="line"><span class="params">    fast_cli: <span class="built_in">bool</span> = <span class="literal">True</span>,</span></span><br><span class="line"><span class="params">    _legacy_mode: <span class="built_in">bool</span> = <span class="literal">False</span>,</span></span><br><span class="line"><span class="params">    session_log: <span class="type">Optional</span>[SessionLog] = <span class="literal">None</span>,</span></span><br><span class="line"><span class="params">    session_log_record_writes: <span class="built_in">bool</span> = <span class="literal">False</span>,</span></span><br><span class="line"><span class="params">    session_log_file_mode: <span class="built_in">str</span> = <span class="string">&quot;write&quot;</span>,</span></span><br><span class="line"><span class="params">    allow_auto_change: <span class="built_in">bool</span> = <span class="literal">False</span>,</span></span><br><span class="line"><span class="params">    encoding: <span class="built_in">str</span> = <span class="string">&quot;utf-8&quot;</span>,</span></span><br><span class="line"><span class="params">    sock: <span class="type">Optional</span>[socket.socket] = <span class="literal">None</span>,</span></span><br><span class="line"><span class="params">    auto_connect: <span class="built_in">bool</span> = <span class="literal">True</span>,</span></span><br><span class="line"><span class="params">    delay_factor_compat: <span class="built_in">bool</span> = <span class="literal">False</span>,</span></span><br><span class="line"><span class="params"></span>) -&gt; <span class="literal">None</span>:</span><br></pre></td></tr></table></figure>
+
+<p>大部分朋友可能看到这么多参数会非常头疼，我这里给大家做一个归类，就可以很好的掌握这些参数的作用了。</p>
+<h2 id="参数分类"><a href="#参数分类" class="headerlink" title="参数分类"></a>参数分类</h2><table>
+<thead>
+<tr>
+<th>类别</th>
+<th>参数名</th>
+<th>参数类型</th>
+<th>默认值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>基本参数</td>
+<td>ip&#x2F;host</td>
+<td>string</td>
+<td>“”</td>
+<td>两者必须填一个，作为远程设备的地址</td>
+</tr>
+<tr>
+<td>device_type</td>
+<td>string</td>
+<td>“”</td>
+<td>根据设备类型映射到对应的连接对象</td>
+<td></td>
+</tr>
+<tr>
+<td>认证参数</td>
+<td>username</td>
+<td>string</td>
+<td>“”</td>
+<td>对目标设备进行身份验证的用户名</td>
+</tr>
+<tr>
+<td>password</td>
+<td>string</td>
+<td>None</td>
+<td>对目标设备进行身份验证的密码</td>
+<td></td>
+</tr>
+<tr>
+<td>secret</td>
+<td>string</td>
+<td>“”</td>
+<td>如果目标设备需要，则设置为enable的密码</td>
+<td></td>
+</tr>
+<tr>
+<td>use_keys</td>
+<td>bool</td>
+<td>False</td>
+<td>使用SSH密钥连接目标设备</td>
+<td></td>
+</tr>
+<tr>
+<td>key_file</td>
+<td>string</td>
+<td>None</td>
+<td>要使用的SSH密钥文件的文件名路径</td>
+<td></td>
+</tr>
+<tr>
+<td>pkey</td>
+<td>paramiko.PKey</td>
+<td>None</td>
+<td>要使用的SSH密钥对象</td>
+<td></td>
+</tr>
+<tr>
+<td>passphrase</td>
+<td>string</td>
+<td>None</td>
+<td>用于密钥的密码短语</td>
+<td></td>
+</tr>
+<tr>
+<td>disabled_algorithms</td>
+<td>dict</td>
+<td>None</td>
+<td>要禁用的SSH算法字典</td>
+<td></td>
+</tr>
+<tr>
+<td>allow_agent</td>
+<td>bool</td>
+<td>False</td>
+<td>启用SSH key-agent</td>
+<td></td>
+</tr>
+<tr>
+<td>ssh_strict</td>
+<td>bool</td>
+<td>False</td>
+<td>自动拒绝未知的SSH主机密钥(默认值:False表示将接受未知的SSH主机密钥)。</td>
+<td></td>
+</tr>
+<tr>
+<td>system_host_keys</td>
+<td>bool</td>
+<td>False</td>
+<td>从users known_hosts文件加载主机密钥</td>
+<td></td>
+</tr>
+<tr>
+<td>alt_host_keys</td>
+<td>bool</td>
+<td>False</td>
+<td>如果’ True ‘主机密钥将从指定的文件加载alt_key_file。</td>
+<td></td>
+</tr>
+<tr>
+<td>alt_key_file</td>
+<td>string</td>
+<td>“”</td>
+<td>要使用的SSH主机密钥文件(如果alt_host_keys&#x3D;True)</td>
+<td></td>
+</tr>
+<tr>
+<td>ssh_config_file</td>
+<td>string</td>
+<td>“”</td>
+<td>OpenSSH配置文件文件名</td>
+<td></td>
+</tr>
+<tr>
+<td>serial_settings</td>
+<td>Dict</td>
+<td>None</td>
+<td>串口连接的设置</td>
+<td></td>
+</tr>
+<tr>
+<td>超时参数(单位为秒)</td>
+<td>conn_timeout</td>
+<td>int</td>
+<td>10</td>
+<td>建立TCP连接的超时时间</td>
+</tr>
+<tr>
+<td>auth_timeout</td>
+<td>int</td>
+<td>10</td>
+<td>设置等待认证响应的超时时间</td>
+<td></td>
+</tr>
+<tr>
+<td>banner_timeout</td>
+<td>int</td>
+<td>15</td>
+<td>等待banner出现的超时时间</td>
+<td></td>
+</tr>
+<tr>
+<td>blocking_timeout</td>
+<td>int</td>
+<td>20</td>
+<td>阻塞读写操作的超时时间，如果有值则会在读写channel阻塞超时后抛出异常</td>
+<td></td>
+</tr>
+<tr>
+<td>timeout</td>
+<td>int</td>
+<td>20</td>
+<td>可以用来调整改变读取通道的max_loops</td>
+<td></td>
+</tr>
+<tr>
+<td>session_timeout</td>
+<td>int</td>
+<td>60</td>
+<td>设置并发请求的超时时间</td>
+<td></td>
+</tr>
+<tr>
+<td>read_timeout_override</td>
+<td>float</td>
+<td>None</td>
+<td>用来覆盖读取超时的设置</td>
+<td></td>
+</tr>
+<tr>
+<td>global_delay_factor</td>
+<td>float</td>
+<td>1.0</td>
+<td>影响读取通道间隔延迟的乘法因子(默认值:1)</td>
+<td></td>
+</tr>
+<tr>
+<td>delay_factor_compat</td>
+<td>bool</td>
+<td>False</td>
+<td>设置send_command和send_command_timing使用Netmiko3.x中delay_factor&#x2F;global_delay_factor&#x2F;max_loops的行为。这在Netmiko 5中被淘汰x(默认值:False)</td>
+<td></td>
+</tr>
+<tr>
+<td>keepalive</td>
+<td>int</td>
+<td>0</td>
+<td>按指定的时间间隔发送SSH keepalive报文，单位为秒</td>
+<td></td>
+</tr>
+<tr>
+<td>与读写通道相关的参数</td>
+<td>global_cmd_verify</td>
+<td>bool</td>
+<td>None</td>
+<td>控制是否启用或禁用命令回显验证(默认值:没有)。全局属性优先于函数“cmd_verify”论点。“None”的值表示使用函数“cmd_verify”参数</td>
+</tr>
+<tr>
+<td>default_enter</td>
+<td>string</td>
+<td>“”</td>
+<td>默认换行符(\n)</td>
+<td></td>
+</tr>
+<tr>
+<td>response_return</td>
+<td>string</td>
+<td>“”</td>
+<td>在规范化返回数据中要表示的字符舒付(默认:\n)</td>
+<td></td>
+</tr>
+<tr>
+<td>fast_cli</td>
+<td>bool</td>
+<td>True</td>
+<td>提供一种优化性能的方法。转换select_delay_factor选择最小的全局和特定。设置默认的global_delay_factor为0.1，这个值在Netmiko3.x中会影响到read_timeout的值</td>
+<td></td>
+</tr>
+<tr>
+<td>_legacy_mode</td>
+<td>bool</td>
+<td>False</td>
+<td>逐行执行多条命令后，一起收集输出级过</td>
+<td></td>
+</tr>
+<tr>
+<td>session_log</td>
+<td>SessionLog</td>
+<td>None</td>
+<td>用来写入会话日志的文件路径或BufferedIOBase子类对象。</td>
+<td></td>
+</tr>
+<tr>
+<td>session_log_record_writes</td>
+<td>bool</td>
+<td>False</td>
+<td>会话日志通常只记录通道读操作，以消除命令回传造成的命令重复。如果你想在日志中都记录通道读和通道写，则需要将该值设为True</td>
+<td></td>
+</tr>
+<tr>
+<td>session_log_file_mode</td>
+<td>string</td>
+<td>write</td>
+<td>session_log文件模式为write或append</td>
+<td></td>
+</tr>
+<tr>
+<td>allow_auto_change</td>
+<td>bool</td>
+<td>False</td>
+<td>允许自动更改终端宽度的设置，部分继承了基类的连接对象会用到该值。</td>
+<td></td>
+</tr>
+<tr>
+<td>encoding</td>
+<td>string</td>
+<td>utf-8</td>
+<td>向输出通道写入字节时使用的编码。</td>
+<td></td>
+</tr>
+<tr>
+<td>sock</td>
+<td>socket</td>
+<td>None</td>
+<td>一个开放的套接字或类似套接字的对象(如’ . channel ‘)，用于与目标主机通信(默认:None)。</td>
+<td></td>
+</tr>
+<tr>
+<td>auto_connect</td>
+<td>bool</td>
+<td>True</td>
+<td>是否在初始化连接对象后自动建立连接</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>通过上面表格的分类，大家应该都对连接对象的参数有了清晰的认识，虽然每个分类里的参数都比较多，但并不是都需要全部用到，我这里只把常用的几个参数通过高亮标识里出来。</p>
+<h2 id="参数调整"><a href="#参数调整" class="headerlink" title="参数调整"></a>参数调整</h2><p>连接设备必须的基本参数和认证参数就不做赘述了，大家可以根据自己的实际情况选择是用户名&#x2F;密码方式连接，还是密钥连接。</p>
+<p>但超时参数里有几个参数是比较重要的。</p>
+<ol>
+<li>conn_timeout</li>
+<li>auth_timeout</li>
+<li>banner_timeout</li>
+</ol>
+<p>整个连接的建立过程存在几个可能会超时的节点，如下图所示：</p>
+<p><img src="https://s2.loli.net/2023/04/08/QSAXg8rmVt59sYl.png" alt="img"></p>
+<p>所以大家可以根据连接设备时具体的报错日志分析，超时异常出现在哪一个阶段，然后相应的调整连接超时参数即可。</p>
+<h1 id="命令参数"><a href="#命令参数" class="headerlink" title="命令参数"></a>命令参数</h1><p>Netmiko发送命令的函数有很多个，分别适用于不同的场景，但今天我们以最为常用的<code>send_command</code>做为例子来讲解，因为其他的执行函数大多也都是基于该函数进行了封装，或者其参数与该函数的参数也基本类似。</p>
+<p>源码中函数的参数如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">send_command</span>(<span class="params"></span></span><br><span class="line"><span class="params">    self,</span></span><br><span class="line"><span class="params">    command_string: <span class="built_in">str</span>,</span></span><br><span class="line"><span class="params">    expect_string: <span class="type">Optional</span>[<span class="built_in">str</span>] = <span class="literal">None</span>,</span></span><br><span class="line"><span class="params">    read_timeout: <span class="built_in">float</span> = <span class="number">10.0</span>,</span></span><br><span class="line"><span class="params">    delay_factor: <span class="type">Optional</span>[<span class="built_in">float</span>] = <span class="literal">None</span>,</span></span><br><span class="line"><span class="params">    max_loops: <span class="type">Optional</span>[<span class="built_in">int</span>] = <span class="literal">None</span>,</span></span><br><span class="line"><span class="params">    auto_find_prompt: <span class="built_in">bool</span> = <span class="literal">True</span>,</span></span><br><span class="line"><span class="params">    strip_prompt: <span class="built_in">bool</span> = <span class="literal">True</span>,</span></span><br><span class="line"><span class="params">    strip_command: <span class="built_in">bool</span> = <span class="literal">True</span>,</span></span><br><span class="line"><span class="params">    normalize: <span class="built_in">bool</span> = <span class="literal">True</span>,</span></span><br><span class="line"><span class="params">    use_textfsm: <span class="built_in">bool</span> = <span class="literal">False</span>,</span></span><br><span class="line"><span class="params">    textfsm_template: <span class="type">Optional</span>[<span class="built_in">str</span>] = <span class="literal">None</span>,</span></span><br><span class="line"><span class="params">    use_ttp: <span class="built_in">bool</span> = <span class="literal">False</span>,</span></span><br><span class="line"><span class="params">    ttp_template: <span class="type">Optional</span>[<span class="built_in">str</span>] = <span class="literal">None</span>,</span></span><br><span class="line"><span class="params">    use_genie: <span class="built_in">bool</span> = <span class="literal">False</span>,</span></span><br><span class="line"><span class="params">    cmd_verify: <span class="built_in">bool</span> = <span class="literal">True</span>,</span></span><br><span class="line"><span class="params"></span>) -&gt; <span class="type">Union</span>[<span class="built_in">str</span>, <span class="type">List</span>[<span class="type">Any</span>], <span class="type">Dict</span>[<span class="built_in">str</span>, <span class="type">Any</span>]]:</span><br></pre></td></tr></table></figure>
+
+<p>其实源码中的类，函数，参数的作用都和实际的命名相关，所以大家可以多去翻译一下，这样不仅可以在后续编程的过程中养成良好的命名习惯，也可以慢慢的面对陌生的函数或参数大概猜到其用法。</p>
+<h2 id="参数分类-1"><a href="#参数分类-1" class="headerlink" title="参数分类"></a>参数分类</h2><table>
+<thead>
+<tr>
+<th>类别</th>
+<th>参数名</th>
+<th>参数类型</th>
+<th>默认值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>基本参数</td>
+<td>command_string</td>
+<td>string</td>
+<td>“”</td>
+<td>在设备上执行的命令</td>
+</tr>
+<tr>
+<td></td>
+<td>expect_string</td>
+<td>string</td>
+<td>None</td>
+<td>用于判定输出结束的正则表达式&#x2F;字符串，如果不传则默认自动获取设备标识符</td>
+</tr>
+<tr>
+<td>超时参数</td>
+<td>read_timeout</td>
+<td>float</td>
+<td>10.0</td>
+<td>循环读取通道的超时时间</td>
+</tr>
+<tr>
+<td></td>
+<td>delay_factor</td>
+<td>float</td>
+<td>None</td>
+<td>确定超时时间延迟乘数，只有delay_factor_compat设为True时才使用，通常在Netmiko4.x&#x2F;5.x中不使用</td>
+</tr>
+<tr>
+<td></td>
+<td>max_loops</td>
+<td>int</td>
+<td>None</td>
+<td>确定超时时间的最大循环次数，只有delay_factor_compat设为True时才使用，通常在Netmiko4.x&#x2F;5.x中不使用</td>
+</tr>
+<tr>
+<td>格式化参数</td>
+<td>auto_find_prompt</td>
+<td>bool</td>
+<td>True</td>
+<td>自动获取设备标识</td>
+</tr>
+<tr>
+<td></td>
+<td>strip_command</td>
+<td>bool</td>
+<td>True</td>
+<td>删除执行命令的回显信息，通常为删除结果的首行并处理特殊字符</td>
+</tr>
+<tr>
+<td></td>
+<td>strp_prompt</td>
+<td>bool</td>
+<td>True</td>
+<td>从输出中删除末尾的路由器提示符</td>
+</tr>
+<tr>
+<td></td>
+<td>normalize</td>
+<td>bool</td>
+<td>True</td>
+<td>去除command_string的多余空格并末尾添加换行符</td>
+</tr>
+<tr>
+<td></td>
+<td>cmd_verify</td>
+<td>bool</td>
+<td>True</td>
+<td>在获取命令结果之前，验证命令回显，确保不会读取到无用的通道buffer数据</td>
+</tr>
+<tr>
+<td>解析参数</td>
+<td>use_textfsm</td>
+<td>bool</td>
+<td>False</td>
+<td>通过TextFSM模板处理命令回显信息</td>
+</tr>
+<tr>
+<td></td>
+<td>textfsm_template</td>
+<td>string</td>
+<td>None</td>
+<td>TextFSM模版的文件名</td>
+</tr>
+<tr>
+<td></td>
+<td>use_ttp</td>
+<td>bool</td>
+<td>False</td>
+<td>通过TTP模板处理命令输出</td>
+</tr>
+<tr>
+<td></td>
+<td>ttp_template</td>
+<td>string</td>
+<td>None</td>
+<td>TTP模版的文件名</td>
+</tr>
+<tr>
+<td></td>
+<td>use_genie</td>
+<td>bool</td>
+<td>False</td>
+<td>通过PyATS&#x2F;Genie解析器处理命令输出</td>
+</tr>
+</tbody></table>
+<h2 id="参数调整-1"><a href="#参数调整-1" class="headerlink" title="参数调整"></a>参数调整</h2><p>执行的命令的参数中大多数都是默认设置，并且都设为了True，也就是说大多数情况下都不需要修改；而需要根据实际情况修改的参数我也高亮标注了出来。</p>
+<h5 id="read-timeout"><a href="#read-timeout" class="headerlink" title="read_timeout"></a>read_timeout</h5><p>这个函数之前已经提到了一次，在Netmiko5.x中可以直接用这个参数来调整循环读取通道的超时时间，不过通常的做法是设置一个较大的值，使其可以覆盖大多数的命令延迟，比如设为100。</p>
+<p>如果实际确实有延迟很高的命令的话，再根据具体的命令适当修改read_timeout的值。</p>
+<p>可能部分朋友会觉得直接设置一个5分钟或者10分钟，这样就可以覆盖所有命令了，没必要单独处理。</p>
+<p>但如果真的某台设备出现故障，所有的命令都延迟极高，或者网络链路出现很大抖动，那么执行的命令会在一段时间内都获取不到结果，这种情况下超时时间都设为5分钟的话，就无法及时抛出超时异常，而是会陷入长时间的循环等待，这当然不是我们想要看到的。</p>
+<p>所以对于异常情况，或者边界case的考虑也是需要大家在学习和运用的过程中锻炼提高的。</p>
+<h5 id="expect-string"><a href="#expect-string" class="headerlink" title="expect_string"></a>expect_string</h5><p>由于<code>auto_find_prompt</code>参数默认设为了True，所以即使不传递expect_string，也可以自动获取到设备标识符做为<code>search_pattern</code>。</p>
+<p>对于特殊的命令的话，我们可以修改该参数，使其作为判定循环读取结束的正则表达式，但大多数命令其实都是用的设备标识符做的<code>search_pattern</code>。</p>
+<p>所以我的建议是这里直接将<code>expect_string</code>设置为<code>self.base_prompt</code>，或者将<code>auto_find_prompt</code>设置为<code>False</code>，因为在连接建立后的<code>session_preparation</code>函数里获取了设备标识符作为<code>base_prompt</code>，所以<code>send_command</code>函数自动获取的标识符同样也是发送换行符后获取的设备标识符，设置调用的函数都是同一个<code>find_prompt</code>，所以我们大多数情况下可以直接穿入<code>self.base_prompt</code>作为<code>search_pattern</code>，这样就可以每条命令都减少一次自动获取标识符时产生的与设备的交互，对于提高性能来说会有不小的帮助。</p>
+<h1 id="基于时间的命令执行"><a href="#基于时间的命令执行" class="headerlink" title="基于时间的命令执行"></a>基于时间的命令执行</h1><p>上面提到<code>send_command</code>是使用最为普遍的一个执行命令函数，它是基于字符串匹配决定是否输出结束，但对于部分命令，我们无法准确的定义它的<code>expect_string</code>，这时候我们就需要另一种方式来获取它的执行结果，那就是<code>send_command_timing</code>，这个函数是一种基于时间机制的命令执行函数。</p>
+<h2 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h2><p>这个函数的参数与<code>send_command</code>中的参数几乎完全一致，只额外多了一个<code>last_read</code>参数，这个参数会对是否结束循环起到关键性的作用。</p>
+<p>除此之外，<code>read_timeout</code>时间也从默认的100s改为了默认120s。</p>
+<h2 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h2><p><img src="https://s2.loli.net/2023/04/08/eTPDgsI6fxrt2CX.png" alt="img"></p>
+<p>基于时间的机制中，循环读取通道数据后，已经不需要设置<code>last_n_reads</code>队列来提高性能来，因为时间机制下，完全没有做任何的字符匹配，而是单纯通过<code>last_read</code>这一变量来判断是否输出结束。</p>
+<p>最为关键的一个节点我已经高亮标注了出来，其实核心的逻辑就是：</p>
+<p>循环读取通道时，当此次没有读取到任何数据，那么就说明有可能已经输出结束了，那么此时休眠<code>last_read</code>秒之后再读取一次，如果还没有数据，就判定为结束，如果又读到了数据，那么上一次没读到数据就有可能是设备或网络延迟造成的，则再次进入循环。</p>
+<h2 id="调参"><a href="#调参" class="headerlink" title="调参"></a>调参</h2><p><code>send_command_timing</code>是基于时间机制来判定输出结束的，所以我们能调整的就是两个参数：</p>
+<h3 id="read-timeout-1"><a href="#read-timeout-1" class="headerlink" title="read_timeout"></a>read_timeout</h3><p>当执行的命令返回内容输出较长时，则需要循环更多次才能读取到全部结果，这时候就需要调大<code>read_timeout</code>，避免抛出超时异常。</p>
+<h3 id="last-read"><a href="#last-read" class="headerlink" title="last_read"></a>last_read</h3><p>当执行的命令需要较长时间延迟才能输出回显结果时，可能会造成某次循环在<code>last_read</code>时间内从通道中读取不到任何数据，导致提前结束循环，获取不到全部的结果，所以这时候需要调大<code>last_read</code>参数。</p>
+<h1 id="执行命令（配置）"><a href="#执行命令（配置）" class="headerlink" title="执行命令（配置）"></a>执行命令（配置）</h1><p>对于网络设备来说，在不同的模式下可以执行不同的命令，show类型的命令通常都在用户模式或特权模式执行，而配置命令的话必须要在配置模式执行；</p>
+<p>那么对于不同的设备进入配置模式的方式也都不尽相同，既然Netmiko能够支持不同厂商的设备，就理所应当也适配了该类型设备进入配置模式的方法。</p>
+<p>关于配置模式相关的函数如下：</p>
+<ul>
+<li>self.check_config_mode: 调用该函数可以检查当前是否在配置模式下，返回一个bool值</li>
+<li>self.config_mode：调用函数可以进入设备的配置模式</li>
+<li>self.exit_config_mode: 调用该函数可以退出配置模式</li>
+</ul>
+<p>通常执行配置类型的命令需要：进入配置模式 -&gt; 执行命令 -&gt; 退出配置模式，而Netmiko就为我们提供了一个封装好的方法：</p>
+<h2 id="send-config-set"><a href="#send-config-set" class="headerlink" title="send_config_set"></a>send_config_set</h2><p>源码中的参数如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">send_config_set</span>(<span class="params"></span></span><br><span class="line"><span class="params">    self,</span></span><br><span class="line"><span class="params">    config_commands: <span class="type">Union</span>[<span class="built_in">str</span>, <span class="type">Sequence</span>[<span class="built_in">str</span>], Iterator[<span class="built_in">str</span>], TextIO, <span class="literal">None</span>] = <span class="literal">None</span>,</span></span><br><span class="line"><span class="params">    *,</span></span><br><span class="line"><span class="params">    exit_config_mode: <span class="built_in">bool</span> = <span class="literal">True</span>,</span></span><br><span class="line"><span class="params">    read_timeout: <span class="type">Optional</span>[<span class="built_in">float</span>] = <span class="literal">None</span>,</span></span><br><span class="line"><span class="params">    delay_factor: <span class="type">Optional</span>[<span class="built_in">float</span>] = <span class="literal">None</span>,</span></span><br><span class="line"><span class="params">    max_loops: <span class="type">Optional</span>[<span class="built_in">int</span>] = <span class="literal">None</span>,</span></span><br><span class="line"><span class="params">    strip_prompt: <span class="built_in">bool</span> = <span class="literal">False</span>,</span></span><br><span class="line"><span class="params">    strip_command: <span class="built_in">bool</span> = <span class="literal">False</span>,</span></span><br><span class="line"><span class="params">    config_mode_command: <span class="type">Optional</span>[<span class="built_in">str</span>] = <span class="literal">None</span>,</span></span><br><span class="line"><span class="params">    cmd_verify: <span class="built_in">bool</span> = <span class="literal">True</span>,</span></span><br><span class="line"><span class="params">    enter_config_mode: <span class="built_in">bool</span> = <span class="literal">True</span>,</span></span><br><span class="line"><span class="params">    error_pattern: <span class="built_in">str</span> = <span class="string">&quot;&quot;</span>,</span></span><br><span class="line"><span class="params">    terminator: <span class="built_in">str</span> = <span class="string">r&quot;#&quot;</span>,</span></span><br><span class="line"><span class="params">    bypass_commands: <span class="type">Optional</span>[<span class="built_in">str</span>] = <span class="literal">None</span>,</span></span><br><span class="line"><span class="params"></span>) -&gt; <span class="built_in">str</span>:</span><br></pre></td></tr></table></figure>
+
+<h2 id="参数-1"><a href="#参数-1" class="headerlink" title="参数"></a>参数</h2><table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>参数类型</th>
+<th>默认值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>config_commands</td>
+<td>多种</td>
+<td>None</td>
+<td>要执行的配置命令</td>
+</tr>
+<tr>
+<td>exit_config_mode</td>
+<td>bool</td>
+<td>True</td>
+<td>执行完配置命令之后是否退出配置模式</td>
+</tr>
+<tr>
+<td>read_timeout</td>
+<td>float</td>
+<td>None</td>
+<td>如果不传该参数会默认设置为15s，</td>
+</tr>
+<tr>
+<td>config_mode_command</td>
+<td>string</td>
+<td>None</td>
+<td>进入配置模式的命令，各厂商会在自己的连接类里定义</td>
+</tr>
+<tr>
+<td>cmd_verify</td>
+<td>bool</td>
+<td>True</td>
+<td>每条配置命令都验证是否输出命令echo</td>
+</tr>
+<tr>
+<td>enter_config_mode</td>
+<td>bool</td>
+<td>True</td>
+<td>是否进入配置模式，默认进入</td>
+</tr>
+<tr>
+<td>error_pattern</td>
+<td>string</td>
+<td>“”</td>
+<td>输出结果出现匹配字符串时视为执行异常</td>
+</tr>
+<tr>
+<td>terminator</td>
+<td>string</td>
+<td>r’#’</td>
+<td>配置模式下判定命令输出结束的正则字符串</td>
+</tr>
+<tr>
+<td>bypass_commands</td>
+<td>string</td>
+<td>None</td>
+<td>与要执行的命令匹配，如果匹配成功则关闭cmd_verify功能</td>
+</tr>
+</tbody></table>
+<p>上述参数虽然比较多，但都较好理解，部分参数我也会在视频中更通俗易懂的讲解一下，但这个函数封装的比较完善，绝大多数情况都只需要传递<code>config_command</code>即可，该参数的值可以是字符串，或数组。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>这一章节主要是对Netmiko中的核心函数的讲解，这些函数的参数也都给大家分类展示了出来，更容易理解和使用，但还是需要从实践中加深理解；而且Netmiko的封装过程都是基于网络设备的交互逻辑，所以大家也不需要死记硬背，只要结合网络运维的经验即可理解掌握。</p>
+<p>下一章节我会给大家代入一个简单的巡检场景，讲解如何真正编写一个健壮的与网络设备交互的代码。</p>
+</div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/Netmiko/">Netmiko</a><a class="link-muted mr-2" rel="tag" href="/tags/SSH/">SSH</a></div><!--!--></article></div><div class="card"><div class="card-content"><h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3><div class="buttons is-centered"><a class="button donate" data-type="wechat"><span class="icon is-small"><i class="fab fa-weixin"></i></span><span>微信</span><span class="qrcode"><img src="/img/wechat.png" alt="微信"></span></a><a class="button donate" data-type="alipay"><span class="icon is-small"><i class="fab fa-alipay"></i></span><span>支付宝</span><span class="qrcode"><img src="/img/alipay.png" alt="支付宝"></span></a></div></div></div><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/posts/be12ef7b.html"><i class="level-item fas fa-chevron-left"></i><span class="level-item">1.15 自动化运维新手村-ORM入门</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/posts/248441c7.html"><span class="level-item">2.2 自动化运维初级村-Netmiko-入门</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">评论</h3><script src="https://utteranc.es/client.js" repo="EthanYue/ethanyue.github.io" issue-term="title" label="comments" theme="github-light" crossorigin="anonymous" async></script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="/img/profile.jpeg" alt="EthanYue"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">EthanYue</p><p class="is-size-6 is-block">任何事都是水到渠成的，急不得，躁不得</p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">文章</p><a href="/archives"><p class="title">33</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">分类</p><a href="/categories"><p class="title">4</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">标签</p><a href="/tags"><p class="title">13</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzU4NzQ3NzEwMQ==&amp;action=getalbum&amp;album_id=2159175186967773185&amp;scene=126#wechat_redirect" target="_blank" rel="noopener">微信公众号「Python玩转自动化运维」</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Wechat" href="https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzU4NzQ3NzEwMQ==&amp;action=getalbum&amp;album_id=2159175186967773185&amp;scene=126#wechat_redirect"><i class="fa-brands fa-weixin fa-lg"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="BiliBili" href="https://space.bilibili.com/1034974789"><i class="fa-brands fa-bilibili fa-lg"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Zhihu" href="https://www.zhihu.com/column/c_1448254347628548096"><i class="fa-brands fa-zhihu fa-lg"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/EthanYue/PythonAutoOps"><i class="fa-brands fa-github fa-lg"></i></a></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">标签</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/CMDB/"><span class="tag">CMDB</span><span class="tag">19</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Flask/"><span class="tag">Flask</span><span class="tag">11</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Gunicorn/"><span class="tag">Gunicorn</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Netmiko/"><span class="tag">Netmiko</span><span class="tag">8</span></a></div><div class="control"><a class="tags has-addons" href="/tags/ORM/"><span class="tag">ORM</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Paramiko/"><span class="tag">Paramiko</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Python%E5%9F%BA%E7%A1%80/"><span class="tag">Python基础</span><span class="tag">9</span></a></div><div class="control"><a class="tags has-addons" href="/tags/SSH/"><span class="tag">SSH</span><span class="tag">3</span></a></div><div class="control"><a class="tags has-addons" href="/tags/TextFSM/"><span class="tag">TextFSM</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Web/"><span class="tag">Web</span><span class="tag">10</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%B7%A1%E6%A3%80/"><span class="tag">巡检</span><span class="tag">10</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%96%87%E6%9C%AC%E8%A7%A3%E6%9E%90/"><span class="tag">文本解析</span><span class="tag">5</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%AD%A3%E5%88%99/"><span class="tag">正则</span><span class="tag">2</span></a></div></div></div></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">归档</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2023/"><span class="level-start"><span class="level-item">2023</span></span><span class="level-end"><span class="level-item tag">33</span></span></a></li></ul></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">订阅更新</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="订阅"></div></div></form></div></div></div><div class="column-right-shadow is-hidden-widescreen is-sticky"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3 is-sticky"><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">目录</h3><ul class="menu-list"><ul class="menu-list"><li><a class="level is-mobile" href="#摘要"><span class="level-left"><span class="level-item">1.1</span><span class="level-item">摘要</span></span></a></li></ul><li><a class="level is-mobile" href="#连接参数"><span class="level-left"><span class="level-item">2</span><span class="level-item">连接参数</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#参数分类"><span class="level-left"><span class="level-item">2.1</span><span class="level-item">参数分类</span></span></a></li><li><a class="level is-mobile" href="#参数调整"><span class="level-left"><span class="level-item">2.2</span><span class="level-item">参数调整</span></span></a></li></ul></li><li><a class="level is-mobile" href="#命令参数"><span class="level-left"><span class="level-item">3</span><span class="level-item">命令参数</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#参数分类-1"><span class="level-left"><span class="level-item">3.1</span><span class="level-item">参数分类</span></span></a></li><li><a class="level is-mobile" href="#参数调整-1"><span class="level-left"><span class="level-item">3.2</span><span class="level-item">参数调整</span></span></a></li></ul></li><li><a class="level is-mobile" href="#基于时间的命令执行"><span class="level-left"><span class="level-item">4</span><span class="level-item">基于时间的命令执行</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#参数"><span class="level-left"><span class="level-item">4.1</span><span class="level-item">参数</span></span></a></li><li><a class="level is-mobile" href="#流程图"><span class="level-left"><span class="level-item">4.2</span><span class="level-item">流程图</span></span></a></li><li><a class="level is-mobile" href="#调参"><span class="level-left"><span class="level-item">4.3</span><span class="level-item">调参</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#read-timeout-1"><span class="level-left"><span class="level-item">4.3.1</span><span class="level-item">read_timeout</span></span></a></li><li><a class="level is-mobile" href="#last-read"><span class="level-left"><span class="level-item">4.3.2</span><span class="level-item">last_read</span></span></a></li></ul></li></ul></li><li><a class="level is-mobile" href="#执行命令（配置）"><span class="level-left"><span class="level-item">5</span><span class="level-item">执行命令（配置）</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#send-config-set"><span class="level-left"><span class="level-item">5.1</span><span class="level-item">send_config_set</span></span></a></li><li><a class="level is-mobile" href="#参数-1"><span class="level-left"><span class="level-item">5.2</span><span class="level-item">参数</span></span></a></li></ul></li><li><a class="level is-mobile" href="#总结"><span class="level-left"><span class="level-item">6</span><span class="level-item">总结</span></span></a></li></ul></div></div><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">最新文章</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-08T03:25:00.000Z">2023-04-08</time></p><p class="title"><a href="/posts/380a5944.html">2.13 自动化运维初级村-巡检-解析</a></p><p class="categories"><a href="/categories/%E5%88%9D%E7%BA%A7%E6%9D%91/">初级村</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-08T03:24:00.000Z">2023-04-08</time></p><p class="title"><a href="/posts/3a4924fc.html">2.11.0 自动化运维初级村-巡检-TextFSM</a></p><p class="categories"><a href="/categories/%E5%88%9D%E7%BA%A7%E6%9D%91/">初级村</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-08T03:22:00.000Z">2023-04-08</time></p><p class="title"><a href="/posts/af22ed7b.html">2.12 自动化运维初级村-巡检-TextFSM-2</a></p><p class="categories"><a href="/categories/%E5%88%9D%E7%BA%A7%E6%9D%91/">初级村</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-08T03:21:00.000Z">2023-04-08</time></p><p class="title"><a href="/posts/94cbed9d.html">2.10 自动化运维初级村-巡检-文本解析-从正则到TextFSM</a></p><p class="categories"><a href="/categories/%E5%88%9D%E7%BA%A7%E6%9D%91/">初级村</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-04-08T03:19:00.000Z">2023-04-08</time></p><p class="title"><a href="/posts/82c9e913.html">2.9 自动化运维初级村-巡检-文本解析-正则</a></p><p class="categories"><a href="/categories/%E5%88%9D%E7%BA%A7%E6%9D%91/">初级村</a></p></div></article></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/profile.jpeg" alt="NetDevOps in Python" height="28"></a><p class="is-size-7"><span>&copy; 2023 EthanYue</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("zh-cn");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="回到顶端" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "此网站使用Cookie来改善您的体验。",
+          dismiss: "知道了！",
+          allow: "允许使用Cookie",
+          deny: "拒绝",
+          link: "了解更多",
+          policy: "Cookie政策",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="想要查找什么..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"想要查找什么...","untitled":"(无标题)","posts":"文章","pages":"页面","categories":"分类","tags":"标签"});
+        });</script></body></html>
