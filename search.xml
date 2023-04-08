@@ -3494,7 +3494,7 @@
       </tags>
   </entry>
   <entry>
-    <title>2.11.0 自动化运维初级村-巡检-TextFSM</title>
+    <title>2.11 自动化运维初级村-巡检-TextFSM</title>
     <url>/posts/3a4924fc.html</url>
     <content><![CDATA[<hr>
 <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>上一章节中，我已经给大家演示了如何使用正则来应对常见的几种文本解析场景，但使用正则解析的过程中发现了几个明显的痛点，如果要在我们初级村中设计的巡检模块中补齐文本解析的功能，那么正则是无法担此重任的，所以有必要引入新的文本解析方式，那就是-TextFSM。</p>
